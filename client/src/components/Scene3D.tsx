@@ -4,13 +4,12 @@ import { Character } from './Character';
 import { World } from './World';
 import { Joystick } from './Joystick';
 import { Loader } from '@react-three/drei';
+import { EffectComposer, Bloom, Vignette, DepthOfField } from '@react-three/postprocessing';
 
 export default function Scene3D() {
-  // Input state
   const [joystickInput, setJoystickInput] = useState({ x: 0, y: 0 });
   const [keyboardInput, setKeyboardInput] = useState({ x: 0, y: 0 });
 
-  // Joystick handlers
   const handleJoystickMove = useCallback((x: number, y: number) => {
     setJoystickInput({ x, y });
   }, []);
@@ -19,24 +18,22 @@ export default function Scene3D() {
     setJoystickInput({ x: 0, y: 0 });
   }, []);
 
-  // Keyboard handlers (simple implementation)
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    switch(e.key) {
-      case 'ArrowUp': case 'w': setKeyboardInput(prev => ({ ...prev, y: -1 })); break;
-      case 'ArrowDown': case 's': setKeyboardInput(prev => ({ ...prev, y: 1 })); break;
-      case 'ArrowLeft': case 'a': setKeyboardInput(prev => ({ ...prev, x: -1 })); break;
-      case 'ArrowRight': case 'd': setKeyboardInput(prev => ({ ...prev, x: 1 })); break;
+    switch(e.key.toLowerCase()) {
+      case 'arrowup': case 'w': setKeyboardInput(prev => ({ ...prev, y: -1 })); break;
+      case 'arrowdown': case 's': setKeyboardInput(prev => ({ ...prev, y: 1 })); break;
+      case 'arrowleft': case 'a': setKeyboardInput(prev => ({ ...prev, x: -1 })); break;
+      case 'arrowright': case 'd': setKeyboardInput(prev => ({ ...prev, x: 1 })); break;
     }
   }, []);
 
   const handleKeyUp = useCallback((e: React.KeyboardEvent) => {
-    switch(e.key) {
-      case 'ArrowUp': case 'w': case 'ArrowDown': case 's': setKeyboardInput(prev => ({ ...prev, y: 0 })); break;
-      case 'ArrowLeft': case 'a': case 'ArrowRight': case 'd': setKeyboardInput(prev => ({ ...prev, x: 0 })); break;
+    switch(e.key.toLowerCase()) {
+      case 'arrowup': case 'w': case 'arrowdown': case 's': setKeyboardInput(prev => ({ ...prev, y: 0 })); break;
+      case 'arrowleft': case 'a': case 'arrowright': case 'd': setKeyboardInput(prev => ({ ...prev, x: 0 })); break;
     }
   }, []);
 
-  // Merge inputs
   const input = {
     x: joystickInput.x || keyboardInput.x,
     y: joystickInput.y || keyboardInput.y
@@ -44,50 +41,54 @@ export default function Scene3D() {
 
   return (
     <div 
-      className="w-full h-full relative" 
+      className="w-full h-full relative outline-none bg-black" 
       onKeyDown={handleKeyDown} 
       onKeyUp={handleKeyUp} 
-      tabIndex={0} // Make div focusable for keyboard events
+      tabIndex={0}
     >
-      <Canvas shadows camera={{ position: [0, 5, 10], fov: 50 }}>
+      <Canvas shadows camera={{ position: [0, 5, 10], fov: 45 }}>
         <Suspense fallback={null}>
           <World />
           <Character input={input} />
+          <EffectComposer>
+            <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
+            <Bloom luminanceThreshold={1} luminanceSmoothing={0.9} height={300} intensity={0.5} />
+            <Vignette eskil={false} offset={0.1} darkness={1.1} />
+          </EffectComposer>
         </Suspense>
       </Canvas>
       <Loader />
 
-      {/* UI Overlay */}
-      <div className="absolute inset-0 pointer-events-none p-6 flex flex-col justify-between">
-        {/* Header */}
+      {/* Immersive UI Overlay matching reference */}
+      <div className="absolute inset-0 pointer-events-none p-8 flex flex-col justify-between">
         <div className="flex justify-between items-start pointer-events-auto">
-          <div>
-            <h1 className="font-display text-4xl text-white drop-shadow-md font-bold tracking-tighter">HI!</h1>
-            <p className="font-body text-white/90 text-sm max-w-[200px] mt-2 drop-shadow-sm">
-              Welcome to my digital space. Explore the world to see my work.
-            </p>
+          <div className="animate-in slide-in-from-top duration-1000">
+            <h1 className="font-display text-8xl text-white font-extrabold tracking-tighter leading-none">HI!</h1>
+            <div className="mt-4 max-w-sm bg-black/20 backdrop-blur-xl border border-white/10 p-6 rounded-lg">
+              <p className="font-body text-white/90 text-lg leading-relaxed">
+                I'm Sébastien, a creative engineer. Explore this world to discover my work.
+              </p>
+            </div>
           </div>
-          <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full font-bold text-sm hover:bg-white/20 transition-colors">
-            MENU
+          <button className="bg-white/5 backdrop-blur-2xl border border-white/20 text-white w-12 h-12 rounded-full flex flex-col items-center justify-center gap-1 hover:bg-white/10 transition-all">
+            <div className="w-6 h-0.5 bg-white"></div>
+            <div className="w-6 h-0.5 bg-white"></div>
+            <div className="w-6 h-0.5 bg-white"></div>
           </button>
         </div>
 
-        {/* Footer / Controls */}
         <div className="flex justify-between items-end">
-           <div className="pointer-events-auto">
+           <div className="pointer-events-auto opacity-80 hover:opacity-100 transition-opacity">
              <Joystick onMove={handleJoystickMove} onStop={handleJoystickStop} />
-             <p className="text-white/50 text-xs mt-2 ml-4">DRAG TO MOVE</p>
            </div>
            
-           <div className="flex gap-4 pointer-events-auto">
-              <div className="text-right text-white/80 text-sm">
-                <p>SOUND</p>
-                <div className="flex gap-1 justify-end mt-1">
-                  <div className="w-1 h-4 bg-white rounded-full animate-pulse"></div>
-                  <div className="w-1 h-6 bg-white rounded-full animate-pulse delay-75"></div>
-                  <div className="w-1 h-3 bg-white rounded-full animate-pulse delay-150"></div>
-                </div>
+           <div className="flex flex-col items-end gap-2 text-white/40 font-bold tracking-widest text-xs pointer-events-auto">
+              <div className="flex gap-1 h-8 items-end">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="w-1 bg-white rounded-full animate-pulse" style={{ height: `${Math.random() * 100}%`, animationDelay: `${i * 100}ms` }}></div>
+                ))}
               </div>
+              <p>SOUND ON</p>
            </div>
         </div>
       </div>
