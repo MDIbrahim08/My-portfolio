@@ -35,23 +35,6 @@ html, body, #root {
   font-family: var(--font-display);
 }
 
-.premium-gradient {
-  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-}
-
-.text-reveal {
-  background: linear-gradient(to right, #fff 50%, rgba(255,255,255,0.1) 50%);
-  background-size: 200% 100%;
-  background-position-x: 100%;
-  color: transparent;
-  -webkit-background-clip: text;
-  transition: background-position 0.8s ease;
-}
-
-.text-reveal:hover {
-  background-position-x: 0%;
-}
-
 .noise-overlay {
   position: fixed;
   top: 0;
@@ -68,6 +51,16 @@ html, body, #root {
   letter-spacing: -0.05em;
 }
 
-.premium-border {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.mask-fade {
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
