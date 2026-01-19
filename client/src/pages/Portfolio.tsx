@@ -5,37 +5,56 @@ export default function Portfolio() {
   const projects = [
     {
       id: "01",
-      title: "Mental Health App",
-      category: "Python, JS",
-      description: "Exercises, mood tracking, clean UI",
-      status: "Complete",
-      image: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?auto=format&fit=crop&q=80&w=1200",
+      title: "Resumend AI",
+      category: "AI, TypeScript",
+      description: "AI-powered resume optimization and career guidance platform.",
+      status: "Live",
+      link: "https://rsumend.lovable.app",
+      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200",
     },
     {
       id: "02",
-      title: "Smack-the-Snacc",
-      category: "JS, GPT",
-      description: "Fast-paced mini game",
+      title: "ColdCraft AI",
+      category: "AI, Next.js",
+      description: "Sophisticated AI agent for personalized cold outreach at scale.",
       status: "Live",
-      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=1200",
+      link: "https://coldcraft-ai.vercel.app/",
+      image: "https://images.unsplash.com/photo-1557426272-fc759fbb7a8d?auto=format&fit=crop&q=80&w=1200",
     },
     {
       id: "03",
-      title: "Audio Visualizer",
-      category: "p5.js",
-      description: "Dynamic visuals from audio",
-      status: "Done",
-      image: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=1200",
+      title: "W-Wear",
+      category: "E-Commerce, React",
+      description: "Modern fashion platform with seamless user experience and clean aesthetics.",
+      status: "Live",
+      link: "https://w-wear.netlify.app/",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200",
+    },
+    {
+      id: "04",
+      title: "Movie Buddy",
+      category: "Entertainment, API",
+      description: "Intelligent movie discovery and recommendation engine.",
+      status: "Live",
+      link: "https://moviebuddy.lovable.app/",
+      image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1200",
+    },
+    {
+      id: "05",
+      title: "Smack the Snack",
+      category: "Gaming, JavaScript",
+      description: "Fast-paced mini game built for pure interactive fun.",
+      status: "Live",
+      link: "https://smack-the-snacc.lovable.app/",
+      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=1200",
     }
   ];
 
   const repos = [
-    { name: "career-compass-ai", type: "Private", status: "Updated 2 weeks ago" },
-    { name: "SPACE-JUNK-COLLECTER", type: "Public", status: "Updated last month" },
-    { name: "mindcompass", type: "Private", status: "Updated on Dec 18, 2025" },
-    { name: "coldcraft-ai", type: "Private", status: "Updated on Dec 17, 2025" },
-    { name: "ColdCraft", type: "Public", status: "Updated on Dec 17, 2025" },
-    { name: "moviebuddy", type: "Public", status: "Updated on Oct 24, 2025" },
+    { name: "Resumend-AI", type: "Public", status: "Updated 2 weeks ago", link: "https://rsumend.lovable.app" },
+    { name: "ColdCraft-AI", type: "Public", status: "Updated on Dec 17, 2025", link: "https://coldcraft-ai.vercel.app/" },
+    { name: "W-Wear", type: "Public", status: "Updated on Nov 4, 2025", link: "https://w-wear.netlify.app/" },
+    { name: "MovieBuddy", type: "Public", status: "Updated on Oct 24, 2025", link: "https://moviebuddy.lovable.app/" },
   ];
 
   const fadeInUp = {
@@ -63,9 +82,9 @@ export default function Portfolio() {
           <a href="#about" className="hover:opacity-100 transition-opacity">Vision</a>
           <a href="#contact" className="hover:opacity-100 transition-opacity">Contact</a>
         </div>
-        <button className="text-[10px] tracking-widest font-black uppercase bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-          Menu
-        </button>
+        <a href="mailto:mi5062254@gmail.com" className="text-[10px] tracking-widest font-black uppercase bg-white text-black px-6 py-2 rounded-full border border-white/10 hover:bg-transparent hover:text-white transition-all">
+          Hire Me
+        </a>
       </nav>
 
       {/* Hero Section */}
@@ -78,7 +97,7 @@ export default function Portfolio() {
             className="relative"
           >
             <span className="text-[9px] tracking-[0.4em] font-black text-white/30 uppercase mb-4 block">
-              AI & CYBERSECURITY // INNOVATOR
+              AI & CYBERSECURITY // MOHAMMED IBRAHIM
             </span>
             <h1 className="font-display text-[15vw] md:text-[10vw] font-black leading-[0.9] kerning-tight mb-8">
               DIGITAL<br/>
@@ -185,13 +204,16 @@ export default function Portfolio() {
                 className="group grid grid-cols-1 md:grid-cols-12 gap-10 items-center"
               >
                 <div className={`md:col-span-7 ${i % 2 !== 0 ? 'md:order-2' : ''}`}>
-                  <div className="aspect-video overflow-hidden bg-white/5 border border-white/5">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="block aspect-video overflow-hidden bg-white/5 border border-white/5 relative group-hover:border-white/20 transition-all duration-700">
                     <img 
                       src={project.image} 
                       alt={project.title}
                       className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
                     />
-                  </div>
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                       <span className="bg-white text-black px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase">Visit Project</span>
+                    </div>
+                  </a>
                 </div>
 
                 <div className={`md:col-span-5 ${i % 2 !== 0 ? 'md:text-right' : ''}`}>
@@ -206,9 +228,9 @@ export default function Portfolio() {
                   <p className="text-sm text-white/40 mb-8 max-w-sm group-even:ml-auto">
                     {project.description}
                   </p>
-                  <button className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] group-hover:gap-5 transition-all duration-500">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] group-hover:gap-5 transition-all duration-500">
                     EXPLORE <ArrowUpRight size={14} />
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             ))}
@@ -225,10 +247,12 @@ export default function Portfolio() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {repos.map((repo) => (
-              <motion.div 
+              <a 
                 key={repo.name}
-                {...fadeInUp}
-                className="bg-gray-50 p-8 border border-black/5 hover:bg-black hover:text-white transition-all duration-500 group relative"
+                href={repo.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-50 p-8 border border-black/5 hover:bg-black hover:text-white transition-all duration-500 group relative block"
               >
                 <div className="flex justify-between items-start mb-6">
                   <span className="text-[8px] tracking-[0.3em] font-black uppercase opacity-40 group-hover:opacity-100">{repo.type}</span>
@@ -237,24 +261,25 @@ export default function Portfolio() {
                 <h4 className="font-display font-bold text-lg mb-2 truncate">{repo.name}</h4>
                 <p className="text-[9px] tracking-widest opacity-40 group-hover:opacity-60 uppercase font-bold">{repo.status}</p>
                 <div className="absolute bottom-0 left-0 h-[2px] bg-black group-hover:bg-white w-0 group-hover:w-full transition-all duration-500" />
-              </motion.div>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-32 px-6 md:px-12 text-center bg-[#050505]">
+      <section id="contact" className="py-32 px-6 md:px-12 text-center bg-[#050505] border-t border-white/5">
         <div className="max-w-[1400px] mx-auto">
           <motion.div {...fadeInUp}>
             <span className="text-[9px] tracking-[0.5em] font-black text-white/20 uppercase mb-8 block">Project Inquiry</span>
-            <h2 className="font-display text-[12vw] font-black kerning-tight leading-none mb-20 hover:text-white/40 transition-colors cursor-pointer">
-              CONNECT.
+            <h2 className="font-display text-[8vw] font-black kerning-tight leading-none mb-20 hover:text-white/40 transition-colors cursor-pointer uppercase">
+              Let's Connect.
             </h2>
-            <div className="flex flex-wrap justify-center gap-10 md:gap-20 text-[10px] font-black tracking-[0.3em] uppercase text-white/40">
-              {['LinkedIn', 'Instagram', 'Github', 'Mail'].map(link => (
-                <a key={link} href="#" className="hover:text-white transition-colors">{link}</a>
-              ))}
+            <div className="flex flex-wrap justify-center gap-10 md:gap-20 text-[10px] font-black tracking-[0.3em] uppercase">
+              <a href="https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">LinkedIn</a>
+              <a href="https://github.com/MDIbrahim08" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">Github</a>
+              <a href="mailto:mi5062254@gmail.com" className="text-white/40 hover:text-white transition-colors">Email</a>
+              <a href="#" className="text-white/40 hover:text-white transition-colors">Instagram</a>
             </div>
           </motion.div>
         </div>
@@ -264,8 +289,8 @@ export default function Portfolio() {
       <footer className="py-12 px-6 border-t border-white/5">
         <div className="flex flex-col md:flex-row justify-between items-center text-[8px] tracking-[0.4em] font-black uppercase text-white/10 gap-6 text-center">
           <p>© 2026 Mohammed Ibrahim // Building Practical AI</p>
+          <p>mi5062254@gmail.com</p>
           <p>Cyber Threat Intelligence — Data Science</p>
-          <p>London — Dubai — New York</p>
         </div>
       </footer>
     </div>
