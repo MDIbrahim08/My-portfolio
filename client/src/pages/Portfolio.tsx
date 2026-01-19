@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail, ArrowDown, ExternalLink, Code2, Brain, Shield, Globe } from "lucide-react";
+import { NeuralNetworkBackground } from "@/components/NeuralNetworkBackground";
 
 export default function Portfolio() {
   const projects = [
@@ -64,44 +65,85 @@ export default function Portfolio() {
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   };
 
+  const textVariant = {
+    initial: { opacity: 0, x: -20 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-white selection:bg-white selection:text-black font-body overflow-x-hidden">
       <div className="noise-overlay" />
+      <NeuralNetworkBackground />
       
       {/* Premium Navigation */}
       <nav className="fixed top-0 w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center mix-blend-difference">
         <motion.span 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
           className="font-display font-black text-xl tracking-tighter"
         >
           M. IBRAHIM
         </motion.span>
         <div className="hidden md:flex gap-10 text-[9px] tracking-[0.3em] font-bold uppercase opacity-60">
-          <a href="#work" className="hover:opacity-100 transition-opacity">Portfolio</a>
-          <a href="#about" className="hover:opacity-100 transition-opacity">Vision</a>
-          <a href="#contact" className="hover:opacity-100 transition-opacity">Contact</a>
+          {['Portfolio', 'Vision', 'Contact'].map((item) => (
+            <motion.a 
+              key={item}
+              href={`#${item.toLowerCase()}`} 
+              whileHover={{ scale: 1.1, opacity: 1 }}
+              className="transition-opacity"
+            >
+              {item}
+            </motion.a>
+          ))}
         </div>
-        <a href="mailto:mi5062254@gmail.com" className="text-[10px] tracking-widest font-black uppercase bg-white text-black px-6 py-2 rounded-full border border-white/10 hover:bg-transparent hover:text-white transition-all">
+        <motion.a 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          href="mailto:mi5062254@gmail.com" 
+          className="text-[10px] tracking-widest font-black uppercase bg-white text-black px-6 py-2 rounded-full border border-white/10 hover:bg-transparent hover:text-white transition-all"
+        >
           Hire Me
-        </a>
+        </motion.a>
       </nav>
 
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 relative overflow-hidden">
-        <div className="max-w-[1400px] w-full mx-auto">
+        <div className="max-w-[1400px] w-full mx-auto z-10">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <span className="text-[9px] tracking-[0.4em] font-black text-white/30 uppercase mb-4 block">
+            <motion.span 
+              initial={{ opacity: 0, letterSpacing: "0.2em" }}
+              animate={{ opacity: 1, letterSpacing: "0.4em" }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="text-[9px] font-black text-white/30 uppercase mb-4 block"
+            >
               AI & CYBERSECURITY // MOHAMMED IBRAHIM
-            </span>
-            <h1 className="font-display text-[15vw] md:text-[10vw] font-black leading-[0.9] kerning-tight mb-8">
-              DIGITAL<br/>
-              <span className="text-white/20">PRESTIGE.</span>
+            </motion.span>
+            <h1 className="font-display text-[15vw] md:text-[10vw] font-black leading-[0.9] kerning-tight mb-8 overflow-hidden">
+              <motion.span 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, ease: "circOut" }}
+                className="inline-block"
+              >
+                DIGITAL
+              </motion.span>
+              <br/>
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.2 }}
+                transition={{ duration: 1.5, delay: 0.8 }}
+                className="text-white"
+              >
+                PRESTIGE.
+              </motion.span>
             </h1>
           </motion.div>
 
@@ -114,35 +156,48 @@ export default function Portfolio() {
               >
                 <ArrowDown size={18} className="text-white/40" />
               </motion.div>
-              <p className="max-w-[200px] text-[10px] leading-relaxed text-white/30 uppercase tracking-[0.2em] font-bold">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+                className="max-w-[200px] text-[10px] leading-relaxed text-white/30 uppercase tracking-[0.2em] font-bold"
+              >
                 Building simple, smart, and human-centered technology.
-              </p>
-            </div>
-            
-            <div className="text-right hidden md:block">
-              <p className="font-display text-2xl font-bold tracking-tighter">MOHAMMED IBRAHIM</p>
-              <p className="text-[9px] tracking-widest text-white/10 uppercase mt-1">Archive // MMXXVI</p>
+              </motion.p>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-32 px-6 md:px-12 bg-white text-black overflow-hidden">
+      <section id="vision" className="py-32 px-6 md:px-12 bg-white text-black overflow-hidden relative z-10">
         <div className="max-w-[1400px] mx-auto">
-          <motion.div {...fadeInUp} className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-4">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-4"
+            >
                <h2 className="font-display text-5xl md:text-7xl font-black kerning-tight leading-none mb-6">
                  THE<br/>VISION.
                </h2>
-               <div className="h-1 w-12 bg-black mt-4" />
-            </div>
+               <motion.div 
+                 initial={{ width: 0 }}
+                 whileInView={{ width: 48 }}
+                 viewport={{ once: true }}
+                 className="h-1 bg-black mt-4" 
+               />
+            </motion.div>
             <div className="md:col-span-8">
-              <p className="text-xl md:text-3xl font-medium leading-tight mb-10 text-balance">
+              <motion.p 
+                {...textVariant}
+                className="text-xl md:text-3xl font-medium leading-tight mb-10 text-balance"
+              >
                 Hi, I'm Mohammed Ibrahim — an AI & Cybersecurity learner who focuses on building simple, smart, and human-centered tech.
-              </p>
+              </motion.p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-                <div className="space-y-4">
+                <motion.div {...fadeInUp} className="space-y-4">
                   <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40">Directives</h4>
                   <ul className="space-y-3 text-xs font-bold uppercase tracking-wider">
                     {['AI & Data Science', 'Cyber Threat Intelligence', 'Security Visualization'].map((item) => (
@@ -151,21 +206,21 @@ export default function Portfolio() {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="p-6 bg-gray-50 border border-black/5">
+                </motion.div>
+                <motion.div {...fadeInUp} className="p-6 bg-gray-50 border border-black/5">
                   <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40 mb-3">Fun Fact</h4>
                   <p className="text-sm italic opacity-70 leading-relaxed font-medium text-balance">
                     "I debug faster when deadlines are close."
                   </p>
-                </div>
+                </motion.div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Skills Grid */}
-      <section className="py-32 px-6 md:px-12 border-y border-white/5">
+      <section className="py-32 px-6 md:px-12 border-y border-white/5 relative z-10">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -176,9 +231,12 @@ export default function Portfolio() {
             ].map(({ Icon, title, tech }, i) => (
               <motion.div 
                 key={title}
-                {...fadeInUp}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-all duration-500 group"
+                whileHover={{ y: -5, borderColor: "rgba(255,255,255,0.2)" }}
+                className="bg-white/5 p-8 border border-white/5 transition-all duration-500 group"
               >
                 <Icon className="mb-6 text-white/20 group-hover:text-white transition-colors" size={24} />
                 <h3 className="font-display font-bold text-lg mb-2">{title}</h3>
@@ -190,47 +248,64 @@ export default function Portfolio() {
       </section>
 
       {/* Featured Projects */}
-      <section id="work" className="py-32 px-6 md:px-12">
+      <section id="portfolio" className="py-32 px-6 md:px-12 relative z-10">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-20">
-            <h2 className="font-display text-5xl md:text-7xl font-black kerning-tight">ARCHIVE.</h2>
+            <motion.h2 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="font-display text-5xl md:text-7xl font-black kerning-tight"
+            >
+              ARCHIVE.
+            </motion.h2>
           </div>
 
           <div className="space-y-32">
             {projects.map((project, i) => (
               <motion.div 
                 key={project.id}
-                {...fadeInUp}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 className="group grid grid-cols-1 md:grid-cols-12 gap-10 items-center"
               >
                 <div className={`md:col-span-7 ${i % 2 !== 0 ? 'md:order-2' : ''}`}>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="block aspect-video overflow-hidden bg-white/5 border border-white/5 relative group-hover:border-white/20 transition-all duration-700">
+                  <motion.a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    whileHover={{ scale: 1.02 }}
+                    className="block aspect-video overflow-hidden bg-white/5 border border-white/5 relative group-hover:border-white/20 transition-all duration-700"
+                  >
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                      className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 ease-out"
                     />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 flex items-center justify-center opacity-0 group-hover:opacity-100">
                        <span className="bg-white text-black px-6 py-2 rounded-full font-black text-[10px] tracking-widest uppercase">Visit Project</span>
                     </div>
-                  </a>
+                  </motion.a>
                 </div>
 
                 <div className={`md:col-span-5 ${i % 2 !== 0 ? 'md:text-right' : ''}`}>
-                  <div className="flex items-center gap-3 mb-4 opacity-30 text-[9px] tracking-[0.3em] font-black uppercase md:justify-start group-even:md:justify-end">
-                    <span>{project.category}</span>
-                    <div className="w-1 h-1 bg-white rounded-full" />
-                    <span className="text-accent">{project.status}</span>
-                  </div>
-                  <h3 className="font-display text-3xl md:text-5xl font-black mb-4 leading-none">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-white/40 mb-8 max-w-sm group-even:ml-auto">
-                    {project.description}
-                  </p>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] group-hover:gap-5 transition-all duration-500">
-                    EXPLORE <ArrowUpRight size={14} />
-                  </a>
+                  <motion.div {...fadeInUp}>
+                    <div className="flex items-center gap-3 mb-4 opacity-30 text-[9px] tracking-[0.3em] font-black uppercase md:justify-start group-even:md:justify-end">
+                      <span>{project.category}</span>
+                      <div className="w-1 h-1 bg-white rounded-full" />
+                      <span className="text-accent">{project.status}</span>
+                    </div>
+                    <h3 className="font-display text-3xl md:text-5xl font-black mb-4 leading-none group-hover:translate-x-2 transition-transform">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-white/40 mb-8 max-w-sm group-even:ml-auto">
+                      {project.description}
+                    </p>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] group-hover:gap-5 transition-all duration-500">
+                      EXPLORE <ArrowUpRight size={14} />
+                    </a>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
@@ -239,20 +314,32 @@ export default function Portfolio() {
       </section>
 
       {/* Repositories */}
-      <section className="py-32 px-6 md:px-12 bg-white text-black">
+      <section className="py-32 px-6 md:px-12 bg-white text-black relative z-10">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-20">
-            <h2 className="font-display text-5xl md:text-7xl font-black kerning-tight leading-none">SYSTEM<br/>LOGS.</h2>
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-display text-5xl md:text-7xl font-black kerning-tight leading-none"
+            >
+              SYSTEM<br/>LOGS.
+            </motion.h2>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {repos.map((repo) => (
-              <a 
+            {repos.map((repo, i) => (
+              <motion.a 
                 key={repo.name}
                 href={repo.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-50 p-8 border border-black/5 hover:bg-black hover:text-white transition-all duration-500 group relative block"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, backgroundColor: "#000", color: "#fff" }}
+                className="bg-gray-50 p-8 border border-black/5 transition-all duration-500 group relative block"
               >
                 <div className="flex justify-between items-start mb-6">
                   <span className="text-[8px] tracking-[0.3em] font-black uppercase opacity-40 group-hover:opacity-100">{repo.type}</span>
@@ -261,32 +348,51 @@ export default function Portfolio() {
                 <h4 className="font-display font-bold text-lg mb-2 truncate">{repo.name}</h4>
                 <p className="text-[9px] tracking-widest opacity-40 group-hover:opacity-60 uppercase font-bold">{repo.status}</p>
                 <div className="absolute bottom-0 left-0 h-[2px] bg-black group-hover:bg-white w-0 group-hover:w-full transition-all duration-500" />
-              </a>
+              </motion.a>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-32 px-6 md:px-12 text-center bg-[#050505] border-t border-white/5">
+      <section id="contact" className="py-32 px-6 md:px-12 text-center bg-[#050505] border-t border-white/5 relative z-10">
         <div className="max-w-[1400px] mx-auto">
-          <motion.div {...fadeInUp}>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
             <span className="text-[9px] tracking-[0.5em] font-black text-white/20 uppercase mb-8 block">Project Inquiry</span>
-            <h2 className="font-display text-[8vw] font-black kerning-tight leading-none mb-20 hover:text-white/40 transition-colors cursor-pointer uppercase">
+            <motion.h2 
+              whileHover={{ scale: 0.95, opacity: 0.5 }}
+              className="font-display text-[8vw] font-black kerning-tight leading-none mb-20 transition-all cursor-pointer uppercase"
+            >
               Let's Connect.
-            </h2>
+            </motion.h2>
             <div className="flex flex-wrap justify-center gap-10 md:gap-20 text-[10px] font-black tracking-[0.3em] uppercase">
-              <a href="https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">LinkedIn</a>
-              <a href="https://github.com/MDIbrahim08" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">Github</a>
-              <a href="mailto:mi5062254@gmail.com" className="text-white/40 hover:text-white transition-colors">Email</a>
-              <a href="#" className="text-white/40 hover:text-white transition-colors">Instagram</a>
+              {[
+                { name: 'LinkedIn', url: 'https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/' },
+                { name: 'Github', url: 'https://github.com/MDIbrahim08' },
+                { name: 'Email', url: 'mailto:mi5062254@gmail.com' }
+              ].map(link => (
+                <motion.a 
+                  key={link.name} 
+                  href={link.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  whileHover={{ y: -5, color: "#fff" }}
+                  className="text-white/40 transition-colors"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/5">
+      <footer className="py-12 px-6 border-t border-white/5 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center text-[8px] tracking-[0.4em] font-black uppercase text-white/10 gap-6 text-center">
           <p>© 2026 Mohammed Ibrahim // Building Practical AI</p>
           <p>mi5062254@gmail.com</p>
