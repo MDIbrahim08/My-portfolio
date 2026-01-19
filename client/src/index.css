@@ -5,19 +5,18 @@
   --font-display: "Syne", sans-serif;
   --font-body: "Inter", sans-serif;
   
-  --color-background: hsl(0 0% 0%);
-  --color-foreground: hsl(0 0% 100%);
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(0 0% 0%);
   
-  --color-primary: hsl(45 100% 50%); /* Gold */
-  --color-primary-foreground: hsl(0 0% 0%);
+  --color-primary: hsl(0 0% 0%);
+  --color-primary-foreground: hsl(0 0% 100%);
   
-  --color-secondary: hsl(0 0% 10%);
-  --color-secondary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(0 0% 96%);
+  --color-secondary-foreground: hsl(0 0% 0%);
   
-  --color-card: hsl(0 0% 5% / 0.8);
-  --color-card-foreground: hsl(0 0% 100%);
+  --color-accent: hsl(210 100% 50%);
   
-  --radius-lg: 0.25rem; /* Industrial sharp edges */
+  --radius-lg: 0px; /* Sharp professional edges */
 }
 
 html, body, #root {
@@ -25,25 +24,33 @@ html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: var(--color-background);
   font-family: var(--font-body);
-}
-
-canvas {
-  touch-action: none;
+  color: var(--color-foreground);
+  overflow-x: hidden;
 }
 
 .font-display {
   font-family: var(--font-display);
 }
 
-.text-glow {
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.gold-gradient {
-  background: linear-gradient(to right, #ffd700, #ff8c00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.section-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-reveal {
+  animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
