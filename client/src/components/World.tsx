@@ -10,7 +10,7 @@ export function World() {
 
   return (
     <group>
-      {/* Environment Background - Using the texture */}
+      {/* Environment Background - Using the texture directly */}
       <primitive attach="background" object={texture} />
       
       {/* Ambient Light for base visibility */}
@@ -61,7 +61,6 @@ export function World() {
       {/* Floating 3D Text Header in the sky */}
       <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5} position={[0, 8, -20]}>
         <Text
-          font="https://fonts.gstatic.com/s/syne/v16/8vII7w4yYyE4wyaV.woff"
           fontSize={8}
           color="#ffffff"
           anchorX="center"
@@ -75,7 +74,6 @@ export function World() {
       
        <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5} position={[0, 3, -15]}>
         <Text
-          font="https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459Wlhyw.woff"
           fontSize={1.5}
           color="#333"
           anchorX="center"
@@ -100,7 +98,6 @@ function BuildingBlock({ position, scale, color, label }: { position: [number, n
       {label && (
         <Float speed={4} rotationIntensity={0.2} floatIntensity={0.5} position={[0, scale[1] + 1.5, 0]}>
           <Text
-            font="https://fonts.gstatic.com/s/syne/v16/8vII7w4yYyE4wyaV.woff"
             fontSize={1}
             color="white"
             anchorX="center"
