@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text, Float, MeshReflectorMaterial, useTexture, Detailed } from '@react-three/drei';
+import { Text, Float, MeshReflectorMaterial, useTexture, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import skyboxUrl from '@assets/generated_images/realistic_parisian_sunset_panorama_skybox.png';
+import skyboxUrl from '@assets/generated_images/abstract_obsidian_and_gold_landscape_panorama_skybox.png';
 
 export function World() {
   const texture = useTexture(skyboxUrl);
@@ -11,79 +11,97 @@ export function World() {
   return (
     <group>
       <primitive attach="background" object={texture} />
-      <ambientLight intensity={0.4} color="#ffd1dc" />
-      <directionalLight 
-        position={[20, 30, 10]} 
-        intensity={2} 
-        color="#ffaa88" 
+      <ambientLight intensity={0.2} />
+      <spotLight 
+        position={[0, 20, 0]} 
+        intensity={5} 
+        color="#ffd700" 
+        angle={0.5} 
+        penumbra={1} 
         castShadow 
-        shadow-mapSize={[4096, 4096]}
       />
-      <fog attach="fog" args={['#ffaa88', 10, 50]} />
+      <fog attach="fog" args={['#000', 5, 45]} />
 
-      {/* Realistic Parisian Ground */}
+      {/* Obsidian Mirror Ground */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[200, 200]} />
+        <planeGeometry args={[100, 100]} />
         <MeshReflectorMaterial
           blur={[400, 100]}
           resolution={1024}
           mixBlur={1}
-          mixStrength={60}
+          mixStrength={100}
           roughness={1}
-          depthScale={1}
+          depthScale={1.5}
           minDepthThreshold={0.4}
           maxDepthThreshold={1.4}
-          color="#151515"
-          metalness={0.6}
+          color="#050505"
+          metalness={1}
         />
       </mesh>
 
-      {/* Parisian Buildings */}
-      <ParisianBuilding position={[-12, 0, -15]} height={12} width={6} color="#e8d1c5" label="ABOUT" />
-      <ParisianBuilding position={[15, 0, -10]} height={10} width={5} color="#d9c5b2" label="PROJECTS" />
-      <ParisianBuilding position={[0, 0, -25]} height={20} width={10} color="#f2e3d5" label="EXPERIENCE" />
-      <ParisianBuilding position={[-20, 0, -5]} height={8} width={4} color="#c5b2a0" />
-      
-      {/* Decorative Assets */}
-      <Float speed={2} floatIntensity={0.5} position={[0, 15, -40]}>
-        <Text fontSize={15} color="white" outlineWidth={0.1} outlineColor="#ff4d8d">
-          PARIS
-        </Text>
+      {/* Floating Monoliths (The Portals) */}
+      <PortalMonolith position={[-8, 0, -10]} label="THE VISION" sub="ABOUT ME" color="#ffd700" />
+      <PortalMonolith position={[8, 0, -5]} label="THE WORKS" sub="PORTFOLIO" color="#fff" />
+      <PortalMonolith position={[0, 0, -20]} label="THE LINK" sub="CONTACT" color="#ffd700" />
+
+      {/* Atmospheric Particles */}
+      <Float speed={5} rotationIntensity={2} floatIntensity={10}>
+        <mesh position={[10, 5, -15]}>
+          <boxGeometry args={[0.1, 0.1, 0.1]} />
+          <meshBasicMaterial color="#ffd700" />
+        </mesh>
       </Float>
     </group>
   );
 }
 
-function ParisianBuilding({ position, height, width, color, label }: any) {
+function PortalMonolith({ position, label, sub, color }: any) {
+  const mesh = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (mesh.current) {
+      mesh.current.position.y = Math.sin(state.clock.elapsedTime + position[0]) * 0.2;
+    }
+  });
+
   return (
     <group position={position}>
-      {/* Main Structure */}
-      <mesh castShadow receiveShadow position={[0, height / 2, 0]}>
-        <boxGeometry args={[width, height, width]} />
-        <meshStandardMaterial color={color} roughness={0.7} />
+      <mesh ref={mesh} castShadow>
+        <boxGeometry args={[4, 12, 0.5]} />
+        <MeshDistortMaterial
+          color="#0a0a0a"
+          speed={2}
+          distort={0.2}
+          metalness={1}
+          roughness={0}
+        />
       </mesh>
       
-      {/* Roof (Mansard style) */}
-      <mesh castShadow position={[0, height + 1, 0]}>
-        <coneGeometry args={[width * 0.7, 2, 4]} />
-        <meshStandardMaterial color="#334" />
+      {/* Glow Edge */}
+      <mesh position={[0, 0, 0.3]}>
+        <planeGeometry args={[4.1, 12.1]} />
+        <meshBasicMaterial color={color} transparent opacity={0.05} />
       </mesh>
 
-      {/* Windows (simple emissive planes) */}
-      {[...Array(5)].map((_, i) => (
-        <mesh key={i} position={[0, (i + 1) * (height / 6), width / 2 + 0.01]}>
-          <planeGeometry args={[width * 0.6, 0.8]} />
-          <meshStandardMaterial color="#fff" emissive="#ffaa00" emissiveIntensity={0.5} />
-        </mesh>
-      ))}
-
-      {label && (
-        <Float speed={3} position={[0, height + 4, 0]}>
-          <Text fontSize={1.2} color="white" font="https://fonts.gstatic.com/s/syne/v16/8vII7w4yYyE4wyaV.woff">
-            {label}
-          </Text>
-        </Float>
-      )}
+      <group position={[0, 14, 0]}>
+        <Text 
+          fontSize={0.4} 
+          color={color} 
+          font="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuL9KAZJhiJ-Ek-_EeA.woff"
+          letterSpacing={0.5}
+        >
+          {sub}
+        </Text>
+        <Text 
+          position={[0, -0.8, 0]} 
+          fontSize={1.2} 
+          color="white" 
+          font="https://fonts.gstatic.com/s/syne/v16/8vII7w4yYyE4wyaV.woff"
+          fontWeight="bold"
+        >
+          {label}
+        </Text>
+      </group>
     </group>
   );
 }

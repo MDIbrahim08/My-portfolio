@@ -3,21 +3,21 @@
 
 @theme inline {
   --font-display: "Syne", sans-serif;
-  --font-body: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
   
-  --color-background: hsl(330 20% 95%);
-  --color-foreground: hsl(260 20% 20%);
+  --color-background: hsl(0 0% 0%);
+  --color-foreground: hsl(0 0% 100%);
   
-  --color-primary: hsl(330 80% 60%);
-  --color-primary-foreground: hsl(0 0% 100%);
+  --color-primary: hsl(45 100% 50%); /* Gold */
+  --color-primary-foreground: hsl(0 0% 0%);
   
-  --color-secondary: hsl(260 60% 70%);
-  --color-secondary-foreground: hsl(260 20% 20%);
+  --color-secondary: hsl(0 0% 10%);
+  --color-secondary-foreground: hsl(0 0% 100%);
   
-  --color-card: hsl(0 0% 100% / 0.8);
-  --color-card-foreground: hsl(260 20% 20%);
+  --color-card: hsl(0 0% 5% / 0.8);
+  --color-card-foreground: hsl(0 0% 100%);
   
-  --radius-lg: 1rem;
+  --radius-lg: 0.25rem; /* Industrial sharp edges */
 }
 
 html, body, #root {
@@ -25,15 +25,25 @@ html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling on the body, handle in canvas or overlay */
+  overflow: hidden;
   background-color: var(--color-background);
   font-family: var(--font-body);
 }
 
 canvas {
-  touch-action: none; /* Critical for mobile touch controls */
+  touch-action: none;
 }
 
 .font-display {
   font-family: var(--font-display);
+}
+
+.text-glow {
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.gold-gradient {
+  background: linear-gradient(to right, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
