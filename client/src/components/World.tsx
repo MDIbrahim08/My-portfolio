@@ -11,7 +11,8 @@ export function World() {
   return (
     <group>
       <primitive attach="background" object={texture} />
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={2} color="#ffd700" />
       <spotLight 
         position={[0, 20, 0]} 
         intensity={5} 
@@ -34,7 +35,7 @@ export function World() {
           depthScale={1.5}
           minDepthThreshold={0.4}
           maxDepthThreshold={1.4}
-          color="#050505"
+          color="#0a0a0a"
           metalness={1}
         />
       </mesh>
@@ -69,7 +70,7 @@ function PortalMonolith({ position, label, sub, color }: any) {
       <mesh ref={mesh} castShadow>
         <boxGeometry args={[4, 12, 0.5]} />
         <MeshDistortMaterial
-          color="#0a0a0a"
+          color="#111"
           speed={2}
           distort={0.2}
           metalness={1}
@@ -87,7 +88,6 @@ function PortalMonolith({ position, label, sub, color }: any) {
         <Text 
           fontSize={0.4} 
           color={color} 
-          font="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuL9KAZJhiJ-Ek-_EeA.woff"
           letterSpacing={0.5}
         >
           {sub}
@@ -96,7 +96,6 @@ function PortalMonolith({ position, label, sub, color }: any) {
           position={[0, -0.8, 0]} 
           fontSize={1.2} 
           color="white" 
-          font="https://fonts.gstatic.com/s/syne/v16/8vII7w4yYyE4wyaV.woff"
           fontWeight="bold"
         >
           {label}
