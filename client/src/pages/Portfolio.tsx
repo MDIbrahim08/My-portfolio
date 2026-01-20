@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Mail, ArrowDown, ExternalLink, Code2, Brain, Shield, Globe } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, ArrowDown, ExternalLink, Code2, Brain, Shield, Globe, MapPin } from "lucide-react";
 import { NeuralNetworkBackground } from "@/components/NeuralNetworkBackground";
 import { SpotlightCard } from "@/components/SpotlightCard";
 
@@ -203,6 +203,31 @@ export default function Portfolio() {
                 viewport={{ once: true }}
                 className="h-1 bg-black mt-4"
               />
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                viewport={{ once: true }}
+                className="mt-12 relative group max-w-xs mx-auto md:mx-0"
+              >
+                <div className="absolute -inset-2 bg-gradient-to-br from-black/20 to-transparent rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-black/5">
+
+                  <img
+                    src="/profile.png"
+                    alt="Mohammed Ibrahim"
+                    className="w-full h-auto object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700 relative z-0"
+                  />
+
+                  <div className="absolute bottom-4 left-4 right-4 z-20">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
+                      <MapPin size={10} className="text-white drop-shadow-md" />
+                      <span className="text-[10px] font-bold text-white uppercase tracking-widest drop-shadow-md">Bangalore, India</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
             <div className="md:col-span-8">
               <motion.p
@@ -215,7 +240,7 @@ export default function Portfolio() {
                 <motion.div {...fadeInUp} className="space-y-4">
                   <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40">Core Competencies</h4>
                   <ul className="space-y-3 text-xs font-bold uppercase tracking-wider">
-                    {['Cognitive Computing', 'Secure Architecture', 'Predictive Analytics'].map((item) => (
+                    {['Generative AI Engineering', 'Rapid Innovation', 'Emerging Tech Adaptation'].map((item) => (
                       <li key={item} className="flex items-center gap-3">
                         <div className="w-1 h-1 bg-black rounded-full" /> {item}
                       </li>
