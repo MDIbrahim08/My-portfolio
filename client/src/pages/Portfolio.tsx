@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Mail, ArrowDown, ExternalLink, Code2, Brain, Shield, Globe, MapPin } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, ArrowDown, ExternalLink, Code2, Brain, Shield, Globe, MapPin, Trophy } from "lucide-react";
 import { NeuralNetworkBackground } from "@/components/NeuralNetworkBackground";
 import { SpotlightCard } from "@/components/SpotlightCard";
 
@@ -55,6 +55,70 @@ export default function Portfolio() {
     }
   ];
 
+  const achievements = [
+    {
+      id: "ACH-01",
+      result: "3rd Place",
+      event: "GeeksforGeeks x Chanakya University Hackathon",
+      period: "Hackfest 2026 Qualifier",
+      title: "DataInsight AI Earned a Finals Spot",
+      description:
+        "Built DataInsight AI, a conversational intelligence engine that transformed raw tabular data into verified business logic using the Gemini 1.5 Protocol. By designing a hallucination-guard layer focused on data fidelity, our team secured 3rd place and advanced to the finale.",
+      tags: ["DataInsight AI", "Gemini 1.5", "Data Fidelity", "Finale Qualified"],
+      media: [
+        {
+          src: "/achievements/gfg-chanakya-qualifier.png",
+          alt: "Mohammed Ibrahim and teammates receiving third place recognition and a ticket to the finale.",
+          caption: "Recognition from the qualifier round after securing third place and earning a place in the finale.",
+        },
+      ],
+    },
+    {
+      id: "ACH-02",
+      result: "2nd Place Overall",
+      event: "GeeksforGeeks Bangalore Grand Finale",
+      period: "Grand Finale",
+      title: "VeraLens Finished as 1st Runner-Up",
+      description:
+        "At the Bangalore grand finale, we presented VeraLens, a multi-agent AI system built to counter deepfakes and misinformation in real time. The solution combined live agent orchestration, Gemini-powered camera OCR, and an evidence-first safety architecture, earning us the overall runner-up finish for Chanakya University.",
+      tags: ["VeraLens", "Multi-Agent AI", "Real-Time OCR", "Deepfake Detection"],
+      media: [
+        {
+          src: "/achievements/gfg-bangalore-finale.png",
+          alt: "Mohammed Ibrahim holding the second place trophy and prize cheque at the GeeksforGeeks Bangalore grand finale.",
+          caption: "Receiving the 2nd Place Overall trophy and prize at the Bangalore grand finale.",
+        },
+      ],
+    },
+    {
+      id: "ACH-03",
+      result: "Dual Award Winner",
+      event: "OJAS 2K26 Intra University Fest",
+      period: "Chanakya University // April 2026",
+      title: "Team Lead Behind Two Podium Finishes",
+      description:
+        "As team lead, I guided our work from idea to execution and delivered two winning outcomes alongside my teammate Prabhanjan: 1st place in Prompt to Product and 2nd place in Website & App Development. The experience sharpened my leadership, rapid prototyping, and delivery under pressure.",
+      tags: ["1st - Prompt to Product", "2nd - Web & App Dev", "Team Leadership", "Rapid Execution"],
+      media: [
+        {
+          src: "/achievements/ojas-web-app-certificate.png",
+          alt: "Certificate of achievement for second place in Website and App Development at OJAS 2K26.",
+          caption: "Certificate awarded for 2nd place in Website & App Development at OJAS 2K26.",
+        },
+        {
+          src: "/achievements/ojas-prompt-to-product-certificate.png",
+          alt: "Certificate of achievement for first place in Prompt to Product at OJAS 2K26.",
+          caption: "Certificate awarded for 1st place in Prompt to Product at OJAS 2K26.",
+        },
+        {
+          src: "/achievements/ojas-team-trophy.png",
+          alt: "Mohammed Ibrahim with his teammate and faculty member holding the OJAS trophy.",
+          caption: "Celebrating the double win at OJAS 2K26 with the team and faculty.",
+        },
+      ],
+    },
+  ];
+
   const repos = [
     { name: "Resumend-AI", type: "Public", status: "Updated 2 weeks ago", link: "https://rsumend.lovable.app" },
     { name: "ColdCraft-AI", type: "Public", status: "Updated on Dec 17, 2025", link: "https://coldcraft-ai.vercel.app/" },
@@ -66,14 +130,14 @@ export default function Portfolio() {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
   };
 
   const textVariant = {
     initial: { opacity: 0, x: -20 },
     whileInView: { opacity: 1, x: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   };
 
   // Text Reveal Animation
@@ -107,7 +171,7 @@ export default function Portfolio() {
           M. IBRAHIM
         </motion.span>
         <div className="hidden md:flex gap-10 text-[9px] tracking-[0.3em] font-bold uppercase opacity-60">
-          {['Portfolio', 'Vision', 'Contact'].map((item) => (
+          {['Portfolio', 'Achievements', 'Vision', 'Contact'].map((item) => (
             <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -345,6 +409,115 @@ export default function Portfolio() {
                       EXPLORE <ArrowUpRight size={14} />
                     </a>
                   </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section id="achievements" className="py-32 px-6 md:px-12 relative z-10 bg-white text-black rounded-[40px] my-20 shadow-2xl">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-20 max-w-3xl">
+            <motion.h2
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="font-display text-5xl md:text-7xl font-black kerning-tight"
+            >
+              ACHIEVEMENTS.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="mt-6 text-base md:text-xl text-black/60 leading-relaxed"
+            >
+              A selection of hackathons and university competitions where I combined AI engineering, product thinking, and fast execution to ship work that stood out under pressure.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-12">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={achievement.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-[30px] border border-black/10 bg-gradient-to-br from-white via-white to-neutral-100 p-8 md:p-12 shadow-[0_24px_80px_rgba(0,0,0,0.08)] transition-all duration-700"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                  <div className="md:col-span-12 lg:col-span-5">
+                    <motion.div {...fadeInUp}>
+                      <div className="flex items-start gap-4 mb-8">
+                        <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white shrink-0">
+                          <Trophy size={18} />
+                        </div>
+                        <div>
+                          <span className="inline-flex items-center rounded-full border border-black/10 bg-black text-white px-4 py-1.5 text-[9px] tracking-[0.32em] font-black uppercase">
+                            {achievement.result}
+                          </span>
+                          <p className="mt-4 text-[10px] tracking-[0.32em] font-black uppercase text-black/45">
+                            {achievement.event}
+                          </p>
+                          <p className="mt-2 text-sm font-medium text-black/45">
+                            {achievement.period}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-[10px] tracking-[0.35em] font-black uppercase text-black/30">
+                        0{index + 1}
+                      </span>
+                      <h3 className="font-display text-3xl md:text-5xl font-black mb-6 mt-3 leading-tight max-w-md text-balance">
+                        {achievement.title}
+                      </h3>
+                      <p className="text-sm md:text-lg text-black/65 mb-8 max-w-xl leading-relaxed font-light">
+                        {achievement.description}
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                        {achievement.tags.map((tag) => (
+                          <span key={tag} className="px-4 py-1.5 rounded-full border border-black/10 text-[9px] font-black uppercase tracking-widest bg-white">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                  <div className="md:col-span-12 lg:col-span-7">
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+                      className={`grid gap-4 ${achievement.media.length === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}
+                    >
+                      {achievement.media.map((item, mediaIndex) => (
+                        <figure
+                          key={item.src}
+                          className={`${achievement.media.length === 3 && mediaIndex === 2 ? "md:col-span-2" : ""} overflow-hidden rounded-[24px] border border-black/10 bg-white shadow-[0_16px_60px_rgba(0,0,0,0.08)]`}
+                        >
+                          <div
+                            className={`overflow-hidden ${
+                              achievement.media.length === 1
+                                ? "aspect-[16/10]"
+                                : achievement.media.length === 3 && mediaIndex === 2
+                                  ? "aspect-[16/9]"
+                                  : "aspect-[4/3]"
+                            }`}
+                          >
+                            <img
+                              src={item.src}
+                              alt={item.alt}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                            />
+                          </div>
+                          <figcaption className="px-5 py-4 text-sm leading-relaxed text-black/60">
+                            {item.caption}
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </motion.div>
+                  </div>
                 </div>
               </motion.div>
             ))}

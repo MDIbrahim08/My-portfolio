@@ -87,9 +87,7 @@ function NeuralNetwork() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={count}
-            array={positions}
-            itemSize={3}
+            args={[positions, 3]}
           />
         </bufferGeometry>
         <pointsMaterial size={0.08} color="#ffffff" transparent opacity={0.4} />
@@ -98,9 +96,7 @@ function NeuralNetwork() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={count * count}
-            array={linePositions}
-            itemSize={3}
+            args={[linePositions, 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#ffffff" transparent opacity={0.1} />
