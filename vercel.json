@@ -1,13 +1,13 @@
 {
-    "version": 2,
-    "framework": "vite",
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist/public",
-    "cleanUrls": true,
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ]
+  "version": 2,
+  "buildCommand": "npx vite build --config vite.config.ts",
+  "outputDirectory": "dist/public",
+  "installCommand": "npm install",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
