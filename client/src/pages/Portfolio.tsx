@@ -33,7 +33,7 @@ export default function Portfolio() {
       category: "AI & Security Systems Platform",
       problem: "Everyday internet users and organization endpoints lack immediate, automated threat detection tools and real-time incident crisis response protocols.",
       approach: "Engineered a unified 6-in-1 cybersecurity awareness platform combining specialized LightGBM machine learning models with high-throughput LLaMA 3.3 70B (via Groq) and multi-layered breached record indexing.",
-      whatIBuilt: "Built 6 integrated security tools: Phishing Detector (ML model trained on 164,972 real emails with 98.31% accuracy), Password Analyzer (5-layer deep inspection against 12 billion breached records), Emergency Response Kit (AI crisis plan generated in <1.5s), 24/7 CYZEN Intelligence Advisor, Security Posture Analyzer, and Community Education Hub.",
+      whatIBuilt: "Built 6 integrated security tools: Phishing Detector (ML model trained on 164,972 real emails with 98.31% accuracy), Password Analyzer (5-layer deep inspection across 12 billion breached records), Emergency Response Kit (AI crisis plan generated in <1.5s), 24/7 CYZEN Intelligence Advisor, Security Posture Analyzer, and Community Education Hub.",
       outcome: "Deployed a live, production-grade cybersecurity platform serving high-precision threat classification and sub-second crisis mitigation recommendations.",
       techStack: ["React", "LightGBM", "LLaMA 3.3 70B", "Groq", "Supabase", "Tailwind CSS", "Python", "Netlify"],
       link: "https://cyzenai.netlify.app",
@@ -49,7 +49,7 @@ export default function Portfolio() {
       outcome: "Launched an autonomous multi-agent urban mobility engine that delivers self-validating route strategies and voice interaction.",
       techStack: ["React", "TypeScript", "LLM Orchestration", "Python", "Node.js", "Tailwind CSS"],
       link: "https://pulseblr.netlify.app",
-      image: "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&q=80&w=1200",
+      image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=1200",
     },
     {
       id: "03",
@@ -142,24 +142,23 @@ export default function Portfolio() {
       title: "AI & Systems Engineering",
       items: [
         "Multi-Agent Orchestration",
-        "LLaMA 3.3 70B",
-        "Groq API",
-        "LightGBM",
-        "Machine Learning",
-        "Python",
+        "LLaMA 3.3 70B & Groq API",
+        "LightGBM & Machine Learning",
+        "AI-Driven Systems Engineering",
+        "Python & Data Science",
         "Prompt Engineering",
-        "Multi-Model Verification"
+        "Multi-Model Consensus Verification"
       ]
     },
     {
       title: "Cybersecurity & Threat Ops",
       items: [
         "Threat Investigation",
-        "SOC Operations",
+        "SOC Operations & Log Triage",
         "Identity & Access Management (IAM)",
-        "Phishing Analysis",
+        "Phishing Detection Models",
         "Log Anomaly Detection",
-        "Web Security (CSP/HSTS)",
+        "Web Security (CSP / HSTS)",
         "Burp Suite",
         "Nmap",
         "Wireshark"
@@ -171,13 +170,15 @@ export default function Portfolio() {
         "React",
         "TypeScript",
         "Tailwind CSS",
-        "Supabase",
         "Node.js",
-        "REST APIs",
-        "Git & GitHub",
+        "REST API Architecture",
+        "Supabase & Databases",
+        "Git & CI/CD",
         "Security Automation",
         "Netlify Deployment"
       ]
+    }
+  ];]
     }
   ];
 
@@ -232,18 +233,18 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
             style={{ y }}
           >
-            <h1 className="font-display text-[11vw] md:text-[6.5vw] font-black leading-[0.95] kerning-tight mb-8 max-w-5xl">
-              AI Product & Security Engineer
-            </h1>
-            <span className="text-[10px] md:text-xs font-black text-white/35 uppercase tracking-[0.35em] mb-6 block">
+            <span className="text-[10px] md:text-xs font-black text-white/40 uppercase tracking-[0.35em] mb-4 block">
               Multi-Agent AI Systems &bull; Threat Investigation &bull; High-Accuracy ML (98.31%) &bull; SOC & IAM
             </span>
-            <p className="max-w-xl text-lg text-white/40 leading-relaxed">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-black leading-[1.05] tracking-tight mb-6 max-w-4xl">
+              AI Product & Security Engineer
+            </h1>
+            <p className="max-w-xl text-base md:text-lg text-white/50 leading-relaxed mb-8">
               BCA Honours Student (Data Science Major, Cybersecurity Minor) at Chanakya University. Engineering self-validating multi-agent LLM systems, production AI security platforms, and automated threat triage tools.
             </p>
           </motion.div>
 
-          <div className="mt-12 flex items-center gap-6">
+          <div className="mt-8 flex items-center gap-6">
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -256,17 +257,26 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-32 px-6 md:px-12 bg-white text-black rounded-t-[40px] relative z-10">
+      <section id="about" className="py-24 md:py-32 px-6 md:px-12 bg-white text-black rounded-t-[40px] relative z-10">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-            <div className="md:col-span-4">
-              <h2 className="font-display text-5xl md:text-7xl font-black kerning-tight leading-none">
-                ABOUT.
-              </h2>
-              <div className="h-1 w-12 bg-black mt-6" />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+            <div className="md:col-span-4 flex flex-col justify-between space-y-8">
+              <div>
+                <h2 className="font-display text-4xl md:text-6xl font-black kerning-tight leading-none">
+                  ABOUT.
+                </h2>
+                <div className="h-1 w-12 bg-black mt-4" />
+              </div>
+              <div className="relative aspect-square max-w-[280px] w-full rounded-3xl overflow-hidden border-4 border-black/10 shadow-2xl bg-gray-100">
+                <img
+                  src="/profile.png"
+                  alt="Mohammed Ibrahim"
+                  className="w-full h-full object-cover grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
             </div>
             <div className="md:col-span-8">
-              <div className="space-y-6 text-xl md:text-2xl font-light leading-relaxed mb-12 text-black/80">
+              <div className="space-y-6 text-lg md:text-xl font-light leading-relaxed mb-12 text-black/80">
                 <p>
                   I am an AI Product Engineer & Security Specialist building AI-powered products with a primary focus on security. I am currently pursuing a BCA Honours degree with a Major in Data Science and a Minor in Cybersecurity at Chanakya University.
                 </p>
@@ -278,7 +288,7 @@ export default function Portfolio() {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-4">
                   <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40">Core Focus</h4>
                   <ul className="space-y-3 text-xs font-bold uppercase tracking-wider">
@@ -289,9 +299,9 @@ export default function Portfolio() {
                     ))}
                   </ul>
                 </div>
-                <div className="p-8 bg-gray-50 border border-black/5">
-                  <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40 mb-4">Current Direction</h4>
-                  <p className="text-sm opacity-70 leading-relaxed font-medium">
+                <div className="p-6 bg-gray-50 border border-black/5 rounded-2xl">
+                  <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40 mb-3">Current Direction</h4>
+                  <p className="text-xs md:text-sm opacity-70 leading-relaxed font-medium">
                     Open to AI Product Engineer and SOC Analyst / Cybersecurity Analyst roles in top tech companies and IT enterprises.
                   </p>
                 </div>
@@ -403,35 +413,35 @@ export default function Portfolio() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="py-32 px-6 md:px-12 relative z-10">
+      <section id="projects" className="py-24 md:py-32 px-6 md:px-12 relative z-10">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="font-display text-5xl md:text-7xl font-black mb-24">PROJECTS.</h2>
+          <h2 className="font-display text-4xl md:text-6xl font-black mb-16 md:mb-24">PROJECTS.</h2>
           
-          <div className="space-y-40">
+          <div className="space-y-24 md:space-y-32">
             {projects.map((project, i) => (
               <motion.div
                 key={project.id}
                 {...fadeInUp}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start bg-white/[0.02] border border-white/5 p-6 md:p-10 rounded-3xl"
               >
                 <div className={`lg:col-span-6 ${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
                   <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-white/5">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                      className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-500"
                     />
                   </div>
                 </div>
 
-                <div className={`lg:col-span-6 space-y-8 ${i % 2 !== 0 ? 'lg:text-right' : ''}`}>
+                <div className={`lg:col-span-6 space-y-6 ${i % 2 !== 0 ? 'lg:text-right' : ''}`}>
                   <div>
-                    <span className="text-[10px] tracking-[0.3em] font-black uppercase text-accent mb-4 block">
+                    <span className="text-[10px] tracking-[0.3em] font-black uppercase text-accent mb-3 block">
                       {project.category}
                     </span>
-                    <h3 className="font-display text-4xl md:text-5xl font-black mb-4">{project.title}</h3>
+                    <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4">{project.title}</h3>
                     {project.techStack && (
-                      <div className={`flex flex-wrap gap-2 my-4 ${i % 2 !== 0 ? 'lg:justify-end' : ''}`}>
+                      <div className={`flex flex-wrap gap-2 my-3 ${i % 2 !== 0 ? 'lg:justify-end' : ''}`}>
                         {project.techStack.map((tech) => (
                           <span key={tech} className="px-3 py-1 bg-white/10 border border-white/10 text-white/80 rounded-full text-[10px] font-bold uppercase tracking-wider">
                             {tech}
@@ -441,33 +451,33 @@ export default function Portfolio() {
                     )}
                   </div>
 
-                  <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 text-left ${i % 2 !== 0 ? 'md:text-right' : ''}`}>
-                    <div className="space-y-2">
-                      <h4 className="text-[10px] font-black uppercase opacity-30 tracking-widest">Problem</h4>
-                      <p className="text-sm text-white/60 leading-relaxed">{project.problem}</p>
+                  <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 text-left ${i % 2 !== 0 ? 'md:text-right' : ''}`}>
+                    <div className="space-y-1.5">
+                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">Problem</h4>
+                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.problem}</p>
                     </div>
-                    <div className="space-y-2">
-                      <h4 className="text-[10px] font-black uppercase opacity-30 tracking-widest">Approach</h4>
-                      <p className="text-sm text-white/60 leading-relaxed">{project.approach}</p>
+                    <div className="space-y-1.5">
+                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">Approach</h4>
+                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.approach}</p>
                     </div>
-                    <div className="space-y-2">
-                      <h4 className="text-[10px] font-black uppercase opacity-30 tracking-widest">What I Built</h4>
-                      <p className="text-sm text-white/60 leading-relaxed">{project.whatIBuilt}</p>
+                    <div className="space-y-1.5">
+                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">What I Built</h4>
+                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.whatIBuilt}</p>
                     </div>
-                    <div className="space-y-2">
-                      <h4 className="text-[10px] font-black uppercase opacity-30 tracking-widest">Outcome</h4>
-                      <p className="text-sm text-white/60 leading-relaxed">{project.outcome}</p>
+                    <div className="space-y-1.5">
+                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">Outcome</h4>
+                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.outcome}</p>
                     </div>
                   </div>
 
                   {(project.link || project.github) && (
-                    <div className={`flex flex-wrap gap-4 pt-6 ${i % 2 !== 0 ? 'justify-end' : ''}`}>
+                    <div className={`flex flex-wrap gap-4 pt-4 ${i % 2 !== 0 ? 'justify-end' : ''}`}>
                       {project.link && (
                         <a
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-transform"
+                          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
                         >
                           View Project <ExternalLink size={12} />
                         </a>
