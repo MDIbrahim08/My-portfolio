@@ -1,16 +1,12 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text, Float, MeshReflectorMaterial, useTexture, MeshDistortMaterial } from '@react-three/drei';
+import { Text, Float, MeshReflectorMaterial, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import skyboxUrl from '@assets/generated_images/abstract_obsidian_and_gold_landscape_panorama_skybox.png';
 
 export function World() {
-  const texture = useTexture(skyboxUrl);
-  texture.mapping = THREE.EquirectangularReflectionMapping;
-
   return (
     <group>
-      <primitive attach="background" object={texture} />
+      <color attach="background" args={["#050505"]} />
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={2} color="#ffd700" />
       <spotLight 
