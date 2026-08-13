@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: about-mohammed-ibrahim
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run dev
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+routes:
+  - type: rewrite
+    source: /*
+    destination: /index.html
