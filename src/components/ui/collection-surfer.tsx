@@ -14,6 +14,7 @@ export interface CollectionItem {
   id: number;
   image: string;
   title: string;
+  link?: string;
 }
 
 export type CollectionSurferVariant = "magnetic" | "uplift" | "simple";
@@ -299,14 +300,25 @@ function Card({
     return `translate3d(${baseX}px, ${baseY + upliftValue}px, ${baseZ}px) rotateY(-40deg) scale(${scaleValue})`;
   });
 
+  const isClickable = !!item.link;
+  const WrapperComponent = isClickable ? motion.a : motion.div;
+  const wrapperProps = isClickable
+    ? {
+        href: item.link,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : {};
+
   return (
-    <motion.div
-      ref={ref}
-      className="absolute w-[260px] h-[360px] -translate-y-1/2 -translate-x-1/2 bg-neutral-900 rounded-[20px] overflow-hidden shadow-2xl transition-colors duration-500 ease-out group border border-white/10"
+    <WrapperComponent
+      ref={ref as any}
+      className={`absolute w-[260px] h-[360px] -translate-y-1/2 -translate-x-1/2 bg-neutral-900 rounded-[20px] overflow-hidden shadow-2xl transition-colors duration-500 ease-out group border border-white/10 ${isClickable ? "cursor-pointer" : ""}`}
       style={{
         transform,
         transformStyle: "preserve-3d",
       }}
+      {...(wrapperProps as any)}
     >
       <div className="absolute top-4 left-4 z-10 text-white font-mono text-[10px] bg-black/60 px-2 py-0.5 rounded-full border border-white/10 opacity-70 group-hover:opacity-100">
         {String((i % totalLength) + 1).padStart(2, "0")}
@@ -325,7 +337,7 @@ function Card({
           </p>
         </div>
       </div>
-    </motion.div>
+    </WrapperComponent>
   );
 }
 

@@ -447,7 +447,8 @@ export default function Portfolio() {
                 items={projects.map((p, idx) => ({
                   id: idx + 1,
                   image: p.image,
-                  title: p.title
+                  title: p.title,
+                  link: p.link || p.github
                 }))}
                 variant="magnetic"
                 sectionRef={projectsSectionRef}
@@ -467,10 +468,6 @@ export default function Portfolio() {
         {/* Detailed Specs list immediately following the 3D stage */}
         <section className="py-20 px-6 md:px-12 bg-[#07080a] relative z-20">
           <div className="max-w-[1200px] mx-auto space-y-8">
-            <div className="border-b border-white/10 pb-6 mb-10">
-              <span className="text-[9px] font-mono tracking-[0.35em] text-white/60 uppercase font-bold block mb-1">Architecture & Details</span>
-              <h3 className="font-display text-2xl font-black text-white uppercase">System Specifications</h3>
-            </div>
 
             <div className="space-y-8">
               {projects.map((project, index) => (
