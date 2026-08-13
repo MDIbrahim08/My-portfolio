@@ -66,7 +66,7 @@ body, #root {
 }
 
 .clay-accent-heading {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #d4d4d8 50%, #71717a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -75,13 +75,13 @@ body, #root {
 /* ── Sleek Clay Button ──────────────────── */
 .clay-btn {
   border-radius: 999px;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: #ffffff;
   box-shadow:
-    0 8px 24px rgba(217, 119, 6, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 8px 24px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
     inset 0 -2px 0 rgba(0, 0, 0, 0.2);
-  color: #0b0d11;
-  font-weight: 800;
+  color: #000000;
+  font-weight: 850;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -95,7 +95,8 @@ body, #root {
 }
 .clay-btn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(217, 119, 6, 0.5);
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.3);
+  background: #fbfbfb;
 }
 
 /* ── Noise Overlay ───────────────────────── */
