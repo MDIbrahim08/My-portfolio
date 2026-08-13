@@ -450,7 +450,7 @@ export default function Portfolio() {
             </div>
 
             {/* 3D Collection Surfer Track */}
-            <div className="flex-1 w-full max-h-[60vh] relative flex items-center justify-center">
+            <div className="flex-1 w-full h-full relative flex items-center justify-center min-h-[65vh]">
               <CollectionSurfer
                 items={projects.map((p, idx) => ({
                   id: idx + 1,

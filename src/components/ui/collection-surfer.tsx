@@ -302,7 +302,7 @@ function Card({
   return (
     <motion.div
       ref={ref}
-      className="absolute w-[260px] h-[360px] bg-neutral-900 rounded-[20px] overflow-hidden shadow-2xl transition-colors duration-500 ease-out group border border-white/10"
+      className="absolute w-[260px] h-[360px] -translate-y-1/2 -translate-x-1/2 bg-neutral-900 rounded-[20px] overflow-hidden shadow-2xl transition-colors duration-500 ease-out group border border-white/10"
       style={{
         transform,
         transformStyle: "preserve-3d",
