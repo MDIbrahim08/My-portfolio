@@ -457,75 +457,12 @@ export default function Portfolio() {
 
             {/* Footer indicator */}
             <div className="max-w-[1200px] w-full mx-auto border-t border-white/10 pt-4 flex justify-between items-center text-[10px] text-white/45">
-              <span>Scroll to view details below</span>
-              <span className="font-mono uppercase tracking-[0.2em] animate-pulse">scroll down ↓</span>
+              <span>Mohammed Ibrahim · AI & Security</span>
+              <span className="font-mono uppercase tracking-[0.2em] animate-pulse">scroll down to continue ↓</span>
             </div>
 
           </div>
 
-        </section>
-
-        {/* Detailed Specs list immediately following the 3D stage */}
-        <section className="py-20 px-6 md:px-12 bg-[#07080a] relative z-20">
-          <div className="max-w-[1200px] mx-auto space-y-8">
-
-            <div className="space-y-8">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  {...fadeUp}
-                  className="clay-glass-card p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover:border-white/20 transition-all duration-500"
-                >
-                  {/* Media */}
-                  <div className={`lg:col-span-5 ${index % 2 !== 0 ? "lg:order-2" : ""}`}>
-                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black/40">
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" />
-                      <div className="absolute top-3 left-3 flex gap-2">
-                        <span className="clay-badge px-2.5 py-0.5 text-[9px] font-mono font-bold text-white">{project.id}</span>
-                        <span className="clay-badge px-2.5 py-0.5 text-[9px] font-mono font-bold text-white/90">{project.badge}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Info */}
-                  <div className={`lg:col-span-7 space-y-4 ${index % 2 !== 0 ? "lg:text-right" : ""}`}>
-                    <div>
-                      <span className="text-[10px] font-mono text-white/60 uppercase font-bold tracking-wider block mb-1">{project.category}</span>
-                      <h3 className="font-display text-xl sm:text-2xl font-black text-white">{project.title}</h3>
-                    </div>
-
-                    <div className="space-y-2 text-xs text-white/65 leading-relaxed font-light">
-                      <p><strong className="text-white">Problem:</strong> {project.problem}</p>
-                      <p><strong className="text-white">Solution:</strong> {project.whatIBuilt}</p>
-                    </div>
-
-                    {/* Tech Stack */}
-                    <div className={`flex flex-wrap gap-1.5 pt-1 ${index % 2 !== 0 ? "lg:justify-end" : ""}`}>
-                      {project.techStack.map((tech) => (
-                        <span key={tech} className="clay-badge px-2.5 py-0.5 text-[9px] font-mono text-white/70">{tech}</span>
-                      ))}
-                    </div>
-
-                    {/* Links */}
-                    <div className={`flex flex-wrap gap-3 pt-2 ${index % 2 !== 0 ? "lg:justify-end" : ""}`}>
-                      {project.link && (
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="clay-btn !py-2 !px-4 !text-[9px]">
-                          Live Demo <ExternalLink size={11} />
-                        </a>
-                      )}
-                      {project.github && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="clay-glass-pill px-4 py-2 text-[9px] font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white flex items-center gap-1.5">
-                          Code <Github size={11} />
-                        </a>
-                      )}
-                    </div>
-
-                  </div>
-
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </section>
 
         {/* ═══ SKILLS SECTION ═══════════════════════════════════ */}
