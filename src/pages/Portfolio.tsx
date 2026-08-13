@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowDown, Brain, Code2, ExternalLink, FileDown,
-  Github, KeyRound, Search, Shield, Trophy, Sparkles, Mail, Linkedin,
-  User, CheckCircle2, Terminal, Play, Pause, Volume2, VolumeX
+  Github, Shield, Trophy, Sparkles, Mail, Linkedin,
+  User, Pause, Play
 } from "lucide-react";
 
 /* ─────────────────────────────────────────
@@ -32,8 +32,8 @@ type ContactLink = {
 };
 
 export default function Portfolio() {
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [showHeroText, setShowHeroText] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const togglePlay = () => {
@@ -47,12 +47,27 @@ export default function Portfolio() {
     }
   };
 
-  /* Ensure video is muted & playing cleanly */
+  /* Video load & timer logic for clean intro -> text appear -> vanish */
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = true;
       videoRef.current.play().catch(() => {});
     }
+
+    // Step 1: Video plays clean for 3.5s (you walk in and stand)
+    const appearTimer = setTimeout(() => {
+      setShowHeroText(true);
+    }, 3500);
+
+    // Step 2: Text stays visible for 6.5s (total 10s mark), then vanishes
+    const vanishTimer = setTimeout(() => {
+      setShowHeroText(false);
+    }, 10000);
+
+    return () => {
+      clearTimeout(appearTimer);
+      clearTimeout(vanishTimer);
+    };
   }, []);
 
   /* ── Data ── */
@@ -236,7 +251,7 @@ export default function Portfolio() {
       </nav>
 
       {/* ═══ STAGE 1: HERO VIDEO SECTION (Top Full Screen Page) ═══ */}
-      <section id="heroreel" className="relative h-screen w-full flex items-center justify-center overflow-hidden pt-20 px-4 md:px-12 bg-black">
+      <section id="heroreel" className="relative h-screen w-full flex items-center overflow-hidden bg-black">
         
         {/* Full Stage Video Container */}
         <div className="absolute inset-0 w-full h-full">
@@ -248,75 +263,66 @@ export default function Portfolio() {
             muted
             autoPlay
             playsInline
-            className="w-full h-full object-cover filter brightness-[0.9] contrast-[1.05]"
+            className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.02]"
           />
-          {/* Subtle Dark Clay Vignette & Top/Bottom Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-black/30 to-[#07080a]/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07080a]/70 via-transparent to-[#07080a]/70" />
+          {/* Subtle dark overlays to keep branding readable */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-transparent to-black/20" />
         </div>
 
-        {/* Video Overlay Text Reactions */}
-        <div className="relative z-10 max-w-[1200px] w-full mx-auto text-center space-y-6 flex flex-col items-center">
-          
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="clay-glass-pill px-5 py-2 inline-flex items-center gap-2"
-          >
-            <Sparkles size={14} className="text-amber-400" />
-            <span className="text-[10px] tracking-[0.25em] font-mono font-bold text-amber-300 uppercase">
-              GOOGLE FLOW 3D REEL · STAGE 01
-            </span>
-          </motion.div>
+        {/* Premium Animated Text Block in Right Corner */}
+        <div className="absolute top-24 md:top-28 right-6 md:right-12 z-20 max-w-sm md:max-w-md pointer-events-none text-right">
+          <AnimatePresence>
+            {showHeroText && (
+              <motion.div
+                initial={{ opacity: 0, x: 50, y: -10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                exit={{ opacity: 0, x: 30, filter: "blur(8px)" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="clay-glass-card p-6 md:p-8 space-y-4 border-amber-400/20 text-left pointer-events-auto"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles size={14} className="text-amber-400 animate-pulse" />
+                  <span className="text-[9px] tracking-[0.25em] font-mono font-black text-amber-400 uppercase">
+                    Developer Introduction
+                  </span>
+                </div>
+                <h1 className="font-display text-2xl md:text-3xl font-black leading-tight text-white">
+                  MOHAMMED IBRAHIM
+                </h1>
+                <p className="text-xs text-white/80 font-light leading-relaxed">
+                  AI Product & Security Engineer specializing in multi-agent LLM systems, threat investigation, and custom full-stack solutions.
+                </p>
+                <div className="flex gap-2">
+                  <span className="clay-badge px-2.5 py-1 text-[8px] font-mono font-bold text-amber-300">
+                    Data Science Major
+                  </span>
+                  <span className="clay-badge px-2.5 py-1 text-[8px] font-mono font-bold text-teal-300">
+                    Cybersecurity Minor
+                  </span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.4 }}
-            className="font-display text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.1]"
+        {/* Control overlay */}
+        <div className="absolute bottom-8 right-6 md:right-12 z-20 flex gap-2">
+          <button
+            onClick={togglePlay}
+            className="clay-glass-pill w-10 h-10 flex items-center justify-center text-white hover:text-amber-400 transition-colors bg-black/40 backdrop-blur-md"
           >
-            Hi, I'm Ibrahim.<br />
-            <span className="clay-accent-heading">AI Product & Security Engineer.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xs sm:text-base text-white/80 font-light max-w-xl leading-relaxed"
-          >
-            BCA Honours (Data Science Major, Cybersecurity Minor) at Chanakya University. Multi-Agent LLM Orchestration, 98.31% Accuracy ML Models, and Threat Operations.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-wrap gap-4 pt-4"
-          >
-            <a href="#about" className="clay-btn">
-              Explore Portfolio <ArrowDown size={14} />
-            </a>
-            <button
-              onClick={togglePlay}
-              className="clay-glass-pill px-5 py-2.5 text-[10px] font-mono font-bold tracking-wider uppercase text-white/90 hover:text-amber-300 flex items-center gap-2"
-            >
-              {isPlaying ? <Pause size={14} /> : <Play size={14} />}
-              {isPlaying ? "Pause Reel" : "Play Reel"}
-            </button>
-          </motion.div>
-
+            {isPlaying ? <Pause size={14} /> : <Play size={14} />}
+          </button>
         </div>
 
         {/* Bottom Scroll Indicator */}
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-center"
+          className="absolute bottom-8 left-6 md:left-12 z-20"
         >
-          <a href="#about" className="flex flex-col items-center gap-1.5 text-white/50 hover:text-amber-400 transition-colors">
-            <span className="text-[9px] font-mono tracking-[0.3em] uppercase font-bold">SCROLL DOWN</span>
+          <a href="#about" className="flex items-center gap-2.5 text-white/50 hover:text-amber-400 transition-colors">
+            <span className="text-[9px] font-mono tracking-[0.3em] uppercase font-bold">SCROLL DOWN TO EXPLORE</span>
             <ArrowDown size={14} />
           </a>
         </motion.div>
