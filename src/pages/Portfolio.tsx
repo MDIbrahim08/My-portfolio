@@ -293,16 +293,18 @@ export default function Portfolio() {
                   MOHAMMED<br />IBRAHIM
                 </h1>
                 <p className="text-xs md:text-sm text-white/80 font-light tracking-wide flex items-center gap-1.5">
-                  <span>Engineered to make it</span>
+                  <span>Make it</span>
                   <TextRotate
                     texts={[
-                      "secure.",
-                      "intelligent.",
-                      "bulletproof.",
-                      "faster.",
-                      "seamless.",
+                      "work!",
+                      "fancy ✽",
+                      "right",
+                      "fast",
+                      "fun",
+                      "rock",
+                      "🕶️🕶️🕶️",
                     ]}
-                    mainClassName="text-amber-400 font-bold font-mono overflow-hidden inline-flex justify-start"
+                    mainClassName="text-amber-400 font-bold overflow-hidden inline-flex justify-start"
                     staggerFrom={"last"}
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
