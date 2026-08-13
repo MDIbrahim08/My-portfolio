@@ -277,34 +277,32 @@ export default function Portfolio() {
           <AnimatePresence>
             {showHeroText && (
               <motion.div
-                initial={{ opacity: 0, x: 50, y: -10 }}
+                initial={{ opacity: 0, x: 30, y: 0 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                exit={{ opacity: 0, x: 30, filter: "blur(8px)" }}
+                exit={{ opacity: 0, x: 20, filter: "blur(6px)" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="clay-glass-card p-6 md:p-8 space-y-4 border-amber-400/20 text-left pointer-events-auto"
+                className="text-left pointer-events-auto space-y-3"
               >
                 <div className="flex items-center gap-2">
-                  <Sparkles size={14} className="text-amber-400 animate-pulse" />
-                  <span className="text-[9px] tracking-[0.25em] font-mono font-black text-amber-400 uppercase">
-                    Interactive Introduction
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  <span className="text-[10px] tracking-[0.3em] font-mono font-black text-amber-400 uppercase">
+                    AI & SECURITY
                   </span>
                 </div>
-                <h1 className="font-display text-2xl md:text-3xl font-black leading-tight text-white">
-                  MOHAMMED IBRAHIM
+                <h1 className="font-display text-4xl md:text-5xl font-black leading-none tracking-tight text-white uppercase">
+                  MOHAMMED<br />IBRAHIM
                 </h1>
-                <p className="text-xs text-white/80 font-light leading-relaxed flex flex-wrap items-center gap-1.5">
+                <p className="text-xs md:text-sm text-white/80 font-light tracking-wide flex items-center gap-1.5">
                   <span>Engineered to make it</span>
                   <TextRotate
                     texts={[
-                      "work!",
-                      "fancy ✽",
-                      "right",
-                      "fast",
-                      "fun",
-                      "rock",
-                      "🕶️🕶️🕶️",
+                      "secure.",
+                      "intelligent.",
+                      "bulletproof.",
+                      "faster.",
+                      "seamless.",
                     ]}
-                    mainClassName="text-black font-bold px-2.5 py-0.5 bg-amber-400 rounded-md overflow-hidden inline-flex justify-center"
+                    mainClassName="text-amber-400 font-bold font-mono overflow-hidden inline-flex justify-start"
                     staggerFrom={"last"}
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
@@ -315,14 +313,6 @@ export default function Portfolio() {
                     rotationInterval={2000}
                   />
                 </p>
-                <div className="flex gap-2">
-                  <span className="clay-badge px-2.5 py-1 text-[8px] font-mono font-bold text-amber-300">
-                    Data Science Major
-                  </span>
-                  <span className="clay-badge px-2.5 py-1 text-[8px] font-mono font-bold text-teal-300">
-                    Cybersecurity Minor
-                  </span>
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
