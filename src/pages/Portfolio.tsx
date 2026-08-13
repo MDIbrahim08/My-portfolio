@@ -284,8 +284,8 @@ export default function Portfolio() {
                 className="text-left pointer-events-auto space-y-3"
               >
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
-                  <span className="text-[10px] tracking-[0.3em] font-mono font-black text-zinc-400 uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                  <span className="text-[10px] tracking-[0.3em] font-mono font-black text-white/60 uppercase">
                     AI & SECURITY
                   </span>
                 </div>
@@ -304,7 +304,7 @@ export default function Portfolio() {
                       "rock",
                       "🕶️🕶️🕶️",
                     ]}
-                    mainClassName="text-[#e6dfd5] px-2.5 py-0.5 bg-[#0f2d1e]/50 border border-[#1d4732] rounded-md overflow-hidden inline-flex justify-start font-mono font-medium"
+                    mainClassName="text-black px-2.5 py-0.5 bg-white rounded-md overflow-hidden inline-flex justify-start font-mono font-bold"
                     staggerFrom={"last"}
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
