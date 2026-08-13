@@ -293,7 +293,7 @@ export default function Portfolio() {
                   MOHAMMED<br />IBRAHIM
                 </h1>
                 <p className="text-xs md:text-sm text-white/80 font-light tracking-wide flex items-center gap-1.5">
-                  <span>Make it</span>
+                  <span>Building systems that</span>
                   <TextRotate
                     texts={[
                       "work!",
