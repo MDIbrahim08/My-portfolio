@@ -231,18 +231,18 @@ export default function Portfolio() {
       {/* ═══ SLEEK GLASS NAVBAR ════════════════════════════════ */}
       <nav className="fixed top-0 w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center backdrop-blur-md bg-[#07080a]/40 border-b border-white/5">
         <div className="clay-glass-pill px-4 py-2 flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+          <div className="w-2 h-2 rounded-full bg-white animate-ping" />
           <span className="font-display font-black text-xs md:text-sm tracking-tight text-white">
             MOHAMMED IBRAHIM
           </span>
-          <span className="hidden sm:inline-block text-[9px] font-mono uppercase bg-amber-400/15 text-amber-300 border border-amber-400/20 px-2.5 py-0.5 rounded-full">
+          <span className="hidden sm:inline-block text-[9px] font-mono uppercase bg-white/10 text-white/80 border border-white/20 px-2.5 py-0.5 rounded-full">
             AI & SECURITY
           </span>
         </div>
 
         <div className="hidden md:flex clay-glass-pill px-6 py-2.5 gap-8 text-[10px] tracking-[0.25em] font-bold uppercase text-white/70">
           {["Hero Reel", "About", "Projects", "Skills", "Contact"].map((item) => (
-            <a key={item} href={`#${item.toLowerCase().replace(" ", "")}`} className="hover:text-amber-400 transition-colors">
+            <a key={item} href={`#${item.toLowerCase().replace(" ", "")}`} className="hover:text-white transition-colors">
               {item}
             </a>
           ))}
@@ -324,7 +324,7 @@ export default function Portfolio() {
         <div className="absolute bottom-8 right-6 md:right-12 z-20 flex gap-2">
           <button
             onClick={togglePlay}
-            className="clay-glass-pill w-10 h-10 flex items-center justify-center text-white hover:text-amber-400 transition-colors bg-black/40 backdrop-blur-md"
+            className="clay-glass-pill w-10 h-10 flex items-center justify-center text-white hover:text-white transition-colors bg-black/40 backdrop-blur-md"
           >
             {isPlaying ? <Pause size={14} /> : <Play size={14} />}
           </button>
@@ -336,7 +336,7 @@ export default function Portfolio() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-8 left-6 md:left-12 z-20"
         >
-          <a href="#about" className="flex items-center gap-2.5 text-white/50 hover:text-amber-400 transition-colors">
+          <a href="#about" className="flex items-center gap-2.5 text-white/50 hover:text-white transition-colors">
             <span className="text-[9px] font-mono tracking-[0.3em] uppercase font-bold">SCROLL DOWN TO EXPLORE</span>
             <ArrowDown size={14} />
           </a>
@@ -354,14 +354,14 @@ export default function Portfolio() {
 
               {/* Left: Profile Glass Card */}
               <motion.div {...fadeUp} className="lg:col-span-5">
-                <div className="clay-glass-card p-6 space-y-5 border-amber-400/20">
+                <div className="clay-glass-card p-6 space-y-5 border-white/10">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center">
-                      <User className="text-amber-400" size={20} />
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                      <User className="text-white" size={20} />
                     </div>
                     <div>
                       <h3 className="font-display text-xl font-black text-white">Mohammed Ibrahim</h3>
-                      <p className="text-[11px] text-amber-400 font-mono uppercase tracking-wider font-bold">Chanakya University</p>
+                      <p className="text-[11px] text-white/60 font-mono uppercase tracking-wider font-bold">Chanakya University</p>
                     </div>
                   </div>
 
@@ -372,11 +372,11 @@ export default function Portfolio() {
                     </div>
                     <div className="flex justify-between border-b border-white/10 pb-2">
                       <span className="text-white/40">Major</span>
-                      <span className="text-amber-300 font-bold">Data Science</span>
+                      <span className="text-white font-bold">Data Science</span>
                     </div>
                     <div className="flex justify-between border-b border-white/10 pb-2">
                       <span className="text-white/40">Minor</span>
-                      <span className="text-teal-300 font-bold">Cybersecurity</span>
+                      <span className="text-zinc-300 font-bold">Cybersecurity</span>
                     </div>
                   </div>
 
@@ -388,7 +388,7 @@ export default function Portfolio() {
 
               {/* Right: Bio Text */}
               <motion.div {...fadeUp} className="lg:col-span-7 space-y-5">
-                <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-amber-400 uppercase block">
+                <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase block">
                   About Ibrahim
                 </span>
                 <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
@@ -400,7 +400,7 @@ export default function Portfolio() {
                     I am an <strong className="text-white font-medium">AI Product Engineer & Security Specialist</strong> building production platforms that combine machine learning classification with multi-agent orchestration.
                   </p>
                   <p>
-                    Built <strong className="text-amber-300 font-medium">PulseBLR</strong> (a 5-agent LLM routing engine) and <strong className="text-teal-300 font-medium">CYZEN AI</strong> (6-in-1 threat platform with 98.31% phishing detection accuracy trained on 164,000+ real emails).
+                    Built <strong className="text-white font-medium">PulseBLR</strong> (a 5-agent LLM routing engine) and <strong className="text-white font-medium">CYZEN AI</strong> (6-in-1 threat platform with 98.31% phishing detection accuracy trained on 164,000+ real emails).
                   </p>
                   <p>
                     My security focus includes SOC triage, threat investigation, IAM policy auditing, and web security posture hardening.
@@ -429,7 +429,7 @@ export default function Portfolio() {
             {/* Header */}
             <div className="max-w-[1200px] w-full mx-auto flex justify-between items-end">
               <div>
-                <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-amber-400 uppercase mb-2 block">
+                <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
                   3D Interactive Showcase
                 </span>
                 <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
@@ -468,7 +468,7 @@ export default function Portfolio() {
         <section className="py-20 px-6 md:px-12 bg-[#07080a] relative z-20">
           <div className="max-w-[1200px] mx-auto space-y-8">
             <div className="border-b border-white/10 pb-6 mb-10">
-              <span className="text-[9px] font-mono tracking-[0.35em] text-amber-400 uppercase font-bold block mb-1">Architecture & Details</span>
+              <span className="text-[9px] font-mono tracking-[0.35em] text-white/60 uppercase font-bold block mb-1">Architecture & Details</span>
               <h3 className="font-display text-2xl font-black text-white uppercase">System Specifications</h3>
             </div>
 
@@ -477,14 +477,14 @@ export default function Portfolio() {
                 <motion.div
                   key={project.id}
                   {...fadeUp}
-                  className="clay-glass-card p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover:border-amber-400/30 transition-all duration-500"
+                  className="clay-glass-card p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover:border-white/20 transition-all duration-500"
                 >
                   {/* Media */}
                   <div className={`lg:col-span-5 ${index % 2 !== 0 ? "lg:order-2" : ""}`}>
                     <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black/40">
                       <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" />
                       <div className="absolute top-3 left-3 flex gap-2">
-                        <span className="clay-badge px-2.5 py-0.5 text-[9px] font-mono font-bold text-amber-300">{project.id}</span>
+                        <span className="clay-badge px-2.5 py-0.5 text-[9px] font-mono font-bold text-white">{project.id}</span>
                         <span className="clay-badge px-2.5 py-0.5 text-[9px] font-mono font-bold text-white/90">{project.badge}</span>
                       </div>
                     </div>
@@ -493,13 +493,13 @@ export default function Portfolio() {
                   {/* Info */}
                   <div className={`lg:col-span-7 space-y-4 ${index % 2 !== 0 ? "lg:text-right" : ""}`}>
                     <div>
-                      <span className="text-[10px] font-mono text-amber-400 uppercase font-bold tracking-wider block mb-1">{project.category}</span>
+                      <span className="text-[10px] font-mono text-white/60 uppercase font-bold tracking-wider block mb-1">{project.category}</span>
                       <h3 className="font-display text-xl sm:text-2xl font-black text-white">{project.title}</h3>
                     </div>
 
                     <div className="space-y-2 text-xs text-white/65 leading-relaxed font-light">
                       <p><strong className="text-white">Problem:</strong> {project.problem}</p>
-                      <p><strong className="text-amber-300">Solution:</strong> {project.whatIBuilt}</p>
+                      <p><strong className="text-white">Solution:</strong> {project.whatIBuilt}</p>
                     </div>
 
                     {/* Tech Stack */}
@@ -536,7 +536,7 @@ export default function Portfolio() {
           <div className="max-w-[1200px] mx-auto">
             
             <motion.div {...fadeUp} className="mb-14">
-              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-amber-400 uppercase mb-2 block">
+              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
                 Technical Stack
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
@@ -548,8 +548,8 @@ export default function Portfolio() {
               {skillGroups.map((group) => (
                 <motion.div key={group.title} {...fadeUp} className={`clay-glass-card p-6 space-y-5 ${group.color}`}>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center">
-                      <group.Icon className="text-amber-400" size={18} />
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                      <group.Icon className="text-white" size={18} />
                     </div>
                     <h3 className="font-display text-base font-black text-white">{group.title}</h3>
                   </div>
@@ -573,7 +573,7 @@ export default function Portfolio() {
           <div className="max-w-[1200px] mx-auto">
             
             <motion.div {...fadeUp} className="mb-14">
-              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-amber-400 uppercase mb-2 block">
+              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
                 Recognitions
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
@@ -583,12 +583,12 @@ export default function Portfolio() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {achievements.map((a) => (
-                <motion.div key={a.title} {...fadeUp} className="clay-glass-card p-6 space-y-3 border-amber-400/20">
+                <motion.div key={a.title} {...fadeUp} className="clay-glass-card p-6 space-y-3 border-white/10">
                   <div className="flex justify-between items-center">
-                    <span className="text-[9px] font-mono font-bold text-amber-300 bg-amber-400/15 px-2.5 py-0.5 rounded-full border border-amber-400/20">
+                    <span className="text-[9px] font-mono font-bold text-white bg-white/10 px-2.5 py-0.5 rounded-full border border-white/20">
                       {a.tag}
                     </span>
-                    <Trophy className="text-amber-400" size={18} />
+                    <Trophy className="text-white" size={18} />
                   </div>
                   <h3 className="font-display text-base font-black text-white">{a.title}</h3>
                   <p className="text-xs text-white/55 font-light leading-relaxed">{a.desc}</p>
@@ -604,7 +604,7 @@ export default function Portfolio() {
           <div className="max-w-[1200px] mx-auto space-y-6">
             
             <motion.div {...fadeUp} className="space-y-3">
-              <span className="text-[10px] tracking-[0.4em] font-mono font-bold text-amber-400 uppercase">
+              <span className="text-[10px] tracking-[0.4em] font-mono font-bold text-white/60 uppercase">
                 GET IN TOUCH
               </span>
               <h2 className="font-display text-4xl sm:text-6xl font-black text-white">
@@ -623,7 +623,7 @@ export default function Portfolio() {
                   target={link.download ? undefined : "_blank"}
                   rel={link.download ? undefined : "noopener noreferrer"}
                   download={link.download ? "mohammed_ibrahim_resume.html" : undefined}
-                  className="clay-glass-pill px-6 py-3 inline-flex items-center gap-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-amber-300 hover:border-amber-400/40 transition-all duration-300"
+                  className="clay-glass-pill px-6 py-3 inline-flex items-center gap-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white hover:border-white/30 transition-all duration-300"
                 >
                   {link.icon}
                   {link.name}
