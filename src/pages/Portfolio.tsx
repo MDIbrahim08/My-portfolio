@@ -6,6 +6,7 @@ import {
   User, Pause, Play
 } from "lucide-react";
 import { TextRotate } from "../components/ui/text-rotate";
+import { CollectionSurfer } from "../components/ui/collection-surfer";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
@@ -36,6 +37,7 @@ export default function Portfolio() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [showHeroText, setShowHeroText] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const projectsSectionRef = useRef<HTMLDivElement>(null);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -427,17 +429,56 @@ export default function Portfolio() {
         </section>
 
         {/* ═══ PROJECTS SECTION ═════════════════════════════════ */}
-        <section id="projects" className="py-28 px-6 md:px-12 border-t border-white/5">
-          <div className="max-w-[1200px] mx-auto">
+        <section ref={projectsSectionRef} id="projects" className="relative border-t border-white/5 bg-black" style={{ minHeight: "220vh" }}>
+          
+          {/* Sticky 3D Showcase Viewport */}
+          <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between py-24 px-6 md:px-12 z-20">
             
-            <motion.div {...fadeUp} className="mb-14">
-              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-amber-400 uppercase mb-2 block">
-                Featured Systems
+            {/* Header */}
+            <div className="max-w-[1200px] w-full mx-auto flex justify-between items-end">
+              <div>
+                <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-amber-400 uppercase mb-2 block">
+                  3D Interactive Showcase
+                </span>
+                <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
+                  PROJECTS HUB.
+                </h2>
+              </div>
+              <span className="text-[9px] font-mono tracking-widest text-white/40 hidden sm:block uppercase">
+                [ Scroll to rotate track / Hover cards to scale ]
               </span>
-              <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
-                PROJECTS HUB.
-              </h2>
-            </motion.div>
+            </div>
+
+            {/* 3D Collection Surfer Track */}
+            <div className="flex-1 w-full max-h-[60vh] relative flex items-center justify-center">
+              <CollectionSurfer
+                items={projects.map((p, idx) => ({
+                  id: idx + 1,
+                  image: p.image,
+                  title: p.title
+                }))}
+                variant="magnetic"
+                sectionRef={projectsSectionRef}
+              />
+            </div>
+
+            {/* Footer indicator */}
+            <div className="max-w-[1200px] w-full mx-auto border-t border-white/10 pt-4 flex justify-between items-center text-[10px] text-white/45">
+              <span>Scroll to view details below</span>
+              <span className="font-mono uppercase tracking-[0.2em] animate-pulse">scroll down ↓</span>
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* Detailed Specs list immediately following the 3D stage */}
+        <section className="py-20 px-6 md:px-12 bg-[#07080a] relative z-20">
+          <div className="max-w-[1200px] mx-auto space-y-8">
+            <div className="border-b border-white/10 pb-6 mb-10">
+              <span className="text-[9px] font-mono tracking-[0.35em] text-amber-400 uppercase font-bold block mb-1">Architecture & Details</span>
+              <h3 className="font-display text-2xl font-black text-white uppercase">System Specifications</h3>
+            </div>
 
             <div className="space-y-8">
               {projects.map((project, index) => (
@@ -495,7 +536,6 @@ export default function Portfolio() {
                 </motion.div>
               ))}
             </div>
-
           </div>
         </section>
 
