@@ -1,16 +1,24 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Brain, Code2, ExternalLink, FileDown, Github, KeyRound, Search, Shield, Trophy } from "lucide-react";
-import { SpotlightCard } from "@/components/SpotlightCard";
+import { useState, useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  ArrowDown, Brain, Code2, ExternalLink, FileDown,
+  Github, KeyRound, Search, Shield, Trophy, Sparkles, Mail, Linkedin,
+  Play, Pause, Volume2, VolumeX, CheckCircle2, ChevronRight, Terminal, User
+} from "lucide-react";
 
+/* ─────────────────────────────────────────
+   Types & Interfaces
+───────────────────────────────────────── */
 type Project = {
   id: string;
   title: string;
   category: string;
+  badge: string;
   problem: string;
   approach: string;
   whatIBuilt: string;
   outcome: string;
-  techStack?: string[];
+  techStack: string[];
   link?: string;
   github?: string;
   image: string;
@@ -20,34 +28,105 @@ type ContactLink = {
   name: string;
   url: string;
   download?: boolean;
+  icon: React.ReactNode;
 };
 
-export default function Portfolio() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+/* ─────────────────────────────────────────
+   Floating Clay Decorator Blobs
+───────────────────────────────────────── */
+function ClayBlob({
+  color,
+  size,
+  top,
+  left,
+  delay = 0,
+}: {
+  color: string;
+  size: number;
+  top: string;
+  left: string;
+  delay?: number;
+}) {
+  return (
+    <div
+      className="clay-blob pointer-events-none z-0"
+      style={{
+        width: size,
+        height: size,
+        backgroundColor: color,
+        top,
+        left,
+        animationDelay: `${delay}s`,
+        animationDuration: `${8 + delay}s`,
+      }}
+    />
+  );
+}
 
+/* ─────────────────────────────────────────
+   Main Claymorphism Portfolio
+───────────────────────────────────────── */
+export default function Portfolio() {
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const { scrollYProgress } = useScroll();
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.95]);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(() => {});
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  /* ── Data ── */
   const projects: Project[] = [
     {
       id: "01",
-      title: "CYZEN AI — Cybersecurity & Threat Awareness Platform",
-      category: "AI & Security Systems Platform",
-      problem: "Everyday internet users and organization endpoints lack immediate, automated threat detection tools and real-time incident crisis response protocols.",
-      approach: "Engineered a unified 6-in-1 cybersecurity awareness platform combining specialized LightGBM machine learning models with high-throughput LLaMA 3.3 70B (via Groq) and multi-layered breached record indexing.",
-      whatIBuilt: "Built 6 integrated security tools: Phishing Detector (ML model trained on 164,972 real emails with 98.31% accuracy), Password Analyzer (5-layer deep inspection across 12 billion breached records), Emergency Response Kit (AI crisis plan generated in <1.5s), 24/7 CYZEN Intelligence Advisor, Security Posture Analyzer, and Community Education Hub.",
-      outcome: "Deployed a live, production-grade cybersecurity platform serving high-precision threat classification and sub-second crisis mitigation recommendations.",
-      techStack: ["React", "LightGBM", "LLaMA 3.3 70B", "Groq", "Supabase", "Tailwind CSS", "Python", "Netlify"],
+      title: "CYZEN AI — Cybersecurity & Threat Platform",
+      category: "AI & Security Systems",
+      badge: "98.31% Accuracy ML Model",
+      problem:
+        "Everyday internet users and organization endpoints lack immediate, automated threat detection tools and real-time incident crisis response protocols.",
+      approach:
+        "Engineered a unified 6-in-1 cybersecurity awareness platform combining specialized LightGBM machine learning models with high-throughput LLaMA 3.3 70B (via Groq) and multi-layered breached record indexing.",
+      whatIBuilt:
+        "Built 6 integrated security tools: Phishing Detector (ML model trained on 164,972 real emails), Password Analyzer, Emergency Response Kit, 24/7 CYZEN Intelligence Advisor, Security Posture Analyzer, and Community Education Hub.",
+      outcome:
+        "Deployed a live, production-grade cybersecurity platform serving high-precision threat classification and sub-second crisis mitigation recommendations.",
+      techStack: ["React", "LightGBM", "LLaMA 3.3 70B", "Groq", "Supabase", "Python"],
       link: "https://cyzenai.netlify.app",
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
     },
     {
       id: "02",
-      title: "PulseBLR — Real-Time AI Commute & Route Strategy Planner",
+      title: "PulseBLR — Real-Time AI Route Strategy Planner",
       category: "Multi-Agent LLM Orchestration",
-      problem: "Standard navigation apps present basic traffic congestion maps but fail to synthesize dynamic, multi-modal routing strategies customized for complex urban traffic like Bangalore.",
-      approach: "Architected a 5-agent LLM pipeline (Weather, Traffic, Transit, and Temporal-Risk Advisors) that processes real-time city signals to generate a single, validated route strategy.",
-      whatIBuilt: "Engineered dynamic multi-modal route strategy optimization, a multi-lingual voice-to-intent pipeline (English, Kannada, Hindi), and real-time aggregated cab fare comparisons (Ola, Uber, Auto) to eliminate surge pricing surprises.",
-      outcome: "Launched an autonomous multi-agent urban mobility engine that delivers self-validating route strategies and voice interaction.",
-      techStack: ["React", "TypeScript", "LLM Orchestration", "Python", "Node.js", "Tailwind CSS"],
+      badge: "5-Agent LLM Pipeline",
+      problem:
+        "Standard navigation apps fail to synthesize dynamic, multi-modal routing strategies for complex urban traffic like Bangalore.",
+      approach:
+        "Architected a 5-agent LLM pipeline processing real-time city signals to generate a single, self-validated route strategy.",
+      whatIBuilt:
+        "Engineered dynamic multi-modal route strategy optimization, a multi-lingual voice-to-intent pipeline, and real-time aggregated cab fare comparisons.",
+      outcome:
+        "Launched an autonomous multi-agent urban mobility engine that delivers self-validating route strategies and voice interaction.",
+      techStack: ["React", "TypeScript", "LLM Orchestration", "Python", "Node.js"],
       link: "https://pulseblr.netlify.app",
       image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=1200",
     },
@@ -55,10 +134,15 @@ export default function Portfolio() {
       id: "03",
       title: "Security Header & Web Posture Inspector",
       category: "Web Security & Posture Hardening",
-      problem: "Web applications frequently deploy with misconfigured or missing HTTP security headers, leaving endpoints vulnerable to XSS, Clickjacking, and MIME-sniffing exploits.",
-      approach: "Constructed an automated security header scanner that evaluates HTTP response headers against OWASP secure configuration baselines and compliance requirements.",
-      whatIBuilt: "Designed security header scoring logic, CSP parsing, HSTS validation, X-Frame-Options checking, and automated remediation report generation.",
-      outcome: "Empowers security teams and web developers to rapidly identify web posture weaknesses and enforce enterprise browser security controls.",
+      badge: "OWASP Baseline Scanner",
+      problem:
+        "Web applications frequently deploy with misconfigured HTTP security headers, leaving endpoints vulnerable.",
+      approach:
+        "Constructed an automated security header scanner evaluating HTTP response headers against OWASP baselines.",
+      whatIBuilt:
+        "Designed security header scoring logic, CSP parsing, HSTS validation, and automated remediation report generation.",
+      outcome:
+        "Empowers security teams to rapidly identify web posture weaknesses and enforce enterprise browser security controls.",
       techStack: ["Python", "Web Security", "OWASP", "REST API", "React"],
       image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1200",
     },
@@ -66,506 +150,528 @@ export default function Portfolio() {
       id: "04",
       title: "MovieBuddy — Intelligent AI Recommendation Engine",
       category: "Machine Learning & Data Science",
-      problem: "High-volume media databases create decision fatigue for users without context-aware metadata filtering and personalized preference ranking.",
-      approach: "Applied content-filtering algorithms and natural language metadata indexing to generate context-aware, personalized media recommendations.",
-      whatIBuilt: "Developed data processing pipelines, user preference ranking logic, similarity algorithms, and an interactive frontend for instant discovery.",
-      outcome: "Demonstrated applied data science, interactive UI design, and machine learning deployment in a live web application.",
-      techStack: ["React", "Python", "Machine Learning", "Data Analytics", "Tailwind CSS"],
+      badge: "Personalized Content Indexing",
+      problem:
+        "High-volume media databases create decision fatigue without context-aware metadata filtering.",
+      approach:
+        "Applied content-filtering algorithms and natural language metadata indexing for personalized media recommendations.",
+      whatIBuilt:
+        "Developed data processing pipelines, user preference ranking logic, similarity algorithms, and an interactive frontend.",
+      outcome:
+        "Demonstrated applied data science and machine learning deployment in a live web application.",
+      techStack: ["React", "Python", "Machine Learning", "Data Analytics"],
       link: "https://moviebuddy.lovable.app/",
       github: "https://github.com/MDIbrahim08/MovieBuddy",
       image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1200",
     },
-    {
-      id: "05",
-      title: "Client & Enterprise Tech Consulting Builds",
-      category: "Full-Stack & Systems Engineering",
-      problem: "Local businesses and client organizations require robust, secure web platforms and digital systems tailored to operational goals.",
-      approach: "Gathered technical requirements, architected cloud database schemas, and delivered high-performance web systems under project constraints.",
-      whatIBuilt: "Delivered web applications, AI-assisted prototype workflows, custom user portals, and client digital infrastructure.",
-      outcome: "Strengthened full-cycle software delivery, technical consulting, client engagement, and production deployment reliability.",
-      techStack: ["React", "Node.js", "Python", "Supabase", "Cloud Hosting"],
-      github: "https://github.com/MDIbrahim08",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200",
-    }
   ];
 
-  const focusAreas = [
+  const skillGroups = [
     {
+      title: "AI & Multi-Agent Engineering",
+      color: "from-amber-500/15 via-orange-500/10 to-transparent",
       Icon: Brain,
-      title: "Multi-Agent AI Systems",
-      desc: "Architecting self-correcting multi-LLM pipelines and autonomous advisor agents with output verification protocols."
+      items: [
+        "Multi-Agent Orchestration",
+        "LLaMA 3.3 70B & Groq API",
+        "LightGBM & ML Models",
+        "AI System Architecture",
+        "Python & Data Science",
+        "Prompt Engineering",
+        "Self-Verifying Outputs",
+      ],
     },
     {
-      Icon: Search,
-      title: "Threat Investigation & SOC",
-      desc: "Analyzing security logs, threat intelligence signals, anomaly detection, phishing triage, and web posture auditing."
+      title: "Cybersecurity & SOC Operations",
+      color: "from-teal-500/15 via-emerald-500/10 to-transparent",
+      Icon: Shield,
+      items: [
+        "Threat Triage & Investigation",
+        "SOC Log Monitoring",
+        "IAM & Access Governance",
+        "Phishing Email Detection",
+        "Web Posture (CSP / HSTS)",
+        "Burp Suite & Nmap",
+        "OWASP Hardening Rules",
+      ],
     },
     {
-      Icon: KeyRound,
-      title: "IAM & Security Architecture",
-      desc: "Evaluating identity governance, access control frameworks, privilege management, and enterprise security readiness."
-    }
-  ];
-
-  const experienceHighlights = [
-    "Gathered technical requirements and translated complex business needs into scalable web and AI systems.",
-    "Engineered and deployed production web platforms, multi-agent AI tools, and ML security solutions.",
-    "Managed end-to-end project execution, architecture design, and client stakeholder communications.",
-    "Resolved critical system performance bottlenecks and provided ongoing infrastructure maintenance.",
-    "Gained practical experience delivering real-world engineering projects under strict production timelines."
+      title: "Full-Stack & Cloud Systems",
+      color: "from-purple-500/15 via-indigo-500/10 to-transparent",
+      Icon: Code2,
+      items: [
+        "React & TypeScript",
+        "Tailwind CSS v4 & Clay UI",
+        "Node.js & REST APIs",
+        "Supabase & PostgreSQL",
+        "Git & Deployment Workflows",
+        "Netlify & Production Hosting",
+      ],
+    },
   ];
 
   const achievements = [
     {
       title: "2nd Place Overall — GeeksforGeeks Hackathon, Bangalore",
-      desc: "Represented university and secured 2nd place overall among competing engineering teams across Bangalore for multi-agent system innovation."
+      desc: "Represented Chanakya University and secured 2nd place overall among top engineering teams across Bangalore.",
+      num: "01",
+      tag: "HACKATHON WINNER",
     },
     {
       title: "1st Place — Prompt to Product",
-      desc: "Awarded 1st place for rapidly transforming generative AI prompts into a fully functional, production-ready application."
+      desc: "Awarded 1st place for rapidly transforming generative AI prompts into a fully functional, production-grade web application.",
+      num: "02",
+      tag: "AI INNOVATION",
     },
     {
       title: "2nd Place — Website & App Development",
-      desc: "Recognized for innovation, UX/UI excellence, clean code architecture, and technical execution in application development."
-    }
-  ];
-
-  const certificationBullets = [
-    "Completed the Tata Cybersecurity Analyst Job Simulation on Forage, specializing in Identity & Access Management (IAM).",
-    "Evaluated enterprise IAM readiness, access management policies, and security strategy alignment for corporate systems.",
-    "Mastered IAM principles, least-privilege enforcement, security architecture, and audit risk reduction.",
-    "Formulated professional security documentation and access policy recommendations for executive stakeholders."
-  ];
-
-  const skillGroups = [
-    {
-      title: "AI & Systems Engineering",
-      items: [
-        "Multi-Agent Orchestration",
-        "LLaMA 3.3 70B & Groq API",
-        "LightGBM & Machine Learning",
-        "AI-Driven Systems Engineering",
-        "Python & Data Science",
-        "Prompt Engineering",
-        "Multi-Model Consensus Verification"
-      ]
+      desc: "Recognized for innovation, UX/UI excellence, clean clay architecture, and technical execution.",
+      num: "03",
+      tag: "FULL STACK AWARD",
     },
-    {
-      title: "Cybersecurity & Threat Ops",
-      items: [
-        "Threat Investigation",
-        "SOC Operations & Log Triage",
-        "Identity & Access Management (IAM)",
-        "Phishing Detection Models",
-        "Log Anomaly Detection",
-        "Web Security (CSP / HSTS)",
-        "Burp Suite",
-        "Nmap",
-        "Wireshark"
-      ]
-    },
-    {
-      title: "Full-Stack & Cloud Architecture",
-      items: [
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Node.js",
-        "REST API Architecture",
-        "Supabase & Databases",
-        "Git & CI/CD",
-        "Security Automation",
-        "Netlify Deployment"
-      ]
-    }
-  ];]
-    }
   ];
 
   const contactLinks: ContactLink[] = [
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/" },
-    { name: "GitHub", url: "https://github.com/MDIbrahim08" },
-    { name: "Portfolio Resume Download", url: "/resume/mohammed_ibrahim_resume.html", download: true },
-    { name: "Email", url: "mailto:mi5062254@gmail.com" }
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/", icon: <Linkedin size={18} /> },
+    { name: "GitHub", url: "https://github.com/MDIbrahim08", icon: <Github size={18} /> },
+    { name: "Download Resume", url: "/resume/mohammed_ibrahim_resume.html", download: true, icon: <FileDown size={18} /> },
+    { name: "Email Ibrahim", url: "mailto:mi5062254@gmail.com", icon: <Mail size={18} /> },
   ];
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
+  const fadeUp = {
+    initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-white selection:text-black font-body overflow-x-hidden">
+    <div className="min-h-screen text-white font-body overflow-x-hidden bg-[#0a0c10] selection:bg-amber-400 selection:text-black">
       <div className="noise-overlay" />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center mix-blend-difference">
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="font-display font-black text-xl tracking-tighter"
-        >
-          M. IBRAHIM
-        </motion.span>
-        <div className="hidden md:flex gap-10 text-[9px] tracking-[0.3em] font-bold uppercase opacity-60">
-          {['About', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="hover:opacity-100 transition-opacity">
+      {/* ═══ GOOGLE-STYLE CLAY NAVBAR ═══════════════════════════ */}
+      <nav className="fixed top-0 w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center backdrop-blur-md bg-[#0a0c10]/40 border-b border-white/5">
+        <div className="clay-card px-4 py-2 flex items-center gap-3">
+          <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
+          <span className="font-display font-black text-xs md:text-sm tracking-tight text-white">
+            MOHAMMED IBRAHIM
+          </span>
+          <span className="hidden sm:inline-block text-[9px] font-mono uppercase bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full">
+            AI & SECURITY
+          </span>
+        </div>
+
+        <div className="hidden md:flex clay-card px-6 py-2.5 gap-8 text-[10px] tracking-[0.25em] font-bold uppercase text-white/70">
+          {["About", "Showcase", "Projects", "Skills", "Contact"].map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-amber-400 transition-colors">
               {item}
             </a>
           ))}
         </div>
-        <a
-          href="mailto:mi5062254@gmail.com"
-          className="text-[10px] tracking-widest font-black uppercase bg-white text-black px-6 py-2 rounded-full border border-white/10 hover:bg-transparent hover:text-white transition-all"
-        >
-          Contact
+
+        <a href="mailto:mi5062254@gmail.com" className="clay-btn !py-2.5 !px-5 !text-[9px]">
+          Hire Ibrahim
         </a>
       </nav>
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 relative overflow-hidden">
-        <div className="max-w-[1400px] w-full mx-auto z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{ y }}
-          >
-            <span className="text-[10px] md:text-xs font-black text-white/40 uppercase tracking-[0.35em] mb-4 block">
-              Multi-Agent AI Systems &bull; Threat Investigation &bull; High-Accuracy ML (98.31%) &bull; SOC & IAM
-            </span>
-            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-black leading-[1.05] tracking-tight mb-6 max-w-4xl">
-              AI Product & Security Engineer
+      {/* ═══ HERO SECTION WITH SCENE 1 VIDEO REEL ═══════════════ */}
+      <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 relative overflow-hidden pt-28 pb-16">
+        <ClayBlob color="#d97706" size={550} top="5%" left="55%" delay={0} />
+        <ClayBlob color="#7c3aed" size={450} top="45%" left="-10%" delay={2} />
+
+        <div className="max-w-[1400px] w-full mx-auto z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Column: Hero Text */}
+          <motion.div style={{ opacity: heroOpacity, scale: heroScale }} className="lg:col-span-7 space-y-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="inline-flex items-center gap-2 clay-badge px-4 py-2">
+              <Sparkles size={14} className="text-amber-400 animate-spin" style={{ animationDuration: "6s" }} />
+              <span className="text-[10px] tracking-[0.25em] font-black text-amber-300 uppercase">
+                GEN Z 3D CLAYMORPHISM EXPERIENCE
+              </span>
+            </motion.div>
+
+            <h1 className="font-display text-5xl sm:text-7xl lg:text-[5.5rem] font-black leading-[1.02] tracking-tight clay-heading">
+              Hi, I'm Ibrahim.<br />
+              <span className="text-white">AI Product & Security Engineer.</span>
             </h1>
-            <p className="max-w-xl text-base md:text-lg text-white/50 leading-relaxed mb-8">
-              BCA Honours Student (Data Science Major, Cybersecurity Minor) at Chanakya University. Engineering self-validating multi-agent LLM systems, production AI security platforms, and automated threat triage tools.
+
+            <p className="max-w-xl text-base md:text-lg text-white/60 leading-relaxed font-light">
+              BCA Honours (Data Science Major, Cybersecurity Minor) at Chanakya University. Building multi-agent AI frameworks, ML security detectors, and production-ready web systems.
             </p>
+
+            {/* Quick Stat Badges */}
+            <div className="grid grid-cols-3 gap-3 max-w-lg pt-2">
+              <div className="clay-card p-3 text-center">
+                <span className="text-xl md:text-2xl font-black text-amber-400 font-display block">98.3%</span>
+                <span className="text-[9px] uppercase font-bold text-white/50 tracking-wider">ML Accuracy</span>
+              </div>
+              <div className="clay-card p-3 text-center">
+                <span className="text-xl md:text-2xl font-black text-amber-400 font-display block">5-Agent</span>
+                <span className="text-[9px] uppercase font-bold text-white/50 tracking-wider">LLM Engine</span>
+              </div>
+              <div className="clay-card p-3 text-center">
+                <span className="text-xl md:text-2xl font-black text-amber-400 font-display block">Top 2</span>
+                <span className="text-[9px] uppercase font-bold text-white/50 tracking-wider">GFG Hackathon</span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <a href="#projects" className="clay-btn">
+                Explore Projects →
+              </a>
+              <a href="#about" className="clay-card px-6 py-3.5 text-[11px] font-black tracking-widest uppercase text-white/80 hover:text-white transition-colors">
+                About Me
+              </a>
+            </div>
           </motion.div>
 
-          <div className="mt-8 flex items-center gap-6">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-white/10"
-            >
-              <ArrowDown size={16} className="text-white/40" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-24 md:py-32 px-6 md:px-12 bg-white text-black rounded-t-[40px] relative z-10">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-4 flex flex-col justify-between space-y-8">
-              <div>
-                <h2 className="font-display text-4xl md:text-6xl font-black kerning-tight leading-none">
-                  ABOUT.
-                </h2>
-                <div className="h-1 w-12 bg-black mt-4" />
-              </div>
-              <div className="relative aspect-square max-w-[280px] w-full rounded-3xl overflow-hidden border-4 border-black/10 shadow-2xl bg-gray-100">
-                <img
-                  src="/profile.png"
-                  alt="Mohammed Ibrahim"
-                  className="w-full h-full object-cover grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-            </div>
-            <div className="md:col-span-8">
-              <div className="space-y-6 text-lg md:text-xl font-light leading-relaxed mb-12 text-black/80">
-                <p>
-                  I am an AI Product Engineer & Security Specialist building AI-powered products with a primary focus on security. I am currently pursuing a BCA Honours degree with a Major in Data Science and a Minor in Cybersecurity at Chanakya University.
-                </p>
-                <p>
-                  I design multi-agent AI systems that validate and cross-check their own outputs rather than trusting a single model blindly. Built <strong>PulseBLR</strong>, a live commute-planning application for Bangalore that orchestrates a 5-agent LLM pipeline (weather, traffic, transit, and temporal-risk advisors) into a single validated recommendation.
-                </p>
-                <p>
-                  My approach to security follows the exact same engineering principle: <em>"Verify before you trust."</em> I bring data-driven, pattern-based reasoning to threat investigation, log analysis, and anomaly detection, backed by structured SOC training and production builds like <strong>CYZEN AI</strong> (6 security tools in one platform with 98.31% phishing detection accuracy).
-                </p>
-              </div>
+          {/* Right Column: Google Flow Scene 1 Cinematic Reel */}
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }} className="lg:col-span-5 relative">
+            
+            <div className="clay-card p-3 md:p-4 relative group">
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40">Core Focus</h4>
-                  <ul className="space-y-3 text-xs font-bold uppercase tracking-wider">
-                    {['Multi-Agent AI', 'Threat Investigation', 'IAM & SOC Automation'].map((item) => (
-                      <li key={item} className="flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 bg-black rounded-full" /> {item}
-                      </li>
-                    ))}
-                  </ul>
+              {/* Outer Glow */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/20 via-purple-500/20 to-teal-500/20 rounded-[32px] blur-xl opacity-75 group-hover:opacity-100 transition duration-1000" />
+              
+              <div className="relative rounded-[24px] overflow-hidden bg-black aspect-[4/5] border border-white/10">
+                
+                {/* Video Component */}
+                {!videoError ? (
+                  <video
+                    ref={videoRef}
+                    src="/scene-hero.mp4"
+                    poster="/profile.png"
+                    loop
+                    muted={isMuted}
+                    autoPlay
+                    playsInline
+                    onError={() => setVideoError(true)}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full relative">
+                    <img src="/profile.png" alt="Ibrahim" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                      <span className="text-xs text-amber-400 font-mono">PLACE YOUR VIDEO HERE:</span>
+                      <span className="text-[10px] text-white/60 font-mono">public/scene-hero.mp4</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Video Glass HUD Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+
+                {/* Top Badge */}
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
+                  <span className="text-[9px] font-mono tracking-widest bg-black/60 text-white/80 border border-white/15 px-3 py-1 rounded-full backdrop-blur-md flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                    GOOGLE FLOW 3D REEL
+                  </span>
+                  <span className="text-[9px] font-mono tracking-widest bg-amber-400/20 text-amber-300 border border-amber-400/30 px-3 py-1 rounded-full backdrop-blur-md">
+                    1080P CINEMATIC
+                  </span>
                 </div>
-                <div className="p-6 bg-gray-50 border border-black/5 rounded-2xl">
-                  <h4 className="text-[10px] tracking-[0.3em] font-black uppercase opacity-40 mb-3">Current Direction</h4>
-                  <p className="text-xs md:text-sm opacity-70 leading-relaxed font-medium">
-                    Open to AI Product Engineer and SOC Analyst / Cybersecurity Analyst roles in top tech companies and IT enterprises.
-                  </p>
+
+                {/* Interactive Controls Bar */}
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center z-10">
+                  <div className="flex gap-2">
+                    <button onClick={togglePlay} className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-amber-400 hover:text-black transition-all">
+                      {isPlaying ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
+                    </button>
+                    <button onClick={toggleMute} className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-amber-400 hover:text-black transition-all">
+                      {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                    </button>
+                  </div>
+
+                  <span className="text-[10px] font-display font-bold text-white/90 bg-black/50 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md">
+                    Spotlight Entrance
+                  </span>
                 </div>
+
               </div>
             </div>
-          </div>
+
+          </motion.div>
+
         </div>
       </section>
 
-      {/* Experience */}
-      <section id="experience" className="py-32 px-6 md:px-12 bg-[#0A0A0A] relative z-10 border-y border-white/5">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="mb-16">
-            <h2 className="font-display text-4xl md:text-6xl font-black mb-8">EXPERIENCE.</h2>
-            <p className="max-w-2xl text-white/40 text-lg leading-relaxed">
-              Practical client work gave me a strong foundation in understanding requirements, building digital systems, communicating clearly, and solving problems under real project constraints.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <motion.div {...fadeInUp} className="lg:col-span-7">
-              <SpotlightCard className="p-10 bg-white/5 border-white/10 h-full">
-                <Shield className="mb-6 text-white/20" size={32} />
-                <span className="text-[10px] tracking-[0.3em] font-black uppercase text-white/25 mb-4 block">
-                  Freelance Technology Consultant
-                </span>
-                <h3 className="text-2xl md:text-4xl font-black mb-6">
-                  Websites, digital solutions, and online systems for local clients.
-                </h3>
-                <p className="text-sm text-white/45 leading-relaxed mb-8">
-                  Worked with local businesses and clients to design and deploy websites, digital solutions, and online systems.
-                </p>
-                <ul className="space-y-4 text-sm text-white/55 leading-relaxed">
-                  {experienceHighlights.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </SpotlightCard>
+      {/* ═══ ABOUT SECTION ════════════════════════════════════ */}
+      <section id="about" className="py-28 px-6 md:px-12 relative overflow-hidden bg-[#0d0f14]">
+        <ClayBlob color="#0d9488" size={400} top="15%" left="75%" delay={1} />
+        
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left: Interactive Card */}
+            <motion.div {...fadeUp} className="lg:col-span-5">
+              <div className="clay-card p-8 space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center">
+                    <User className="text-amber-400" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-2xl font-black text-white">Mohammed Ibrahim</h3>
+                    <p className="text-xs text-amber-400/90 font-mono uppercase tracking-widest font-bold">Chanakya University</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  <div className="flex justify-between items-center text-xs border-b border-white/10 pb-2">
+                    <span className="text-white/40 uppercase font-mono">Degree</span>
+                    <span className="text-white font-bold">BCA Honours</span>
+                  </div>
+                  <div className="flex justify-between items-center text-xs border-b border-white/10 pb-2">
+                    <span className="text-white/40 uppercase font-mono">Major</span>
+                    <span className="text-amber-300 font-bold">Data Science</span>
+                  </div>
+                  <div className="flex justify-between items-center text-xs border-b border-white/10 pb-2">
+                    <span className="text-white/40 uppercase font-mono">Minor</span>
+                    <span className="text-teal-300 font-bold">Cybersecurity</span>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                  <span className="text-[9px] uppercase font-mono tracking-widest text-amber-400 block font-bold">Core Engineering Motto</span>
+                  <p className="text-xs text-white/70 italic font-light">"Verify before you trust. Self-validating AI output & defense-in-depth security."</p>
+                </div>
+              </div>
             </motion.div>
 
-            <div className="lg:col-span-5 grid grid-cols-1 gap-8">
-              {focusAreas.map((item, i) => (
-              <motion.div key={i} {...fadeInUp}>
-                <SpotlightCard className="p-10 bg-white/5 border-white/10 h-full">
-                  <item.Icon className="mb-6 text-white/20" size={32} />
-                  <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                  <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
-                </SpotlightCard>
-              </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Achievements and Certifications */}
-      <section className="py-32 px-6 md:px-12 bg-[#050505] relative z-10">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-7">
-              <h2 className="font-display text-4xl md:text-6xl font-black mb-12">ACHIEVEMENTS.</h2>
-              <div className="grid grid-cols-1 gap-6">
-                {achievements.map((achievement, i) => (
-                  <motion.div key={achievement.title} {...fadeInUp}>
-                    <SpotlightCard className="p-8 bg-white/5 border-white/10 h-full">
-                      <div className="flex items-start gap-5">
-                        <Trophy className="text-white/25 shrink-0" size={28} />
-                        <div>
-                          <span className="text-[10px] tracking-[0.3em] font-black uppercase text-accent mb-3 block">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <h3 className="text-xl font-black mb-3">{achievement.title}</h3>
-                          <p className="text-sm text-white/45 leading-relaxed">{achievement.desc}</p>
-                        </div>
-                      </div>
-                    </SpotlightCard>
-                  </motion.div>
-                ))}
+            {/* Right: Detailed Bio */}
+            <motion.div {...fadeUp} className="lg:col-span-7 space-y-6">
+              <div>
+                <span className="text-[10px] tracking-[0.35em] font-black text-amber-400 uppercase mb-3 block">
+                  Background & Philosophy
+                </span>
+                <h2 className="font-display text-4xl md:text-6xl font-black clay-heading">
+                  WHO I AM.
+                </h2>
               </div>
-            </div>
 
-            <div className="lg:col-span-5">
-              <h2 className="font-display text-4xl md:text-6xl font-black mb-12">SIMULATION.</h2>
-              <motion.div {...fadeInUp}>
-                <SpotlightCard className="p-10 bg-white/5 border-white/10 h-full">
-                  <FileDown className="mb-6 text-white/20" size={32} />
-                  <span className="text-[10px] tracking-[0.3em] font-black uppercase text-white/25 mb-4 block">
-                    June 2026
-                  </span>
-                  <h3 className="text-2xl font-black mb-6">
-                    Tata Cybersecurity Security Analyst Job Simulation (Forage)
-                  </h3>
-                  <ul className="space-y-4 text-sm text-white/50 leading-relaxed">
-                    {certificationBullets.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </SpotlightCard>
-              </motion.div>
-            </div>
+              <div className="space-y-4 text-base text-white/70 font-light leading-relaxed">
+                <p>
+                  I am a passionate <strong className="text-white font-medium">AI Product Engineer & Security Specialist</strong> focused on bridging machine intelligence with enterprise-grade protection.
+                </p>
+                <p>
+                  My work centers around <strong className="text-amber-300 font-medium">Multi-Agent LLM Orchestration</strong> (building pipelines that cross-check their own decisions) and <strong className="text-teal-300 font-medium">Cybersecurity Threat Operations</strong> (ML-powered phishing detection, SOC triage, and posture audits).
+                </p>
+                <p>
+                  Whether engineering <strong className="text-white">PulseBLR</strong> (a 5-agent urban routing engine) or <strong className="text-white">CYZEN AI</strong> (achieving 98.31% threat detection accuracy), I focus on real-world impact, high performance, and robust architecture.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 pt-4">
+                <div className="clay-card p-4 space-y-2">
+                  <span className="text-[10px] font-mono text-amber-400 uppercase font-bold">PRIMARY FOCUS</span>
+                  <p className="text-xs text-white/80 font-bold">Multi-Agent AI & Threat Detection</p>
+                </div>
+                <div className="clay-card p-4 space-y-2">
+                  <span className="text-[10px] font-mono text-teal-400 uppercase font-bold">TARGET ROLES</span>
+                  <p className="text-xs text-white/80 font-bold">AI Product Engineer / SOC Analyst</p>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* Projects */}
-      <section id="projects" className="py-24 md:py-32 px-6 md:px-12 relative z-10">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="font-display text-4xl md:text-6xl font-black mb-16 md:mb-24">PROJECTS.</h2>
-          
-          <div className="space-y-24 md:space-y-32">
-            {projects.map((project, i) => (
+      {/* ═══ PROJECTS SECTION ═════════════════════════════════ */}
+      <section id="projects" className="py-28 px-6 md:px-12 relative overflow-hidden bg-[#0a0c10]">
+        <ClayBlob color="#d97706" size={500} top="20%" left="-10%" delay={2} />
+        
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <motion.div {...fadeUp} className="mb-16">
+            <span className="text-[10px] tracking-[0.35em] font-black text-amber-400 uppercase mb-3 block">
+              Featured Systems & Applications
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-black clay-heading">
+              PROJECTS HUB.
+            </h2>
+          </motion.div>
+
+          <div className="space-y-12">
+            {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                {...fadeInUp}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start bg-white/[0.02] border border-white/5 p-6 md:p-10 rounded-3xl"
+                {...fadeUp}
+                className="clay-card p-7 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-amber-400/30 transition-all duration-500"
               >
-                <div className={`lg:col-span-6 ${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
-                  <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                {/* Project Media */}
+                <div className={`lg:col-span-6 ${index % 2 !== 0 ? "lg:order-2" : ""}`}>
+                  <div className="relative aspect-video rounded-[20px] overflow-hidden bg-white/5 border border-white/10">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-500"
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-4 left-4 flex gap-2">
+                      <span className="clay-badge px-3 py-1 text-[9px] font-mono font-bold text-amber-400">
+                        {project.id}
+                      </span>
+                      <span className="clay-badge px-3 py-1 text-[9px] font-mono font-bold text-white/90">
+                        {project.badge}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                <div className={`lg:col-span-6 space-y-6 ${i % 2 !== 0 ? 'lg:text-right' : ''}`}>
+                {/* Project Info */}
+                <div className={`lg:col-span-6 space-y-5 ${index % 2 !== 0 ? "lg:text-right" : ""}`}>
                   <div>
-                    <span className="text-[10px] tracking-[0.3em] font-black uppercase text-accent mb-3 block">
+                    <span className="text-[10px] tracking-[0.25em] font-mono font-bold uppercase text-amber-400 mb-2 block">
                       {project.category}
                     </span>
-                    <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4">{project.title}</h3>
-                    {project.techStack && (
-                      <div className={`flex flex-wrap gap-2 my-3 ${i % 2 !== 0 ? 'lg:justify-end' : ''}`}>
-                        {project.techStack.map((tech) => (
-                          <span key={tech} className="px-3 py-1 bg-white/10 border border-white/10 text-white/80 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
+                    <h3 className="font-display text-2xl sm:text-3xl font-black text-white leading-tight">
+                      {project.title}
+                    </h3>
+                  </div>
+
+                  <div className="space-y-3 text-xs text-white/65 leading-relaxed">
+                    <p><strong className="text-white">Problem:</strong> {project.problem}</p>
+                    <p><strong className="text-amber-300">Solution:</strong> {project.whatIBuilt}</p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className={`flex flex-wrap gap-2 pt-1 ${index % 2 !== 0 ? "lg:justify-end" : ""}`}>
+                    {project.techStack.map((tech) => (
+                      <span key={tech} className="clay-badge px-3 py-1 text-[9px] font-mono font-bold text-white/70">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className={`flex flex-wrap gap-3 pt-3 ${index % 2 !== 0 ? "lg:justify-end" : ""}`}>
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="clay-btn !py-2.5 !px-5 !text-[9px] inline-flex items-center gap-2">
+                        Live Demo <ExternalLink size={12} />
+                      </a>
+                    )}
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="clay-card px-5 py-2.5 text-[9px] font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white flex items-center gap-2">
+                        Source Code <Github size={12} />
+                      </a>
                     )}
                   </div>
-
-                  <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 text-left ${i % 2 !== 0 ? 'md:text-right' : ''}`}>
-                    <div className="space-y-1.5">
-                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">Problem</h4>
-                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.problem}</p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">Approach</h4>
-                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.approach}</p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">What I Built</h4>
-                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.whatIBuilt}</p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <h4 className="text-[10px] font-black uppercase opacity-40 tracking-widest">Outcome</h4>
-                      <p className="text-xs md:text-sm text-white/60 leading-relaxed">{project.outcome}</p>
-                    </div>
-                  </div>
-
-                  {(project.link || project.github) && (
-                    <div className={`flex flex-wrap gap-4 pt-4 ${i % 2 !== 0 ? 'justify-end' : ''}`}>
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
-                        >
-                          View Project <ExternalLink size={12} />
-                        </a>
-                      )}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white/10 transition-colors"
-                        >
-                          View Code <Github size={12} />
-                        </a>
-                      )}
-                    </div>
-                  )}
                 </div>
+
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Skills */}
-      <section id="skills" className="py-32 px-6 md:px-12 bg-white text-black rounded-t-[40px] relative z-10">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-            <h2 className="font-display text-4xl md:text-6xl font-black">SKILLS.</h2>
-            <p className="max-w-xl text-sm md:text-base text-black/50 leading-relaxed">
-              An enterprise stack spanning multi-agent AI engineering, high-accuracy machine learning, threat investigation, SOC operations, and web/cloud architecture.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* ═══ SKILLS SECTION ═══════════════════════════════════ */}
+      <section id="skills" className="py-28 px-6 md:px-12 relative overflow-hidden bg-[#0d0f14]">
+        <ClayBlob color="#7c3aed" size={450} top="20%" left="70%" delay={3} />
+        
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <motion.div {...fadeUp} className="mb-16">
+            <span className="text-[10px] tracking-[0.35em] font-black text-amber-400 uppercase mb-3 block">
+              Capabilities & Tools
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-black clay-heading">
+              SKILLS MATRIX.
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {skillGroups.map((group) => (
-              <div key={group.title} className="p-8 border border-black/10 bg-gray-50">
-                <div className="flex items-center gap-3 mb-6">
-                  {group.title.includes("Cybersecurity") && <Shield size={22} className="text-black/40" />}
-                  {group.title.includes("Full-Stack") && <Code2 size={22} className="text-black/40" />}
-                  {group.title.includes("AI") && <Brain size={22} className="text-black/40" />}
-                  <h3 className="text-xl font-black">{group.title}</h3>
+              <motion.div key={group.title} {...fadeUp} className={`clay-card p-8 space-y-6 bg-gradient-to-b ${group.color}`}>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center">
+                    <group.Icon className="text-amber-400" size={22} />
+                  </div>
+                  <h3 className="font-display text-lg font-black text-white">{group.title}</h3>
                 </div>
-                <div className="flex flex-wrap gap-3">
+
+                <div className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="border border-black/10 bg-white px-4 py-2 text-[10px] font-black uppercase tracking-widest text-black/55"
-                    >
+                    <span key={item} className="clay-badge px-3.5 py-2 text-[10px] font-mono font-bold uppercase text-white/80">
                       {item}
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-32 px-6 md:px-12 text-center bg-[#050505] relative z-10">
-        <div className="max-w-[1400px] mx-auto">
-          <span className="text-[9px] tracking-[0.5em] font-black text-white/20 uppercase mb-8 block">Get In Touch</span>
-          <h2 className="font-display text-[8vw] font-black kerning-tight leading-none mb-20 uppercase text-white/10">
-            Let's Connect.
-          </h2>
-          <div className="flex flex-wrap justify-center gap-10 md:gap-20 text-[10px] font-black tracking-[0.3em] uppercase">
-            {contactLinks.map(link => (
+      {/* ═══ ACHIEVEMENTS ═════════════════════════════════════ */}
+      <section className="py-28 px-6 md:px-12 relative overflow-hidden bg-[#0a0c10]">
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <motion.div {...fadeUp} className="mb-16">
+            <span className="text-[10px] tracking-[0.35em] font-black text-amber-400 uppercase mb-3 block">
+              Honors & Certifications
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-black clay-heading">
+              ACHIEVEMENTS.
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {achievements.map((a) => (
+              <motion.div key={a.title} {...fadeUp} className="clay-card p-8 space-y-4 hover:border-amber-400/40 transition-all">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+                    {a.tag}
+                  </span>
+                  <Trophy className="text-amber-400" size={20} />
+                </div>
+                <h3 className="font-display text-xl font-black text-white leading-snug">{a.title}</h3>
+                <p className="text-xs text-white/55 font-light leading-relaxed">{a.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ CONTACT SECTION ══════════════════════════════════ */}
+      <section id="contact" className="py-36 px-6 md:px-12 relative overflow-hidden bg-[#0d0f14]">
+        <ClayBlob color="#d97706" size={550} top="20%" left="30%" delay={0} />
+        
+        <div className="max-w-[1400px] mx-auto relative z-10 text-center space-y-8">
+          <motion.div {...fadeUp} className="space-y-4">
+            <span className="text-[10px] tracking-[0.4em] font-black text-amber-400 uppercase">
+              LET'S BUILD SOMETHING GREAT
+            </span>
+            <h2 className="font-display text-5xl md:text-8xl font-black clay-heading leading-tight">
+              CONNECT WITH ME.
+            </h2>
+            <p className="max-w-md mx-auto text-sm text-white/50 font-light leading-relaxed">
+              Open to AI Product Engineering, Multi-Agent research, and SOC / Threat Intelligence roles.
+            </p>
+          </motion.div>
+
+          <motion.div {...fadeUp} className="flex flex-wrap justify-center gap-4 pt-4">
+            {contactLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.url}
                 target={link.download ? undefined : "_blank"}
                 rel={link.download ? undefined : "noopener noreferrer"}
                 download={link.download ? "mohammed_ibrahim_resume.html" : undefined}
-                className="text-white/40 hover:text-white transition-colors"
+                className="clay-card px-8 py-4 inline-flex items-center gap-3 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-amber-300 hover:border-amber-400/40 transition-all duration-300"
               >
+                {link.icon}
                 {link.name}
               </a>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/5 relative z-10 bg-black">
-        <div className="flex flex-col md:flex-row justify-between items-center text-[8px] tracking-[0.4em] font-black uppercase text-white/10 gap-6 text-center">
-          <p>© 2026 Mohammed Ibrahim // AI Product & Security Engineer Portfolio</p>
-          <p>mi5062254@gmail.com</p>
-        </div>
+      {/* ═══ FOOTER ═══════════════════════════════════════════ */}
+      <footer className="py-8 px-6 border-t border-white/5 text-center bg-[#07080b]">
+        <p className="text-[10px] font-mono tracking-widest text-white/30 uppercase">
+          © 2026 MOHAMMED IBRAHIM · AI PRODUCT & SECURITY ENGINEER · GOOGLE-STYLE CLAYMORPHISM
+        </p>
       </footer>
+
     </div>
   );
 }
