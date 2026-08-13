@@ -5,6 +5,7 @@ import {
   Github, Shield, Trophy, Sparkles, Mail, Linkedin,
   User, Pause, Play
 } from "lucide-react";
+import { TextRotate } from "../components/ui/text-rotate";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
@@ -283,14 +284,34 @@ export default function Portfolio() {
                 <div className="flex items-center gap-2">
                   <Sparkles size={14} className="text-amber-400 animate-pulse" />
                   <span className="text-[9px] tracking-[0.25em] font-mono font-black text-amber-400 uppercase">
-                    Developer Introduction
+                    Interactive Introduction
                   </span>
                 </div>
                 <h1 className="font-display text-2xl md:text-3xl font-black leading-tight text-white">
                   MOHAMMED IBRAHIM
                 </h1>
-                <p className="text-xs text-white/80 font-light leading-relaxed">
-                  AI Product & Security Engineer specializing in multi-agent LLM systems, threat investigation, and custom full-stack solutions.
+                <p className="text-xs text-white/80 font-light leading-relaxed flex flex-wrap items-center gap-1.5">
+                  <span>Engineered to make it</span>
+                  <TextRotate
+                    texts={[
+                      "work!",
+                      "fancy ✽",
+                      "right",
+                      "fast",
+                      "fun",
+                      "rock",
+                      "🕶️🕶️🕶️",
+                    ]}
+                    mainClassName="text-black font-bold px-2.5 py-0.5 bg-amber-400 rounded-md overflow-hidden inline-flex justify-center"
+                    staggerFrom={"last"}
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-hidden pb-0.5"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={2000}
+                  />
                 </p>
                 <div className="flex gap-2">
                   <span className="clay-badge px-2.5 py-1 text-[8px] font-mono font-bold text-amber-300">
