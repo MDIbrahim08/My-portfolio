@@ -304,7 +304,7 @@ export default function Portfolio() {
                       "rock",
                       "🕶️🕶️🕶️",
                     ]}
-                    mainClassName="text-amber-400 font-bold overflow-hidden inline-flex justify-start"
+                    mainClassName="text-white px-2.5 py-0.5 bg-[#ff5941] rounded-md overflow-hidden inline-flex justify-start"
                     staggerFrom={"last"}
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
