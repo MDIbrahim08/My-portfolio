@@ -143,3 +143,24 @@ body, #root {
   will-change: transform;
   backface-visibility: hidden;
 }
+
+/* ── Mobile View 120 FPS Performance Optimizations ───── */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Reduce blur overhead on mobile GPU */
+  .clay-glass-card,
+  .clay-glass-pill,
+  .clay-btn {
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+  }
+
+  /* Enable native smooth momentum scrolling on iOS and Android */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
