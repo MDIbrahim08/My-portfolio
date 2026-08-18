@@ -9,6 +9,7 @@ import { TextRotate } from "../components/ui/text-rotate";
 import { CollectionSurfer } from "../components/ui/collection-surfer";
 import { BlurText } from "../components/ui/portfolio-hero";
 import { ConnoisseurStackInteractor, MenuItem } from "../components/ui/connoisseur-stack-interactor";
+import { FlipGallery, GalleryItem } from "../components/ui/flip-gallery";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
@@ -244,7 +245,7 @@ export default function Portfolio() {
 
   const achievements = [
     {
-      title: "2nd Place Overall — GeeksforGeeks Hackathon, Bangalore",
+      title: "2nd Place Overall — GeeksforGeeks Hackfest, Bangalore",
       desc: "Secured 2nd place overall competing against engineering teams across Bangalore.",
       num: "01",
       tag: "HACKATHON WINNER",
@@ -260,6 +261,41 @@ export default function Portfolio() {
       desc: "Recognized for innovation, UX/UI excellence, clean architecture, and technical execution.",
       num: "03",
       tag: "FULL STACK AWARD",
+    },
+  ];
+
+  const achievementGalleryItems: GalleryItem[] = [
+    {
+      id: 1,
+      title: "2nd Place Overall — GeeksforGeeks Hackfest, Bangalore",
+      subtitle: "Hackfest Powered by GeeksforGeeks Classroom Program · ₹15,000 Cash Award",
+      tag: "HACKATHON WINNER",
+      image: "/achievements/award-geeksforgeeks-hackfest.png",
+      description: "Secured 2nd place overall competing against top engineering teams across Bangalore.",
+    },
+    {
+      id: 2,
+      title: "1st Place — Prompt to Product (OJAS 2K26)",
+      subtitle: "Chanakya University Intra-University Fest · School of Engineering",
+      tag: "AI INNOVATION",
+      image: "/achievements/award-prompt-to-product.png",
+      description: "Awarded 1st place for building and deploying a production generative AI platform.",
+    },
+    {
+      id: 3,
+      title: "2nd Place — Website & App Development",
+      subtitle: "OJAS 2K26 Technical Competition · Chanakya University",
+      tag: "FULL STACK AWARD",
+      image: "/achievements/award-app-dev.png",
+      description: "Recognized for full-stack architecture, UX/UI elegance, and technical execution.",
+    },
+    {
+      id: 4,
+      title: "OJAS 2K26 University Championship Trophy",
+      subtitle: "Chanakya University Engineering Recognition & Celebration",
+      tag: "ACADEMIC EXCELLENCE",
+      image: "/achievements/award-ojas-trophy.png",
+      description: "Honored with the official trophy for technical excellence and competitive programming.",
     },
   ];
 
@@ -546,33 +582,22 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* ═══ ACHIEVEMENTS SECTION ═════════════════════════════ */}
-        <section className="py-28 px-6 md:px-12 border-t border-white/5">
+        {/* ═══ ACHIEVEMENTS SECTION (3D Split FlipGallery) ═══ */}
+        <section id="achievements" className="py-24 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
           <div className="max-w-[1200px] mx-auto">
             
-            <motion.div {...fadeUp} className="mb-14">
+            <motion.div {...fadeUp} className="mb-10 text-center">
               <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
-                Recognitions
+                Verified Recognitions & Certificates
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
-                ACHIEVEMENTS.
+                ACHIEVEMENTS & AWARDS.
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {achievements.map((a) => (
-                <motion.div key={a.title} {...fadeUp} className="clay-glass-card p-6 space-y-3 border-white/10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-[9px] font-mono font-bold text-white bg-white/10 px-2.5 py-0.5 rounded-full border border-white/20">
-                      {a.tag}
-                    </span>
-                    <Trophy className="text-white" size={18} />
-                  </div>
-                  <h3 className="font-display text-base font-black text-white">{a.title}</h3>
-                  <p className="text-xs text-white/55 font-light leading-relaxed">{a.desc}</p>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div {...fadeUp}>
+              <FlipGallery items={achievementGalleryItems} />
+            </motion.div>
 
           </div>
         </section>
