@@ -196,7 +196,7 @@ export default function Portfolio() {
       num: "01",
       name: "AI & MULTI-AGENT",
       clipId: "clip-original",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1200",
+      image: "/clay-ai-brain.jpg",
       skills: [
         "Multi-Agent LLM Pipelines",
         "LLaMA 3.3 70B & Groq API",
@@ -209,7 +209,7 @@ export default function Portfolio() {
       num: "02",
       name: "CYBER SECURITY",
       clipId: "clip-hexagons",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
+      image: "/clay-cyber-shield.jpg",
       skills: [
         "Threat Triage & SOC Operations",
         "IAM & Cloud Access Governance",
@@ -222,7 +222,7 @@ export default function Portfolio() {
       num: "03",
       name: "CLOUD & SYSTEMS",
       clipId: "clip-pixels",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+      image: "/clay-cloud-system.jpg",
       skills: [
         "React 19 & TypeScript",
         "Modern Claymorphism UI",
