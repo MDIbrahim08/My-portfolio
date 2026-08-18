@@ -8,6 +8,7 @@ import {
 import { TextRotate } from "../components/ui/text-rotate";
 import { CollectionSurfer } from "../components/ui/collection-surfer";
 import { BlurText } from "../components/ui/portfolio-hero";
+import { ConnoisseurStackInteractor, MenuItem } from "../components/ui/connoisseur-stack-interactor";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
@@ -188,6 +189,48 @@ export default function Portfolio() {
         "Netlify & Production Hosting",
       ],
     },
+  ];
+
+  const skillMenuItems: MenuItem[] = [
+    {
+      num: "01",
+      name: "AI & MULTI-AGENT",
+      clipId: "clip-original",
+      image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&q=80&w=1200",
+      skills: [
+        "Multi-Agent LLM Pipelines",
+        "LLaMA 3.3 70B & Groq API",
+        "LightGBM Classification (98.31%)",
+        "Self-Verifying AI Agents",
+        "Python & Applied Data Science",
+      ]
+    },
+    {
+      num: "02",
+      name: "CYBER SECURITY",
+      clipId: "clip-hexagons",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
+      skills: [
+        "Threat Triage & SOC Operations",
+        "IAM & Cloud Access Governance",
+        "Phishing Detection Models",
+        "Web Posture Hardening (CSP/HSTS)",
+        "OWASP Baselines & Burp Suite",
+      ]
+    },
+    {
+      num: "03",
+      name: "CLOUD & SYSTEMS",
+      clipId: "clip-pixels",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+      skills: [
+        "React 19 & TypeScript",
+        "Modern Claymorphism UI",
+        "Node.js & Express REST APIs",
+        "PostgreSQL & Supabase",
+        "Vite & CI/CD Cloud Deployments",
+      ]
+    }
   ];
 
   const achievements = [
@@ -474,39 +517,22 @@ export default function Portfolio() {
 
         </section>
 
-        {/* ═══ SKILLS SECTION ═══════════════════════════════════ */}
-        <section id="skills" className="py-28 px-6 md:px-12 border-t border-white/5">
+        {/* ═══ SKILLS SECTION (GSAP Interactive SVG Morphing Showcase) ═══ */}
+        <section id="skills" className="py-24 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
           <div className="max-w-[1200px] mx-auto">
             
-            <motion.div {...fadeUp} className="mb-14">
+            <motion.div {...fadeUp} className="mb-10">
               <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
-                Technical Stack
+                Interactive Stack & Domains
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
                 SKILLS MATRIX.
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {skillGroups.map((group) => (
-                <motion.div key={group.title} {...fadeUp} className={`clay-glass-card p-6 space-y-5 ${group.color}`}>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                      <group.Icon className="text-white" size={18} />
-                    </div>
-                    <h3 className="font-display text-base font-black text-white">{group.title}</h3>
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {group.items.map((item) => (
-                      <span key={item} className="clay-badge px-3 py-1.5 text-[9px] font-mono font-bold text-white/80">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div {...fadeUp} className="clay-glass-card border-white/10 overflow-hidden">
+              <ConnoisseurStackInteractor items={skillMenuItems} />
+            </motion.div>
 
           </div>
         </section>
