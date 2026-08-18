@@ -407,13 +407,15 @@ export default function Portfolio() {
           </AnimatePresence>
         </div>
 
-        {/* Control overlay */}
-        <div className="absolute bottom-8 right-6 md:right-12 z-20 flex gap-2">
+        {/* Video Control Overlay (Positioned to seamlessly cover the watermark) */}
+        <div className="absolute bottom-5 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-20 flex items-center gap-2">
           <button
             onClick={togglePlay}
-            className="clay-glass-pill w-10 h-10 flex items-center justify-center text-white hover:text-white transition-colors bg-black/40 backdrop-blur-md"
+            title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
+            className="clay-glass-pill px-4 py-2.5 flex items-center gap-2.5 text-xs font-mono font-bold text-white/90 hover:text-white transition-all cursor-pointer shadow-2xl bg-[#090b0e]/95 border border-white/20 hover:scale-105 backdrop-blur-xl"
           >
-            {isPlaying ? <Pause size={14} /> : <Play size={14} />}
+            {isPlaying ? <Pause size={14} className="text-white" /> : <Play size={14} className="text-white" />}
+            <span className="text-[10px] tracking-wider uppercase font-bold">{isPlaying ? "PAUSE REEL" : "PLAY REEL"}</span>
           </button>
         </div>
 
