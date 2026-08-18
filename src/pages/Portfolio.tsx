@@ -9,7 +9,7 @@ import { TextRotate } from "../components/ui/text-rotate";
 import { CollectionSurfer } from "../components/ui/collection-surfer";
 import { BlurText } from "../components/ui/portfolio-hero";
 import { ConnoisseurStackInteractor, MenuItem } from "../components/ui/connoisseur-stack-interactor";
-import { FlipGallery, GalleryItem } from "../components/ui/flip-gallery";
+import FlipGallery, { FlipImageItem } from "../components/ui/flip-gallery";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
@@ -264,46 +264,36 @@ export default function Portfolio() {
     },
   ];
 
-  const achievementGalleryItems: GalleryItem[] = [
+  const achievementImages: FlipImageItem[] = [
     {
-      id: 1,
       title: "GeeksforGeeks Hackfest — 2nd Place Overall",
       subtitle: "Hackfest Powered by GeeksforGeeks Classroom Program · ₹15,000 Award",
       tag: "HACKATHON WINNER",
-      image: "/achievements/award-geeksforgeeks-hackfest.png",
-      description: "Secured 2nd place overall competing against top engineering teams across Bangalore.",
+      url: "/achievements/award-geeksforgeeks-hackfest.png",
     },
     {
-      id: 2,
       title: "Ticket to Finale — GeeksforGeeks Hackfest",
       subtitle: "2nd Runner-Up Prize & Finale Qualification · Bangalore",
       tag: "FINALE QUALIFIER",
-      image: "/achievements/award-geeksforgeeks-finale.png",
-      description: "Qualified for the prestigious finale round with Amazon Prize & official Ticket to Finale.",
+      url: "/achievements/award-geeksforgeeks-finale.png",
     },
     {
-      id: 3,
       title: "1st Place — Prompt to Product (OJAS 2K26)",
       subtitle: "Chanakya University Intra-University Fest · School of Engineering",
       tag: "AI INNOVATION",
-      image: "/achievements/award-prompt-to-product.png",
-      description: "Awarded 1st place for building and deploying a production generative AI platform.",
+      url: "/achievements/award-prompt-to-product.png",
     },
     {
-      id: 4,
       title: "2nd Place — Website & App Development",
       subtitle: "OJAS 2K26 Technical Competition · Chanakya University",
       tag: "FULL STACK AWARD",
-      image: "/achievements/award-app-dev.png",
-      description: "Recognized for full-stack architecture, UX/UI elegance, and technical execution.",
+      url: "/achievements/award-app-dev.png",
     },
     {
-      id: 5,
       title: "OJAS 2K26 University Championship Trophy",
       subtitle: "Chanakya University Engineering Recognition & Celebration",
       tag: "ACADEMIC EXCELLENCE",
-      image: "/achievements/award-ojas-trophy.png",
-      description: "Honored with the official trophy for technical excellence and competitive programming.",
+      url: "/achievements/award-ojas-trophy.png",
     },
   ];
 
@@ -604,7 +594,7 @@ export default function Portfolio() {
             </motion.div>
 
             <motion.div {...fadeUp}>
-              <FlipGallery items={achievementGalleryItems} />
+              <FlipGallery images={achievementImages} />
             </motion.div>
 
           </div>
