@@ -46,66 +46,6 @@ export default function Portfolio() {
   const heroContainerRef = useRef<HTMLDivElement>(null);
   const projectsSectionRef = useRef<HTMLDivElement>(null);
 
-  const [buttonPos, setButtonPos] = useState<{ bottom: number; right: number }>({
-    bottom: 36,
-    right: 36,
-  });
-
-  /* Auto-track exact position of video watermark across all screen aspect ratios and full screen */
-  useEffect(() => {
-    const updatePosition = () => {
-      const container = heroContainerRef.current;
-      const video = videoRef.current;
-      if (!container || !video) return;
-
-      const cw = container.clientWidth;
-      const ch = container.clientHeight;
-      const vw = video.videoWidth || 1920;
-      const vh = video.videoHeight || 1080;
-
-      // Scale ratio under object-cover
-      const scale = Math.max(cw / vw, ch / vh);
-      const renderedWidth = vw * scale;
-      const renderedHeight = vh * scale;
-
-      // Overflow offsets when video is scaled to cover container
-      const overflowX = (renderedWidth - cw) / 2;
-      const overflowY = (renderedHeight - ch) / 2;
-
-      // In the source video, the watermark center is ~3.8% from right edge and ~6.2% from bottom edge
-      const logoFromVideoRight = renderedWidth * 0.038;
-      const logoFromVideoBottom = renderedHeight * 0.062;
-
-      // Translate coordinates to container space
-      const rightInContainer = Math.max(20, logoFromVideoRight - overflowX);
-      const bottomInContainer = Math.max(20, logoFromVideoBottom - overflowY);
-
-      setButtonPos({
-        right: Math.round(rightInContainer),
-        bottom: Math.round(bottomInContainer),
-      });
-    };
-
-    updatePosition();
-    window.addEventListener("resize", updatePosition, { passive: true });
-    document.addEventListener("fullscreenchange", updatePosition);
-
-    const video = videoRef.current;
-    if (video) {
-      video.addEventListener("loadedmetadata", updatePosition);
-      video.addEventListener("playing", updatePosition);
-    }
-
-    return () => {
-      window.removeEventListener("resize", updatePosition);
-      document.removeEventListener("fullscreenchange", updatePosition);
-      if (video) {
-        video.removeEventListener("loadedmetadata", updatePosition);
-        video.removeEventListener("playing", updatePosition);
-      }
-    };
-  }, []);
-
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -418,6 +358,8 @@ export default function Portfolio() {
           />
           {/* Subtle dark overlays to keep branding readable */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-transparent to-black/20" />
+          {/* Bottom-right obsidian vignette overlay that permanently covers any corner watermark */}
+          <div className="absolute bottom-0 right-0 w-80 sm:w-[28rem] h-52 sm:h-72 bg-gradient-to-tl from-[#07080a] via-[#07080a]/90 to-transparent pointer-events-none z-10" />
         </div>
 
         {/* Premium Animated Text Block in Right Corner */}
@@ -468,24 +410,17 @@ export default function Portfolio() {
           </AnimatePresence>
         </div>
 
-        {/* Video Control Overlay (Auto-tracks and covers the watermark on any screen size & full screen) */}
-        <div
-          className="absolute z-20 flex items-center justify-center transition-all duration-300 ease-out pointer-events-auto"
-          style={{
-            bottom: `${buttonPos.bottom}px`,
-            right: `${buttonPos.right}px`,
-            transform: "translate(50%, 50%)",
-          }}
-        >
+        {/* Video Control Overlay */}
+        <div className="absolute bottom-6 md:bottom-8 right-6 md:right-8 z-20 flex items-center justify-center pointer-events-auto">
           <button
             onClick={togglePlay}
             title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
-            className="clay-glass-pill w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-[0_10px_30px_rgba(0,0,0,0.9)] bg-[#07080a] border border-white/30 hover:border-white/60 hover:scale-110 backdrop-blur-2xl group"
+            className="clay-glass-pill w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-[0_8px_32px_rgba(0,0,0,0.9)] bg-[#07080a] border border-white/30 hover:border-white/60 hover:scale-110 backdrop-blur-2xl group"
           >
             {isPlaying ? (
-              <Pause size={20} className="text-white fill-white group-hover:scale-110 transition-transform" />
+              <Pause size={18} className="text-white fill-white group-hover:scale-110 transition-transform" />
             ) : (
-              <Play size={20} className="text-white fill-white ml-0.5 group-hover:scale-110 transition-transform" />
+              <Play size={18} className="text-white fill-white ml-0.5 group-hover:scale-110 transition-transform" />
             )}
           </button>
         </div>
