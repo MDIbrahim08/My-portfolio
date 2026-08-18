@@ -407,13 +407,10 @@ export default function Portfolio() {
 
         {/* Video Control Overlay (Sleek circular obsidian glass button positioned directly over the Gemini star watermark) */}
         <div className="absolute bottom-3 sm:bottom-4 md:bottom-5 right-12 sm:right-16 md:right-20 z-20 flex items-center justify-center">
-          {/* Localized opaque under-layer guaranteeing complete star clipping */}
-          <div className="absolute w-24 h-24 rounded-full bg-[#090b0e] blur-sm -z-10 pointer-events-none opacity-95" />
-          
           <button
             onClick={togglePlay}
             title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
-            className="clay-glass-pill w-20 h-20 sm:w-22 sm:h-22 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-[0_12px_45px_rgba(0,0,0,0.98)] bg-[#090b0e] border border-white/30 hover:border-white/60 hover:scale-105 backdrop-blur-2xl group"
+            className="clay-glass-pill w-20 h-20 sm:w-22 sm:h-22 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-xl bg-[#090b0e] border border-white/30 hover:border-white/60 hover:scale-105 backdrop-blur-2xl group"
           >
             {isPlaying ? (
               <Pause size={24} className="text-white fill-white group-hover:scale-110 transition-transform" />
