@@ -267,14 +267,22 @@ export default function Portfolio() {
   const achievementGalleryItems: GalleryItem[] = [
     {
       id: 1,
-      title: "2nd Place Overall — GeeksforGeeks Hackfest, Bangalore",
-      subtitle: "Hackfest Powered by GeeksforGeeks Classroom Program · ₹15,000 Cash Award",
+      title: "GeeksforGeeks Hackfest — 2nd Place Overall",
+      subtitle: "Hackfest Powered by GeeksforGeeks Classroom Program · ₹15,000 Award",
       tag: "HACKATHON WINNER",
       image: "/achievements/award-geeksforgeeks-hackfest.png",
       description: "Secured 2nd place overall competing against top engineering teams across Bangalore.",
     },
     {
       id: 2,
+      title: "Ticket to Finale — GeeksforGeeks Hackfest",
+      subtitle: "2nd Runner-Up Prize & Finale Qualification · Bangalore",
+      tag: "FINALE QUALIFIER",
+      image: "/achievements/award-geeksforgeeks-finale.png",
+      description: "Qualified for the prestigious finale round with Amazon Prize & official Ticket to Finale.",
+    },
+    {
+      id: 3,
       title: "1st Place — Prompt to Product (OJAS 2K26)",
       subtitle: "Chanakya University Intra-University Fest · School of Engineering",
       tag: "AI INNOVATION",
@@ -282,7 +290,7 @@ export default function Portfolio() {
       description: "Awarded 1st place for building and deploying a production generative AI platform.",
     },
     {
-      id: 3,
+      id: 4,
       title: "2nd Place — Website & App Development",
       subtitle: "OJAS 2K26 Technical Competition · Chanakya University",
       tag: "FULL STACK AWARD",
@@ -290,7 +298,7 @@ export default function Portfolio() {
       description: "Recognized for full-stack architecture, UX/UI elegance, and technical execution.",
     },
     {
-      id: 4,
+      id: 5,
       title: "OJAS 2K26 University Championship Trophy",
       subtitle: "Chanakya University Engineering Recognition & Celebration",
       tag: "ACADEMIC EXCELLENCE",

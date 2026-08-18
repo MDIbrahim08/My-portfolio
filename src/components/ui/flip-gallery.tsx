@@ -12,38 +12,46 @@ export interface GalleryItem {
   description?: string;
 }
 
-const defaultGalleryItems: GalleryItem[] = [
+export const defaultGalleryItems: GalleryItem[] = [
   {
     id: 1,
     title: "GeeksforGeeks Hackfest — 2nd Place Overall",
-    subtitle: "Bangalore Hackathon · ₹15,000 Cash Prize",
+    subtitle: "Hackfest Powered by GeeksforGeeks Classroom Program · ₹15,000 Award",
     tag: "HACKATHON WINNER",
     image: "/achievements/award-geeksforgeeks-hackfest.png",
-    description: "Secured 2nd place competing against top engineering teams across Bangalore.",
+    description: "Secured 2nd place overall competing against top engineering teams across Bangalore.",
   },
   {
     id: 2,
+    title: "Ticket to Finale — GeeksforGeeks Hackfest",
+    subtitle: "2nd Runner-Up Prize & Finale Qualification · Bangalore",
+    tag: "FINALE QUALIFIER",
+    image: "/achievements/award-geeksforgeeks-finale.png",
+    description: "Qualified for the prestigious finale round with Amazon Prize & official Ticket to Finale.",
+  },
+  {
+    id: 3,
     title: "1st Place — Prompt to Product (OJAS 2K26)",
-    subtitle: "Chanakya University Intra-University Fest",
+    subtitle: "Chanakya University Intra-University Fest · School of Engineering",
     tag: "AI INNOVATION",
     image: "/achievements/award-prompt-to-product.png",
     description: "Awarded 1st place for building and deploying a production generative AI platform.",
   },
   {
-    id: 3,
+    id: 4,
     title: "2nd Place — Website & App Development",
-    subtitle: "OJAS 2K26 Technical Competition",
+    subtitle: "OJAS 2K26 Technical Competition · Chanakya University",
     tag: "FULL STACK AWARD",
     image: "/achievements/award-app-dev.png",
     description: "Recognized for full-stack architecture, UX/UI elegance, and technical execution.",
   },
   {
-    id: 4,
-    title: "OJAS 2K26 University Trophy",
-    subtitle: "Chanakya University Engineering Recognition",
+    id: 5,
+    title: "OJAS 2K26 University Championship Trophy",
+    subtitle: "Chanakya University Engineering Recognition & Celebration",
     tag: "ACADEMIC EXCELLENCE",
     image: "/achievements/award-ojas-trophy.png",
-    description: "Awarded trophy for outstanding innovation and competitive programming achievements.",
+    description: "Honored with the official trophy for technical excellence and competitive programming.",
   },
 ];
 
@@ -56,7 +64,7 @@ interface FlipGalleryProps {
 export const FlipGallery: React.FC<FlipGalleryProps> = ({
   items = defaultGalleryItems,
   className = "",
-  autoPlayInterval = 5000,
+  autoPlayInterval = 6000,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev">("next");
@@ -84,7 +92,7 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
   return (
     <div
       className={cn(
-        "relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden bg-black/60 backdrop-blur-2xl border border-white/10 shadow-2xl p-4 sm:p-8",
+        "relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden bg-black/60 backdrop-blur-2xl border border-white/10 shadow-2xl p-4 sm:p-8 transition-all duration-500",
         isFullscreen ? "fixed inset-4 z-[999] max-w-none max-h-none h-[calc(100vh-2rem)] flex flex-col justify-between" : "",
         className
       )}
@@ -107,7 +115,7 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
             className={cn(
               "p-2 rounded-full border transition-all text-xs flex items-center gap-1.5 cursor-pointer",
               isAutoPlay
-                ? "bg-white text-black border-white"
+                ? "bg-white text-black border-white shadow-lg"
                 : "bg-white/5 text-white/70 border-white/10 hover:text-white hover:border-white/30"
             )}
             title={isAutoPlay ? "Pause Autoplay" : "Start Autoplay"}
@@ -135,36 +143,43 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
         </div>
       </div>
 
-      {/* Main Split Flip Viewport */}
+      {/* Main Ultra-Smooth 3D Page Flip Viewport */}
       <div className="relative w-full my-6 flex-1 flex flex-col items-center justify-center min-h-[360px] sm:min-h-[460px] md:min-h-[520px]">
         <div
-          className="relative w-full max-w-2xl aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-black shadow-2xl"
-          style={{ perspective: "1400px" }}
+          className="relative w-full max-w-2xl aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-black shadow-[0_20px_60px_rgba(0,0,0,0.9)]"
+          style={{ perspective: "1800px", transformStyle: "preserve-3d" }}
         >
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentItem.id}
               custom={direction}
               initial={{
-                rotateX: direction === "next" ? 70 : -70,
+                rotateX: direction === "next" ? 45 : -45,
                 opacity: 0,
-                scale: 0.92,
+                scale: 0.94,
+                y: direction === "next" ? 15 : -15,
+                filter: "brightness(0.7) blur(2px)",
               }}
               animate={{
                 rotateX: 0,
                 opacity: 1,
                 scale: 1,
+                y: 0,
+                filter: "brightness(1) blur(0px)",
               }}
               exit={{
-                rotateX: direction === "next" ? -70 : 70,
+                rotateX: direction === "next" ? -45 : 45,
                 opacity: 0,
-                scale: 0.92,
+                scale: 0.94,
+                y: direction === "next" ? -15 : 15,
+                filter: "brightness(0.7) blur(2px)",
               }}
               transition={{
-                duration: 0.65,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 0.75,
+                ease: [0.22, 1, 0.36, 1], // Silky book page turn easing
               }}
               className="absolute inset-0 w-full h-full flex flex-col overflow-hidden"
+              style={{ transformStyle: "preserve-3d", transformOrigin: "center center" }}
             >
               {/* TOP FLAP HALF */}
               <div className="relative w-full h-1/2 overflow-hidden border-b border-black/80 bg-neutral-950">
@@ -173,21 +188,23 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
                   alt={currentItem.title}
                   className="absolute top-0 left-0 w-full h-[200%] object-contain sm:object-cover bg-black"
                 />
-                {/* Subtle sheen highlight on top flap */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-black/40 pointer-events-none" />
+                {/* Dynamic Page Sheen / Shadow */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/12 via-transparent to-black/50 pointer-events-none" />
                 
                 {/* Top Badge */}
                 {currentItem.tag && (
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="clay-badge px-3 py-1 text-[9px] font-mono font-bold text-white uppercase tracking-wider bg-black/60 backdrop-blur-md border border-white/20">
+                    <span className="clay-badge px-3 py-1 text-[9px] font-mono font-bold text-white uppercase tracking-wider bg-black/70 backdrop-blur-md border border-white/20 shadow-md">
                       {currentItem.tag}
                     </span>
                   </div>
                 )}
               </div>
 
-              {/* SPLIT HORIZONTAL SEAM SHADOW */}
-              <div className="h-[2px] w-full bg-black/90 shadow-[0_2px_8px_rgba(0,0,0,0.9)] z-20" />
+              {/* SPLIT HORIZONTAL PAGE FOLD SEAM */}
+              <div className="h-[2px] w-full bg-black/90 shadow-[0_2px_10px_rgba(0,0,0,0.95)] z-20 relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-40" />
+              </div>
 
               {/* BOTTOM FLAP HALF */}
               <div className="relative w-full h-1/2 overflow-hidden bg-neutral-950">
@@ -196,8 +213,8 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
                   alt={currentItem.title}
                   className="absolute bottom-0 left-0 w-full h-[200%] object-contain sm:object-cover bg-black"
                 />
-                {/* Shadow depth on bottom flap */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+                {/* Bottom page depth gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none" />
               </div>
             </motion.div>
           </AnimatePresence>
@@ -207,7 +224,7 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
             type="button"
             onClick={prevSlide}
             aria-label="Previous achievement"
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/60 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300 backdrop-blur-md cursor-pointer hover:scale-110 shadow-lg"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/70 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300 backdrop-blur-md cursor-pointer hover:scale-110 shadow-xl"
           >
             <ChevronLeft size={18} strokeWidth={2.5} />
           </button>
@@ -216,7 +233,7 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
             type="button"
             onClick={nextSlide}
             aria-label="Next achievement"
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/60 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300 backdrop-blur-md cursor-pointer hover:scale-110 shadow-lg"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/70 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300 backdrop-blur-md cursor-pointer hover:scale-110 shadow-xl"
           >
             <ChevronRight size={18} strokeWidth={2.5} />
           </button>
@@ -254,7 +271,7 @@ export const FlipGallery: React.FC<FlipGalleryProps> = ({
               className={cn(
                 "h-2 rounded-full transition-all duration-300 cursor-pointer",
                 currentIndex === idx
-                  ? "w-8 bg-white"
+                  ? "w-8 bg-white shadow-[0_0_12px_rgba(255,255,255,0.6)]"
                   : "w-2 bg-white/20 hover:bg-white/50"
               )}
               title={item.title}
