@@ -207,7 +207,7 @@ export default function FlipGallery({ images = defaultImages, className = "" }: 
               type="button"
               onClick={() => updateIndex(-1)}
               title="Previous Recognition"
-              className="p-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300 hover:scale-110 cursor-pointer shadow-lg"
+              className="clay-glass-pill p-3 flex items-center justify-center text-white hover:scale-110 cursor-pointer"
             >
               <ChevronLeft size={18} strokeWidth={2.5} />
             </button>
@@ -215,7 +215,7 @@ export default function FlipGallery({ images = defaultImages, className = "" }: 
               type="button"
               onClick={() => updateIndex(1)}
               title="Next Recognition"
-              className="p-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300 hover:scale-110 cursor-pointer shadow-lg"
+              className="clay-glass-pill p-3 flex items-center justify-center text-white hover:scale-110 cursor-pointer"
             >
               <ChevronRight size={18} strokeWidth={2.5} />
             </button>
