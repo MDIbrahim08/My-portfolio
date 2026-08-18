@@ -348,11 +348,11 @@ export default function Portfolio() {
           <video
             ref={videoRef}
             src="/scene-hero.mp4"
-            poster="/profile.png"
             loop
             muted
             autoPlay
             playsInline
+            preload="auto"
             className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.02]"
           />
           {/* Subtle dark overlays to keep branding readable */}
