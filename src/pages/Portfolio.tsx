@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { TextRotate } from "../components/ui/text-rotate";
 import { CollectionSurfer } from "../components/ui/collection-surfer";
+import { BlurText } from "../components/ui/portfolio-hero";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
@@ -347,76 +348,84 @@ export default function Portfolio() {
       {/* ═══ STAGE 2: PREMIUM BLACK CLAYMORPHISM CONTENT BELOW HERO ═══ */}
       <main className="relative z-10 bg-[#07080a]">
 
-        {/* ═══ ABOUT SECTION ═══════════════════════════════════ */}
-        <section id="about" className="py-28 px-6 md:px-12 border-t border-white/5">
-          <div className="max-w-[1200px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* ═══ ABOUT SECTION (Typography + Pill Portrait Hero Style) ═══ */}
+        <section id="about" className="py-28 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
+          <div className="max-w-[1200px] mx-auto text-center">
+            
+            {/* Header Tag */}
+            <motion.div {...fadeUp} className="mb-4">
+              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase">
+                About Ibrahim
+              </span>
+            </motion.div>
 
-              {/* Left: Profile Glass Card */}
-              <motion.div {...fadeUp} className="lg:col-span-5">
-                <div className="clay-glass-card p-6 space-y-5 border-white/10">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                      <User className="text-white" size={20} />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-xl font-black text-white">Mohammed Ibrahim</h3>
-                      <p className="text-[11px] text-white/60 font-mono uppercase tracking-wider font-bold">Chanakya University</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2.5 pt-2 text-xs font-mono">
-                    <div className="flex justify-between border-b border-white/10 pb-2">
-                      <span className="text-white/40">Degree</span>
-                      <span className="text-white font-bold">BCA Honours</span>
-                    </div>
-                    <div className="flex justify-between border-b border-white/10 pb-2">
-                      <span className="text-white/40">Major</span>
-                      <span className="text-white font-bold">Data Science</span>
-                    </div>
-                    <div className="flex justify-between border-b border-white/10 pb-2">
-                      <span className="text-white/40">Minor</span>
-                      <span className="text-zinc-300 font-bold">Cybersecurity</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white/70 italic font-light">
-                    "Verify before you trust. Self-validating multi-agent outputs and defense-in-depth security."
-                  </div>
+            {/* Giant Name with Centered Pill Portrait */}
+            <motion.div {...fadeUp} className="relative my-6 sm:my-10 flex items-center justify-center select-none">
+              
+              {/* Giant Background Typography */}
+              <div className="w-full text-center space-y-1 sm:space-y-2">
+                <div>
+                  <BlurText
+                    text="MOHAMMED"
+                    delay={60}
+                    animateBy="letters"
+                    direction="top"
+                    className="font-display font-black text-[55px] sm:text-[100px] md:text-[145px] lg:text-[180px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap text-white"
+                  />
                 </div>
-              </motion.div>
+                <div>
+                  <BlurText
+                    text="IBRAHIM"
+                    delay={60}
+                    animateBy="letters"
+                    direction="bottom"
+                    className="font-display font-black text-[55px] sm:text-[100px] md:text-[145px] lg:text-[180px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap text-white"
+                  />
+                </div>
+              </div>
 
-              {/* Right: Bio Text */}
-              <motion.div {...fadeUp} className="lg:col-span-7 space-y-5">
-                <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase block">
-                  About Ibrahim
+              {/* Floating Pill Profile Photo (User's Original Photo) */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <div className="w-[75px] h-[125px] sm:w-[105px] sm:h-[175px] md:w-[130px] md:h-[215px] lg:w-[150px] lg:h-[250px] rounded-full overflow-hidden shadow-2xl border-2 border-white/20 transition-transform duration-500 hover:scale-110 cursor-pointer bg-neutral-900">
+                  <img
+                    src="/profile.png"
+                    alt="Mohammed Ibrahim"
+                    className="w-full h-full object-cover brightness-95 hover:brightness-105 transition-all"
+                  />
+                </div>
+              </div>
+
+            </motion.div>
+
+            {/* Tagline Below Portrait */}
+            <motion.div {...fadeUp} className="max-w-2xl mx-auto my-8">
+              <BlurText
+                text="Bridging AI Intelligence with Enterprise Security."
+                delay={80}
+                animateBy="words"
+                direction="top"
+                className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-white justify-center"
+              />
+              <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed mt-3">
+                AI Product Engineer & Security Specialist building production platforms that combine machine learning classification with multi-agent orchestration.
+              </p>
+            </motion.div>
+
+            {/* Academic & Skill Badges */}
+            <motion.div {...fadeUp} className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto pt-2">
+              <span className="clay-badge px-3.5 py-1.5 text-[10px] font-mono font-bold text-white">
+                BCA Honours · Data Science Major
+              </span>
+              <span className="clay-badge px-3.5 py-1.5 text-[10px] font-mono font-bold text-zinc-300">
+                Cybersecurity Minor · Chanakya University
+              </span>
+              {["Multi-Agent AI", "Threat Operations", "LightGBM ML", "SOC Triage", "IAM Security"].map((item) => (
+                <span key={item} className="clay-badge px-3 py-1.5 text-[9px] font-mono text-white/70">
+                  {item}
                 </span>
-                <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
-                  Bridging AI Intelligence with Enterprise Security.
-                </h2>
-                
-                <div className="space-y-4 text-xs sm:text-sm text-white/70 font-light leading-relaxed">
-                  <p>
-                    I am an <strong className="text-white font-medium">AI Product Engineer & Security Specialist</strong> building production platforms that combine machine learning classification with multi-agent orchestration.
-                  </p>
-                  <p>
-                    Built <strong className="text-white font-medium">PulseBLR</strong> (a 5-agent LLM routing engine) and <strong className="text-white font-medium">CYZEN AI</strong> (6-in-1 threat platform with 98.31% phishing detection accuracy trained on 164,000+ real emails).
-                  </p>
-                  <p>
-                    My security focus includes SOC triage, threat investigation, IAM policy auditing, and web security posture hardening.
-                  </p>
-                </div>
+              ))}
+            </motion.div>
 
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {["Multi-Agent AI", "Threat Operations", "LightGBM ML", "SOC Triage", "IAM Security"].map((item) => (
-                    <span key={item} className="clay-badge px-3 py-1 text-[9px] font-mono font-bold text-white/80">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-
-            </div>
           </div>
         </section>
 
