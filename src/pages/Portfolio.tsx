@@ -353,10 +353,8 @@ export default function Portfolio() {
             autoPlay
             playsInline
             preload="auto"
-            className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.02]"
+            className="w-full h-full object-cover"
           />
-          {/* Subtle dark overlays to keep branding readable */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-transparent to-black/20" />
         </div>
 
         {/* Premium Animated Text Block in Right Corner */}
@@ -407,8 +405,8 @@ export default function Portfolio() {
           </AnimatePresence>
         </div>
 
-        {/* Video Control Overlay (Sleek circular obsidian glass button positioned over watermark) */}
-        <div className="absolute bottom-5 sm:bottom-7 right-12 sm:right-16 md:right-20 z-20 flex items-center justify-center">
+        {/* Video Control Overlay (Sleek circular obsidian glass button positioned directly over corner watermark) */}
+        <div className="absolute bottom-4 sm:bottom-6 md:bottom-7 right-3 sm:right-5 md:right-6 z-20 flex items-center justify-center">
           <button
             onClick={togglePlay}
             title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
