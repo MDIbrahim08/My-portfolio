@@ -405,17 +405,17 @@ export default function Portfolio() {
           </AnimatePresence>
         </div>
 
-        {/* Video Control Overlay (Sleek circular obsidian glass button positioned directly over corner watermark) */}
-        <div className="absolute bottom-4 sm:bottom-6 md:bottom-7 right-3 sm:right-5 md:right-6 z-20 flex items-center justify-center">
+        {/* Video Control Overlay (Sleek circular obsidian glass button positioned directly over the Gemini star watermark) */}
+        <div className="absolute bottom-5 sm:bottom-7 md:bottom-8 right-12 sm:right-16 md:right-20 z-20 flex items-center justify-center">
           <button
             onClick={togglePlay}
             title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
-            className="clay-glass-pill w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-2xl bg-[#090b0e] border border-white/25 hover:border-white/50 hover:scale-110 backdrop-blur-2xl group"
+            className="clay-glass-pill w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.9)] bg-[#090b0e] border border-white/30 hover:border-white/60 hover:scale-110 backdrop-blur-2xl group"
           >
             {isPlaying ? (
-              <Pause size={20} className="text-white fill-white group-hover:scale-110 transition-transform" />
+              <Pause size={22} className="text-white fill-white group-hover:scale-110 transition-transform" />
             ) : (
-              <Play size={20} className="text-white fill-white ml-0.5 group-hover:scale-110 transition-transform" />
+              <Play size={22} className="text-white fill-white ml-0.5 group-hover:scale-110 transition-transform" />
             )}
           </button>
         </div>
