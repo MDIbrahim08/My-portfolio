@@ -63,8 +63,8 @@ export default function Portfolio() {
     const checkTime = () => {
       if (!video) return;
       const t = video.currentTime;
-      // Show text when the person is standing in frame (after ~3.0s until near end of loop)
-      if (t >= 3.0 && t <= 11.2) {
+      // Show text when the person is standing in medium shot (3.0s to 7.2s), then vanish smoothly as camera zooms in close
+      if (t >= 3.0 && t <= 7.2) {
         setShowHeroText(true);
       } else {
         setShowHeroText(false);
@@ -330,10 +330,10 @@ export default function Portfolio() {
           <AnimatePresence>
             {showHeroText && (
               <motion.div
-                initial={{ opacity: 0, x: 30, y: 0 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                exit={{ opacity: 0, x: 20, filter: "blur(6px)" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, x: 25, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 15, scale: 0.85, filter: "blur(10px)" }}
+                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                 className="text-left pointer-events-auto space-y-3 pr-3 sm:pr-6 overflow-visible"
               >
                 <div className="flex items-center gap-2">
