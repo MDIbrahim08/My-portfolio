@@ -43,7 +43,6 @@ export default function Portfolio() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [showHeroText, setShowHeroText] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const heroContainerRef = useRef<HTMLDivElement>(null);
   const projectsSectionRef = useRef<HTMLDivElement>(null);
 
   const togglePlay = () => {
@@ -342,7 +341,7 @@ export default function Portfolio() {
       </nav>
 
       {/* ═══ STAGE 1: HERO VIDEO SECTION (Top Full Screen Page) ═══ */}
-      <section id="heroreel" ref={heroContainerRef} className="relative h-screen w-full flex items-center overflow-hidden bg-black">
+      <section id="heroreel" className="relative h-screen w-full flex items-center overflow-hidden bg-black">
         
         {/* Full Stage Video Container */}
         <div className="absolute inset-0 w-full h-full">
@@ -358,8 +357,6 @@ export default function Portfolio() {
           />
           {/* Subtle dark overlays to keep branding readable */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-transparent to-black/20" />
-          {/* Bottom-right obsidian vignette overlay that permanently covers any corner watermark */}
-          <div className="absolute bottom-0 right-0 w-80 sm:w-[28rem] h-52 sm:h-72 bg-gradient-to-tl from-[#07080a] via-[#07080a]/90 to-transparent pointer-events-none z-10" />
         </div>
 
         {/* Premium Animated Text Block in Right Corner */}
@@ -410,17 +407,17 @@ export default function Portfolio() {
           </AnimatePresence>
         </div>
 
-        {/* Video Control Overlay */}
-        <div className="absolute bottom-6 md:bottom-8 right-6 md:right-8 z-20 flex items-center justify-center pointer-events-auto">
+        {/* Video Control Overlay (Sleek circular obsidian glass button positioned over watermark) */}
+        <div className="absolute bottom-5 sm:bottom-7 right-12 sm:right-16 md:right-20 z-20 flex items-center justify-center">
           <button
             onClick={togglePlay}
             title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
-            className="clay-glass-pill w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-[0_8px_32px_rgba(0,0,0,0.9)] bg-[#07080a] border border-white/30 hover:border-white/60 hover:scale-110 backdrop-blur-2xl group"
+            className="clay-glass-pill w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-2xl bg-[#090b0e] border border-white/25 hover:border-white/50 hover:scale-110 backdrop-blur-2xl group"
           >
             {isPlaying ? (
-              <Pause size={18} className="text-white fill-white group-hover:scale-110 transition-transform" />
+              <Pause size={20} className="text-white fill-white group-hover:scale-110 transition-transform" />
             ) : (
-              <Play size={18} className="text-white fill-white ml-0.5 group-hover:scale-110 transition-transform" />
+              <Play size={20} className="text-white fill-white ml-0.5 group-hover:scale-110 transition-transform" />
             )}
           </button>
         </div>
