@@ -11,6 +11,7 @@ import { CollectionSurfer } from "../components/ui/collection-surfer";
 import { BlurText } from "../components/ui/portfolio-hero";
 import { ConnoisseurStackInteractor, MenuItem } from "../components/ui/connoisseur-stack-interactor";
 import FlipGallery, { FlipImageItem } from "../components/ui/flip-gallery";
+import { cn } from "@/lib/utils";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
