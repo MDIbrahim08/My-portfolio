@@ -66,12 +66,8 @@ export default function Portfolio() {
     const checkTime = () => {
       if (!video) return;
       const t = video.currentTime;
-      // Show text when the person is standing in medium shot (3.0s to 7.2s), then vanish smoothly as camera zooms in close
-      if (t >= 3.0 && t <= 7.2) {
-        setShowHeroText(true);
-      } else {
-        setShowHeroText(false);
-      }
+      const shouldShow = t >= 3.0 && t <= 7.2;
+      setShowHeroText((prev) => (prev !== shouldShow ? shouldShow : prev));
     };
 
     video.addEventListener("timeupdate", checkTime);

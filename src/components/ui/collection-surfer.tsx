@@ -313,7 +313,7 @@ function Card({
   return (
     <WrapperComponent
       ref={ref as any}
-      className={`absolute w-[260px] h-[360px] -translate-y-1/2 -translate-x-1/2 bg-neutral-900 rounded-[20px] overflow-hidden shadow-2xl transition-colors duration-500 ease-out group border border-white/10 ${isClickable ? "cursor-pointer" : ""}`}
+      className={`absolute w-[260px] h-[360px] -translate-y-1/2 -translate-x-1/2 bg-neutral-900 rounded-[20px] overflow-hidden shadow-2xl transition-colors duration-500 ease-out group border border-white/10 will-change-transform ${isClickable ? "cursor-pointer" : ""}`}
       style={{
         transform,
         transformStyle: "preserve-3d",
