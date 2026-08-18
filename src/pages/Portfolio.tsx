@@ -52,26 +52,35 @@ export default function Portfolio() {
     }
   };
 
-  /* Video load & timer logic for clean intro -> text appear -> vanish */
+  /* Video playback & timeupdate sync so text reliably shows in every loop and on scroll */
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
-    }
+    const video = videoRef.current;
+    if (!video) return;
 
-    // Step 1: Video plays clean for 3.5s (you walk in and stand)
-    const appearTimer = setTimeout(() => {
-      setShowHeroText(true);
-    }, 3500);
+    video.muted = true;
+    video.play().catch(() => {});
 
-    // Step 2: Text stays visible for 6.5s (total 10s mark), then vanishes
-    const vanishTimer = setTimeout(() => {
-      setShowHeroText(false);
-    }, 10000);
+    const checkTime = () => {
+      if (!video) return;
+      const t = video.currentTime;
+      // Show text when the person is standing in frame (after ~3.0s until near end of loop)
+      if (t >= 3.0 && t <= 11.2) {
+        setShowHeroText(true);
+      } else {
+        setShowHeroText(false);
+      }
+    };
+
+    video.addEventListener("timeupdate", checkTime);
+    video.addEventListener("seeked", checkTime);
+
+    // Fallback: check interval every 200ms to ensure smooth updates even on background tabs
+    const interval = setInterval(checkTime, 200);
 
     return () => {
-      clearTimeout(appearTimer);
-      clearTimeout(vanishTimer);
+      video.removeEventListener("timeupdate", checkTime);
+      video.removeEventListener("seeked", checkTime);
+      clearInterval(interval);
     };
   }, []);
 
@@ -317,7 +326,7 @@ export default function Portfolio() {
         </div>
 
         {/* Premium Animated Text Block in Right Corner */}
-        <div className="absolute top-24 md:top-28 right-6 md:right-12 z-20 max-w-sm md:max-w-md pointer-events-none text-right">
+        <div className="absolute top-24 md:top-28 right-4 sm:right-8 md:right-14 lg:right-20 z-20 max-w-[92vw] sm:max-w-md md:max-w-lg pointer-events-none text-right">
           <AnimatePresence>
             {showHeroText && (
               <motion.div
@@ -325,7 +334,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 exit={{ opacity: 0, x: 20, filter: "blur(6px)" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-left pointer-events-auto space-y-3"
+                className="text-left pointer-events-auto space-y-3 pr-3 sm:pr-6 overflow-visible"
               >
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -333,7 +342,7 @@ export default function Portfolio() {
                     AI & SECURITY
                   </span>
                 </div>
-                <h1 className="font-display text-4xl md:text-5xl font-black leading-none tracking-tight text-white uppercase">
+                <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-black leading-[0.92] tracking-tight text-white uppercase overflow-visible">
                   MOHAMMED<br />IBRAHIM
                 </h1>
                 <p className="text-xs md:text-sm text-white/80 font-light tracking-wide flex items-center gap-1.5">
