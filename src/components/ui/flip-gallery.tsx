@@ -195,10 +195,10 @@ export default function FlipGallery({ images = defaultImages, className = "" }: 
             className="relative w-[280px] h-[380px] sm:w-[360px] sm:h-[480px] md:w-[420px] md:h-[540px] text-center rounded-xl overflow-hidden shadow-2xl bg-black"
             style={{ perspective: "1000px" }}
           >
-            <div className="top unite bg-cover bg-center bg-no-repeat"></div>
-            <div className="bottom unite bg-cover bg-center bg-no-repeat"></div>
-            <div className="overlay-top unite bg-cover bg-center bg-no-repeat"></div>
-            <div className="overlay-bottom unite bg-cover bg-center bg-no-repeat"></div>
+            <div className="top unite"></div>
+            <div className="bottom unite"></div>
+            <div className="overlay-top unite"></div>
+            <div className="overlay-bottom unite"></div>
           </div>
 
           {/* Navigation Controls */}
@@ -290,7 +290,8 @@ export default function FlipGallery({ images = defaultImages, className = "" }: 
           width: 100%;
           height: 50%;
           overflow: hidden;
-          background-size: cover;
+          background-size: 100% 200% !important;
+          background-repeat: no-repeat;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
         }
@@ -299,14 +300,14 @@ export default function FlipGallery({ images = defaultImages, className = "" }: 
         .overlay-top {
           top: 0;
           transform-origin: bottom;
-          background-position: top center;
+          background-position: top center !important;
         }
 
         .bottom,
         .overlay-bottom {
           bottom: 0;
           transform-origin: top;
-          background-position: bottom center;
+          background-position: bottom center !important;
         }
       `}</style>
     </div>
