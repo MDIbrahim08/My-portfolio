@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meet-ibrahim.vercel.app/sitemap.xml
