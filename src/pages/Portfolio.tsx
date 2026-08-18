@@ -11,6 +11,7 @@ import { CollectionSurfer } from "../components/ui/collection-surfer";
 import { BlurText } from "../components/ui/portfolio-hero";
 import { ConnoisseurStackInteractor, MenuItem } from "../components/ui/connoisseur-stack-interactor";
 import FlipGallery, { FlipImageItem } from "../components/ui/flip-gallery";
+import { LiquidMetalButton } from "../components/ui/liquid-metal-button";
 import { cn } from "@/lib/utils";
 
 /* ─────────────────────────────────────────
@@ -333,9 +334,10 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <a href="mailto:mi5062254@gmail.com" className="clay-btn !py-2 !px-5 !text-[9px]">
-          Hire Ibrahim
-        </a>
+        <LiquidMetalButton
+          label="Hire Ibrahim"
+          href="mailto:mi5062254@gmail.com"
+        />
       </nav>
 
       {/* ═══ STAGE 1: HERO VIDEO SECTION (Top Full Screen Page) ═══ */}

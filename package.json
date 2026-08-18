@@ -20,6 +20,7 @@
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/remapping": "^2.3.5",
     "@jridgewell/trace-mapping": "^0.3.25",
+    "@paper-design/shaders": "^0.0.80",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",
