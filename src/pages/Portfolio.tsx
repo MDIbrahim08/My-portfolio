@@ -196,7 +196,7 @@ export default function Portfolio() {
       num: "01",
       name: "AI & MULTI-AGENT",
       clipId: "clip-original",
-      image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&q=80&w=1200",
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1200",
       skills: [
         "Multi-Agent LLM Pipelines",
         "LLaMA 3.3 70B & Groq API",
