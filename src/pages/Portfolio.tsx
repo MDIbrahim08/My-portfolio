@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowDown, Brain, Code2, ExternalLink, FileDown,
   Github, Shield, Trophy, Sparkles, Mail, Linkedin,
-  User, Pause, Play
+  User, Pause, Play, Copy, Check, Send, Globe,
+  Clock, ArrowUpRight, MapPin, ArrowUp
 } from "lucide-react";
 import { TextRotate } from "../components/ui/text-rotate";
 import { CollectionSurfer } from "../components/ui/collection-surfer";
@@ -263,6 +264,32 @@ export default function Portfolio() {
       tag: "FULL STACK AWARD",
     },
   ];
+
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    interest: "AI Agent Architecture",
+    message: "",
+  });
+  const [formSent, setFormSent] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("mi5062254@gmail.com");
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`[Portfolio Inquiry: ${formData.interest}] from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Hi Ibrahim,\n\nName: ${formData.name}\nEmail: ${formData.email}\nTopic: ${formData.interest}\n\nMessage:\n${formData.message}\n\nSent via portfolio`
+    );
+    window.open(`mailto:mi5062254@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    setFormSent(true);
+    setTimeout(() => setFormSent(false), 5000);
+  };
 
   const achievementImages: FlipImageItem[] = [
     {
@@ -600,46 +627,323 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* ═══ CONTACT SECTION ══════════════════════════════════ */}
-        <section id="contact" className="py-36 px-6 md:px-12 text-center border-t border-white/5">
-          <div className="max-w-[1200px] mx-auto space-y-6">
+        {/* ═══ CONTACT SECTION (Luxury Dual-Column Matrix) ═══ */}
+        <section id="contact" className="py-28 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
+          {/* Subtle Ambient Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="max-w-[1200px] mx-auto space-y-12 relative z-10">
             
-            <motion.div {...fadeUp} className="space-y-3">
-              <span className="text-[10px] tracking-[0.4em] font-mono font-bold text-white/60 uppercase">
-                GET IN TOUCH
-              </span>
-              <h2 className="font-display text-4xl sm:text-6xl font-black text-white">
+            {/* Header with Availability Badge */}
+            <motion.div {...fadeUp} className="text-center space-y-4 max-w-2xl mx-auto">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 font-mono text-[10px] font-bold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                Available for Q3/Q4 Roles & AI Research
+              </div>
+              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
                 LET'S CONNECT.
               </h2>
-              <p className="max-w-md mx-auto text-xs sm:text-sm text-white/50 font-light leading-relaxed">
-                Open to AI Product Engineering, Multi-Agent research, and SOC / Threat Intelligence roles.
+              <p className="text-xs sm:text-sm text-white/55 font-light leading-relaxed">
+                Whether you're looking to build cutting-edge Generative AI products, architect robust full-stack platforms, or discuss cybersecurity intelligence — let's make it happen.
               </p>
             </motion.div>
 
-            <motion.div {...fadeUp} className="flex flex-wrap justify-center gap-3 pt-2">
-              {contactLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  target={link.download ? undefined : "_blank"}
-                  rel={link.download ? undefined : "noopener noreferrer"}
-                  download={link.download ? "mohammed_ibrahim_resume.html" : undefined}
-                  className="clay-glass-pill px-6 py-3 inline-flex items-center gap-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white hover:border-white/30 transition-all duration-300"
-                >
-                  {link.icon}
-                  {link.name}
-                </a>
-              ))}
-            </motion.div>
+            {/* Dual Column Contact Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              {/* LEFT COLUMN: Direct Info & Social Hub (5 cols) */}
+              <motion.div {...fadeUp} className="lg:col-span-5 space-y-6">
+                
+                {/* Direct Email Card with One-Click Copy */}
+                <div className="clay-glass-card p-6 sm:p-7 border-white/10 space-y-4">
+                  <div className="flex justify-between items-center text-xs font-mono text-white/60">
+                    <span className="flex items-center gap-2">
+                      <Mail size={14} className="text-white" />
+                      DIRECT INBOX
+                    </span>
+                    <span className="text-[10px] uppercase text-emerald-400 font-bold bg-emerald-400/10 px-2 py-0.5 rounded-full border border-emerald-400/20">
+                      Primary
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[11px] font-mono text-white/40 block mb-1">Email Address</span>
+                    <p className="font-mono text-sm sm:text-base font-bold text-white tracking-wide select-all">
+                      mi5062254@gmail.com
+                    </p>
+                  </div>
+
+                  <div className="flex gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="flex-1 clay-glass-pill py-2.5 px-4 text-xs font-mono font-bold flex items-center justify-center gap-2 text-white hover:bg-white hover:text-black transition-all cursor-pointer shadow-md"
+                    >
+                      {copiedEmail ? (
+                        <>
+                          <Check size={14} className="text-emerald-400" />
+                          <span>Copied to Clipboard!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={14} />
+                          <span>Copy Email</span>
+                        </>
+                      )}
+                    </button>
+                    
+                    <a
+                      href="mailto:mi5062254@gmail.com"
+                      className="clay-glass-pill py-2.5 px-4 text-xs font-mono font-bold flex items-center justify-center gap-1.5 text-white/70 hover:text-white hover:border-white/30 transition-all cursor-pointer"
+                      title="Open default email app"
+                    >
+                      <ArrowUpRight size={14} />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Location & Timezone Card */}
+                <div className="clay-glass-card p-5 border-white/10 grid grid-cols-2 gap-4 text-xs">
+                  <div className="space-y-1">
+                    <span className="text-white/40 font-mono text-[10px] flex items-center gap-1.5 uppercase">
+                      <MapPin size={12} className="text-white" />
+                      Location
+                    </span>
+                    <p className="font-display font-bold text-white">Bengaluru, India</p>
+                    <p className="text-[10px] font-mono text-white/50">Tech Hub & UTC+5:30</p>
+                  </div>
+
+                  <div className="space-y-1 border-l border-white/10 pl-4">
+                    <span className="text-white/40 font-mono text-[10px] flex items-center gap-1.5 uppercase">
+                      <Clock size={12} className="text-white" />
+                      Response Time
+                    </span>
+                    <p className="font-display font-bold text-white">&lt; 12 Hours</p>
+                    <p className="text-[10px] font-mono text-emerald-400">High Availability</p>
+                  </div>
+                </div>
+
+                {/* Social Media & Resume Quick-Launch Grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  <a
+                    href="https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="clay-glass-card p-4 border-white/10 hover:border-white/30 transition-all duration-300 group flex flex-col justify-between h-24 cursor-pointer"
+                  >
+                    <div className="flex justify-between items-center">
+                      <Linkedin size={18} className="text-white group-hover:scale-110 transition-transform" />
+                      <ArrowUpRight size={14} className="text-white/40 group-hover:text-white transition-colors" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-xs font-bold text-white">LinkedIn</h4>
+                      <p className="text-[10px] font-mono text-white/50">Professional Network</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://github.com/MDIbrahim08"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="clay-glass-card p-4 border-white/10 hover:border-white/30 transition-all duration-300 group flex flex-col justify-between h-24 cursor-pointer"
+                  >
+                    <div className="flex justify-between items-center">
+                      <Github size={18} className="text-white group-hover:scale-110 transition-transform" />
+                      <ArrowUpRight size={14} className="text-white/40 group-hover:text-white transition-colors" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-xs font-bold text-white">GitHub</h4>
+                      <p className="text-[10px] font-mono text-white/50">Code Repositories</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="/resume/mohammed_ibrahim_resume.html"
+                    download="mohammed_ibrahim_resume.html"
+                    className="clay-glass-card p-4 border-white/10 hover:border-white/30 transition-all duration-300 group flex flex-col justify-between h-24 cursor-pointer"
+                  >
+                    <div className="flex justify-between items-center">
+                      <FileDown size={18} className="text-white group-hover:scale-110 transition-transform" />
+                      <span className="text-[9px] font-mono font-bold text-white bg-white/10 px-1.5 py-0.5 rounded">PDF/HTML</span>
+                    </div>
+                    <div>
+                      <h4 className="font-display text-xs font-bold text-white">Resume</h4>
+                      <p className="text-[10px] font-mono text-white/50">Download CV</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="mailto:mi5062254@gmail.com"
+                    className="clay-glass-card p-4 border-white/10 hover:border-white/30 transition-all duration-300 group flex flex-col justify-between h-24 cursor-pointer"
+                  >
+                    <div className="flex justify-between items-center">
+                      <Mail size={18} className="text-white group-hover:scale-110 transition-transform" />
+                      <ArrowUpRight size={14} className="text-white/40 group-hover:text-white transition-colors" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-xs font-bold text-white">Direct Email</h4>
+                      <p className="text-[10px] font-mono text-white/50">mi5062254@gmail</p>
+                    </div>
+                  </a>
+                </div>
+
+              </motion.div>
+
+              {/* RIGHT COLUMN: Interactive Message Dispatch Terminal (7 cols) */}
+              <motion.div {...fadeUp} className="lg:col-span-7">
+                <div className="clay-glass-card p-6 sm:p-8 border-white/10 space-y-6">
+                  
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/40" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/40" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/40" />
+                      <span className="font-mono text-xs text-white/70 ml-2 font-bold uppercase tracking-wider">
+                        Quick Message Terminal
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-white/40 hidden sm:inline">
+                      Direct Dispatch
+                    </span>
+                  </div>
+
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                    
+                    {/* Interest / Topic selector chips */}
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-mono text-white/60 uppercase tracking-wider block">
+                        What would you like to discuss?
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          "AI Agent Architecture",
+                          "Full-Stack Product",
+                          "Cybersecurity & SOC",
+                          "Full-Time Role",
+                          "Freelance / Sprint",
+                        ].map((topic) => (
+                          <button
+                            key={topic}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, interest: topic })}
+                            className={cn(
+                              "px-3 py-1.5 rounded-full text-xs font-mono transition-all cursor-pointer border",
+                              formData.interest === topic
+                                ? "bg-white text-black border-white font-bold shadow-md"
+                                : "bg-white/5 text-white/70 border-white/10 hover:text-white hover:border-white/30"
+                            )}
+                          >
+                            {topic}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Name & Email inputs */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                      <div className="space-y-1.5">
+                        <label className="text-[11px] font-mono text-white/60 uppercase tracking-wider block">
+                          Your Name
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Alex Morgan"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className="text-[11px] font-mono text-white/60 uppercase tracking-wider block">
+                          Your Email
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="alex@company.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Message body */}
+                    <div className="space-y-1.5">
+                      <label className="text-[11px] font-mono text-white/60 uppercase tracking-wider block">
+                        Your Message / Project Scope
+                      </label>
+                      <textarea
+                        required
+                        rows={4}
+                        placeholder="Tell me about your vision, technical requirements, or opportunity..."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full bg-black/40 border border-white/15 rounded-xl p-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors resize-none"
+                      />
+                    </div>
+
+                    {/* Submit Action */}
+                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <button
+                        type="submit"
+                        className="w-full sm:w-auto clay-btn px-8 py-3.5 inline-flex items-center justify-center gap-2 text-xs font-mono font-bold uppercase tracking-wider bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-xl hover:scale-105"
+                      >
+                        <Send size={14} />
+                        <span>Send Message</span>
+                      </button>
+
+                      {formSent && (
+                        <motion.span
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          className="text-xs font-mono text-emerald-400 flex items-center gap-1.5"
+                        >
+                          <Check size={14} />
+                          Opening mail client...
+                        </motion.span>
+                      )}
+                    </div>
+
+                  </form>
+
+                </div>
+              </motion.div>
+
+            </div>
 
           </div>
         </section>
 
         {/* ═══ FOOTER ═══════════════════════════════════════════ */}
-        <footer className="py-8 px-6 border-t border-white/5 text-center bg-[#050608]">
-          <p className="text-[9px] font-mono tracking-widest text-white/30 uppercase">
-            © 2026 MOHAMMED IBRAHIM · AI PRODUCT & SECURITY ENGINEER · STAGE HERO REEL + CLAYMORPHISM
-          </p>
+        <footer className="py-10 px-6 md:px-12 border-t border-white/10 bg-[#050608] relative">
+          <div className="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div className="space-y-1">
+              <span className="font-display font-black text-sm tracking-tight text-white block">
+                MOHAMMED IBRAHIM
+              </span>
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-wider">
+                AI Product & Security Engineer · Stage Hero Reel + Claymorphism
+              </p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <span className="text-[10px] font-mono text-white/30 hidden md:inline">
+                © {new Date().getFullYear()} All Rights Reserved
+              </span>
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="clay-glass-pill px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-wider text-white/70 hover:text-white flex items-center gap-1.5 hover:border-white/30 transition-all cursor-pointer"
+                title="Scroll to top"
+              >
+                <span>Back to Top</span>
+                <ArrowUp size={12} />
+              </button>
+            </div>
+          </div>
         </footer>
 
       </main>
