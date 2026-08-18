@@ -407,15 +407,18 @@ export default function Portfolio() {
           </AnimatePresence>
         </div>
 
-        {/* Video Control Overlay (Sized & positioned to seamlessly cover the entire watermark) */}
-        <div className="absolute bottom-4 sm:bottom-6 md:bottom-7 right-4 sm:right-6 md:right-7 z-20 flex items-center gap-2">
+        {/* Video Control Overlay (Sleek circular obsidian glass button positioned over watermark) */}
+        <div className="absolute bottom-5 sm:bottom-7 right-12 sm:right-16 md:right-20 z-20 flex items-center justify-center">
           <button
             onClick={togglePlay}
             title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
-            className="clay-glass-pill px-5 sm:px-6 py-3.5 sm:py-4 min-h-[48px] sm:min-h-[54px] flex items-center gap-3 text-xs font-mono font-bold text-white hover:text-white transition-all cursor-pointer shadow-2xl bg-[#090b0e] border border-white/25 hover:border-white/40 hover:scale-105 backdrop-blur-2xl"
+            className="clay-glass-pill w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-2xl bg-[#090b0e] border border-white/25 hover:border-white/50 hover:scale-110 backdrop-blur-2xl group"
           >
-            {isPlaying ? <Pause size={16} className="text-white fill-white" /> : <Play size={16} className="text-white fill-white" />}
-            <span className="text-[11px] tracking-widest uppercase font-black">{isPlaying ? "PAUSE REEL" : "PLAY REEL"}</span>
+            {isPlaying ? (
+              <Pause size={20} className="text-white fill-white group-hover:scale-110 transition-transform" />
+            ) : (
+              <Play size={20} className="text-white fill-white ml-0.5 group-hover:scale-110 transition-transform" />
+            )}
           </button>
         </div>
 
