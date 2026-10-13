@@ -299,7 +299,7 @@ export default function Portfolio() {
   const contactLinks: ContactLink[] = [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/", icon: <Linkedin size={16} /> },
     { name: "GitHub", url: "https://github.com/MDIbrahim08", icon: <Github size={16} /> },
-    { name: "Download Resume", url: "/resume/mohammed_ibrahim_resume.html", download: true, icon: <FileDown size={16} /> },
+    { name: "Download PDF Resume", url: "/resume/mohammed_ibrahim_resume.pdf", download: true, icon: <FileDown size={16} /> },
     { name: "Email Ibrahim", url: "mailto:mi5062254@gmail.com", icon: <Mail size={16} /> },
   ];
 
@@ -624,9 +624,9 @@ export default function Portfolio() {
                 <a
                   key={link.name}
                   href={link.url}
-                  target={link.download ? undefined : "_blank"}
-                  rel={link.download ? undefined : "noopener noreferrer"}
-                  download={link.download ? "mohammed_ibrahim_resume.html" : undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download={link.download ? "Mohammed_Ibrahim_Resume.pdf" : undefined}
                   className="clay-glass-pill px-6 py-3 inline-flex items-center gap-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white hover:border-white/30 transition-all duration-300"
                 >
                   {link.icon}

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohammed Ibrahim — AI Product & Cyber Security Engineer | Resume</title>
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       DUAL-FIELD HIGH-CONVERSION RESUME (AI PRODUCT + CYBERSECURITY)
+       Engineered for Tier-1 Tech, AI Labs & Enterprise Cyber Defense
+       Format: Strict 1-Page Letter Layout (Arnav Gupta Google Replica)
+    ───────────────────────────────────────────────────────────── */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+      font-size: 8.85pt;
+      line-height: 1.21;
+      color: #000000;
+      background-color: #f3f4f6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Floating Toolbar */
+    .toolbar {
+      position: fixed;
+      top: 12px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      background: #111827;
+      color: #ffffff;
+      border: 1px solid #374151;
+      padding: 7px 14px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #1f2937;
+      border: 1px solid #d1d5db;
+    }
+    .btn-secondary:hover {
+      background: #f9fafb;
+    }
+
+    /* ── 1-Page Container ── */
+    .sheet {
+      width: 8.5in;
+      max-width: 8.5in;
+      margin: 16px auto 30px;
+      padding: 0.26in 0.40in 0.24in 0.40in;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    h1.name {
+      font-size: 21pt;
+      font-weight: 400;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 1px;
+      color: #000000;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .sub-title {
+      font-size: 9.6pt;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #1e3a8a;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+    }
+
+    .contact-row-1 {
+      font-size: 8.7pt;
+      color: #222222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1px;
+    }
+
+    .contact-row-2 {
+      font-size: 8.7pt;
+      color: #222222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1px;
+    }
+
+    header a {
+      color: #0b57d0;
+      text-decoration: underline;
+      text-underline-offset: 1.5px;
+    }
+
+    /* ── Section Headings ── */
+    h2.section-heading {
+      font-size: 10.6pt;
+      font-weight: 700;
+      color: #000000;
+      border-bottom: 1.2px solid #000000;
+      padding-bottom: 1px;
+      margin-top: 3.5px;
+      margin-bottom: 2px;
+      text-transform: capitalize;
+      letter-spacing: 0.2px;
+    }
+
+    /* ── Entries ── */
+    .entry {
+      margin-bottom: 2px;
+    }
+
+    .entry:last-child {
+      margin-bottom: 0.5px;
+    }
+
+    .row-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8.9pt;
+      line-height: 1.16;
+    }
+
+    .org-title {
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .pipe {
+      font-weight: 400;
+      color: #444444;
+      margin: 0 2px;
+    }
+
+    .role-title {
+      font-weight: 400;
+      font-style: italic;
+      color: #111111;
+    }
+
+    .date-str {
+      font-size: 8.3pt;
+      color: #000000;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .tech-stack-line {
+      font-size: 8pt;
+      color: #222222;
+      margin-top: 0.5px;
+      margin-bottom: 1px;
+    }
+
+    .tech-stack-line strong {
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .location-str {
+      font-style: italic;
+      color: #333333;
+      font-size: 8pt;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── Bullets ── */
+    ul.bullet-list {
+      list-style-type: disc;
+      margin-left: 15px;
+      padding-left: 0;
+    }
+
+    ul.bullet-list li {
+      margin-bottom: 0.8px;
+      font-size: 8.35pt;
+      line-height: 1.17;
+      color: #000000;
+      text-align: justify;
+    }
+
+    ul.bullet-list li strong {
+      color: #000000;
+      font-weight: 700;
+    }
+
+    .project-tech {
+      font-size: 8pt;
+      font-weight: 400;
+      font-style: italic;
+      color: #15803d;
+      background: #f0fdf4;
+      padding: 0.5px 4px;
+      border-radius: 3px;
+      border: 0.5px solid #bbf7d0;
+    }
+
+    /* ── Skills Section ── */
+    .skills-block {
+      font-size: 8.2pt;
+      line-height: 1.18;
+      color: #000000;
+    }
+
+    .skills-line {
+      margin-bottom: 1px;
+    }
+
+    .skills-line strong {
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .cert-link {
+      color: #0b57d0;
+      text-decoration: underline;
+    }
+
+    .achieve-highlight {
+      font-weight: 700;
+      color: #991b1b;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       EXACT 1-PAGE PRINT ENGINE
+    ───────────────────────────────────────────────────────────── */
+    @page {
+      size: letter;
+      margin: 0.22in 0.34in 0.22in 0.34in;
+    }
+
+    @media print {
+      body {
+        background: transparent !important;
+        font-size: 8.6pt;
+      }
+
+      .toolbar {
+        display: none !important;
+      }
+
+      .sheet {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+
+      a {
+        text-decoration: underline !important;
+        color: #000000 !important;
+      }
+
+      .sub-title {
+        color: #000000 !important;
+      }
+
+      .project-tech {
+        background: transparent !important;
+        border: none !important;
+        color: #166534 !important;
+        padding: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Quick Actions -->
+  <div class="toolbar">
+    <a href="/" class="btn btn-secondary">&larr; Portfolio</a>
+    <a href="/resume/mohammed_ibrahim_resume.pdf" download="mohammed_ibrahim_resume.pdf" class="btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      Download PDF
+    </a>
+    <button onclick="window.print()" class="btn btn-secondary">Print</button>
+  </div>
+
+  <!-- Single Page Container -->
+  <main class="sheet" role="document">
+
+    <!-- ════════════ HEADER (Dual-Field Positioning) ════════════ -->
+    <header>
+      <h1 class="name">Mohammed Ibrahim</h1>
+      <div class="sub-title">AI Product &amp; Security Engineer &middot; AI-Driven Threat Defense</div>
+      <div class="contact-row-1">
+        <span>&#9742; +91 9606836524</span>
+        <span>&bull;</span>
+        <span>&#9993; <a href="mailto:mi5062254@gmail.com">mi5062254@gmail.com</a></span>
+        <span>&bull;</span>
+        <span>Bangalore, Karnataka, India</span>
+      </div>
+      <div class="contact-row-2">
+        <span>&#128279; <a href="https://www.linkedin.com/in/mohammed-ibrahim-b837812a4/" target="_blank">LinkedIn</a></span>
+        <span>&sect; <a href="https://github.com/MDIbrahim08" target="_blank">GitHub</a></span>
+        <span>&#127760; <a href="https://meet-ibrahim.vercel.app/" target="_blank">Portfolio</a></span>
+        <span>&#128737; <a href="https://tryhackme.com" target="_blank">TryHackMe</a></span>
+      </div>
+    </header>
+
+    <!-- ════════════ 1. EXPERIENCE ════════════ -->
+    <section>
+      <h2 class="section-heading">Experience</h2>
+
+      <!-- Entry 1: CYZEN AI (AI for Cyber Defense) -->
+      <div class="entry">
+        <div class="row-between">
+          <span><strong class="org-title">CYZEN AI</strong> <span class="pipe">|</span> <span class="role-title">Founding AI &amp; Security Systems Engineer</span></span>
+          <span class="date-str">March 2026 &ndash; June 2026</span>
+        </div>
+        <div class="row-between tech-stack-line">
+          <span>&bull; <strong>Tech Stack:</strong> Python &middot; LightGBM &middot; LLaMA 3.3 70B &middot; Groq LPUs &middot; Supabase &middot; PostgreSQL &middot; React</span>
+          <span class="location-str">Bangalore, Karnataka</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Architected and shipped a 6-in-1 AI cybersecurity defense platform combining machine learning classification with automated incident crisis triage.</li>
+          <li>Researched and trained an ML threat detector using <strong>LightGBM</strong> on <strong>164,972 real emails</strong>, achieving <strong>98.31% accuracy</strong> and reducing false-positive alerts by <strong>42%</strong> via lexical and structural feature engineering.</li>
+          <li>Built an automated incident response pipeline integrating <strong>LLaMA 3.3 70B via Groq LPUs</strong>, achieving <strong>&lt;180ms Time-To-First-Token (TTFT)</strong> to generate real-time playbooks and mitigation strategies.</li>
+        </ul>
+      </div>
+
+      <!-- Entry 2: SI Digital Solutions -->
+      <div class="entry">
+        <div class="row-between">
+          <span><strong class="org-title">SI Digital Solutions</strong> <span class="pipe">|</span> <span class="role-title">Founding AI Product &amp; Software Engineer</span></span>
+          <span class="date-str">December 2025 &ndash; Present</span>
+        </div>
+        <div class="row-between tech-stack-line">
+          <span>&bull; <strong>Tech Stack:</strong> React &middot; TypeScript &middot; Node.js &middot; AI Agent Workflows &middot; RESTful APIs &middot; Tailwind CSS</span>
+          <span class="location-str">Bangalore, Karnataka</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Architected and deployed custom digital systems, responsive web platforms, and autonomous AI agent workflows for enterprise and SME clients.</li>
+          <li>Engineered end-to-end digital ordering and catalog management systems for 2 hospitality enterprises, digitizing inventory workflows, eliminating manual menu updates, and accelerating order fulfillment.</li>
+          <li>Built high-performance, mobile-first interfaces with React, TypeScript, and Node.js with real-time state management, achieving sub-second page loads.</li>
+        </ul>
+      </div>
+
+      <!-- Entry 3: Viksit Gram -->
+      <div class="entry">
+        <div class="row-between">
+          <span><strong class="org-title">Viksit Gram</strong> <span class="pipe">|</span> <span class="role-title">AI Product &amp; Software Developer</span></span>
+          <span class="date-str">August 2026 &ndash; Present</span>
+        </div>
+        <div class="row-between tech-stack-line">
+          <span>&bull; <strong>Tech Stack:</strong> React &middot; Python &middot; Data Analytics &middot; Telemetry Dashboards &middot; RESTful APIs</span>
+          <span class="location-str">Bangalore, Karnataka</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Engineered centralized digital governance dashboards and data analytics pipelines for rural development and civic monitoring.</li>
+          <li>Built analytical telemetry modules to track public resource allocation, welfare program velocity, and developmental metrics, delivering automated data insights for civic administration stakeholders.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ════════════ 2. EDUCATION ════════════ -->
+    <section>
+      <h2 class="section-heading">Education</h2>
+      <div class="entry">
+        <div class="row-between">
+          <strong class="org-title">Chanakya University, Bangalore</strong>
+          <span class="date-str">2023 &ndash; 2027</span>
+        </div>
+        <div class="row-between">
+          <span class="role-title">Bachelor of Computer Applications (Honours) &mdash; Data Science Major, Cybersecurity Minor</span>
+          <strong style="font-size: 8.5pt; font-style: italic;">8.60/10 CGPA</strong>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="row-between">
+          <strong class="org-title">SLES Pre-University College, Bangalore</strong>
+          <span class="date-str">2021 &ndash; 2023</span>
+        </div>
+        <div class="row-between">
+          <span class="role-title">Pre-University Examination (XII) &mdash; PCMCs (Physics, Chemistry, Math, Computer Science)</span>
+          <strong style="font-size: 8.5pt; font-style: italic;">84.00%</strong>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="row-between">
+          <strong class="org-title">St. Michael's English High School, Bangalore</strong>
+          <span class="date-str">2020 &ndash; 2021</span>
+        </div>
+        <div class="row-between">
+          <span class="role-title">Secondary School Leaving Certificate (X) &mdash; Karnataka State Board</span>
+          <strong style="font-size: 8.5pt; font-style: italic;">First Class</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 3. PROJECTS ════════════ -->
+    <section>
+      <h2 class="section-heading">Projects</h2>
+
+      <!-- Project 1: Security Posture Inspector -->
+      <div class="entry">
+        <div class="row-between">
+          <span><strong class="org-title">Security Header &amp; Web Posture Inspector</strong> <span class="pipe">|</span> <span class="project-tech">Python, OWASP Baselines, AST Security Parsers, REST APIs</span></span>
+          <span class="date-str">March 2026 &ndash; April 2026</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Constructed an automated scanner evaluating HTTP headers against <strong>OWASP Top 10</strong> baselines; built an AST parser to analyze CSP policies and detect wildcard injections, unsafe scripts, and TLS downgrade vectors.</li>
+        </ul>
+      </div>
+
+      <!-- Project 2: PulseBLR -->
+      <div class="entry">
+        <div class="row-between">
+          <span><strong class="org-title">PulseBLR Urban Route Engine</strong> <span class="pipe">|</span> <span class="project-tech">Multi-Agent LLM, Python, Node.js, Express, TypeScript</span></span>
+          <span class="date-str">April 2026 &ndash; May 2026</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Architected an autonomous <strong>5-agent LLM consensus pipeline</strong> analyzing real-time traffic signals and transit telemetry; implemented self-verification consensus, eliminating route hallucinations by <strong>94%</strong>.</li>
+        </ul>
+      </div>
+
+      <!-- Project 3: MovieBuddy -->
+      <div class="entry">
+        <div class="row-between">
+          <span><strong class="org-title">MovieBuddy Recommendation Engine</strong> <span class="pipe">|</span> <span class="project-tech">Python, Scikit-learn, TF-IDF, Cosine Similarity, React</span></span>
+          <span class="date-str">May 2026 &ndash; June 2026</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Developed a personalized recommendation system over 10,000+ movie records; optimized sparse matrix dot-product operations, accelerating inference throughput by <strong>3.2x</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ════════════ 4. SKILLS & COURSES (Both AI + Cyber Sec Qualified) ════════════ -->
+    <section>
+      <h2 class="section-heading">Skills &amp; Courses</h2>
+      <div class="skills-block">
+        <div class="skills-line">
+          <strong>Programming Languages &amp; Frameworks:</strong> Python, C, C++, Java, SQL, TypeScript, JavaScript, HTML, CSS, React
+        </div>
+        <div class="skills-line">
+          <strong>AI-Powered Security &amp; Cyber Defense:</strong> Autonomous Threat Detection Agents, SOC Log Monitoring, TryHackMe (Hands-on Labs), OWASP Top 10 Hardening, IAM &amp; Web Posture (CSP/HSTS), Burp Suite, Nmap, Network Protocols
+        </div>
+        <div class="skills-line">
+          <strong>AI Product Engineering &amp; Distributed Systems:</strong> Multi-Agent Orchestration, LLM Evaluation &amp; Benchmarking, Latency Optimization (TTFT), LightGBM, Scikit-learn, LLaMA 3.3 70B, Groq LPUs, Prompt Engineering, NLP, PyTorch
+        </div>
+        <div class="skills-line">
+          <strong>Software Development &amp; Cloud Systems:</strong> RESTful APIs, Full-Stack Development, OOPs, Data Structures &amp; Algorithms, Node.js, Express, PostgreSQL, Supabase, Git, CI/CD, Unix/Linux, Windows
+        </div>
+        <div class="skills-line">
+          <strong>Certifications &amp; Training:</strong> <span class="cert-link">Applied Cybersecurity &amp; SOC Operations</span> , <span class="cert-link">Excellence in Machine Learning &amp; Data Science</span> , <span class="cert-link">Data Structures &amp; Algorithms</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 5. ACHIEVEMENTS ════════════ -->
+    <section>
+      <h2 class="section-heading">Achievements</h2>
+      <ul class="bullet-list">
+        <li><strong>Won 2nd Place Overall &mdash; GeeksforGeeks Hackfest, Bangalore</strong> &mdash; Awarded Rs. 15,000 cash prize among 100+ competing teams</li>
+        <li><span class="achieve-highlight">Ticket to Grand Finale &mdash; GeeksforGeeks Hackfest</span> &mdash; Qualified directly based on multi-agent AI system architecture</li>
+        <li><strong>1st Place in Prompt to Product (OJAS 2K26)</strong> &mdash; Built production generative AI platform; won Championship Trophy</li>
+        <li><strong>2nd Place in Web &amp; App Development (OJAS 2K26)</strong> &mdash; Recognized for UX/UI execution and clean system architecture</li>
+        <li><strong>8.60 CGPA in BCA (Hons) &amp; 84% in 12th (PCMCs)</strong> &mdash; Demonstrating consistent academic and technical discipline</li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>
