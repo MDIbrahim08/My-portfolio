@@ -344,10 +344,6 @@ export default function Portfolio() {
           <span className="hidden sm:inline-block text-[9px] font-mono uppercase bg-white/10 text-white/80 border border-white/20 px-2.5 py-0.5 rounded-full">
             AI & SECURITY
           </span>
-          <span className="hidden lg:inline-flex items-center gap-1.5 text-[9px] font-mono uppercase text-emerald-300/90 bg-emerald-500/10 border border-emerald-400/25 px-2.5 py-0.5 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            OPEN FOR INTERNSHIPS
-          </span>
         </div>
 
         <div className="hidden md:flex clay-glass-pill px-6 py-2.5 gap-8 text-[10px] tracking-[0.25em] font-bold uppercase text-white/70">
