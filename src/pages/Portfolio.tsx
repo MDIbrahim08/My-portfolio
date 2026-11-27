@@ -13,6 +13,8 @@ import { ConnoisseurStackInteractor, MenuItem } from "../components/ui/connoisse
 import FlipGallery, { FlipImageItem } from "../components/ui/flip-gallery";
 import { LiquidMetalButton } from "../components/ui/liquid-metal-button";
 import { cn } from "@/lib/utils";
+import { TelemetryDock } from "@/components/TelemetryDock";
+import { playChime, playThunk, playTick } from "@/lib/sfx";
 
 /* ─────────────────────────────────────────
    Types & Interfaces
@@ -342,6 +344,10 @@ export default function Portfolio() {
           <span className="hidden sm:inline-block text-[9px] font-mono uppercase bg-white/10 text-white/80 border border-white/20 px-2.5 py-0.5 rounded-full">
             AI & SECURITY
           </span>
+          <span className="hidden lg:inline-flex items-center gap-1.5 text-[9px] font-mono uppercase text-emerald-300/90 bg-emerald-500/10 border border-emerald-400/25 px-2.5 py-0.5 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            OPEN FOR INTERNSHIPS
+          </span>
         </div>
 
         <div className="hidden md:flex clay-glass-pill px-6 py-2.5 gap-8 text-[10px] tracking-[0.25em] font-bold uppercase text-white/70">
@@ -645,6 +651,7 @@ export default function Portfolio() {
                   target="_blank"
                   rel="noopener noreferrer"
                   download={link.download ? "Mohammed_Ibrahim_Resume.pdf" : undefined}
+                  onClick={() => (link.download ? playChime() : playTick())}
                   className="clay-glass-pill px-6 py-3 inline-flex items-center gap-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white hover:border-white/30 transition-all duration-300"
                 >
                   {link.icon}

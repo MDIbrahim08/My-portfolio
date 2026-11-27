@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { playFlap } from "@/lib/sfx";
 
 export interface FlipImageItem {
   title: string;
@@ -166,6 +167,7 @@ export default function FlipGallery({ images = defaultImages, className = "" }: 
   };
 
   const updateIndex = (increment: number) => {
+    playFlap();
     const inc = Number(increment);
     const newIndex = (currentIndex + inc + images.length) % images.length;
     const isReverse = inc < 0;
