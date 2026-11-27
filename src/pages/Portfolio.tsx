@@ -103,7 +103,7 @@ export default function Portfolio() {
         "Deployed a live, production-grade cybersecurity platform serving high-precision threat classification and sub-second crisis mitigation recommendations.",
       techStack: ["React", "LightGBM", "LLaMA 3.3 70B", "Groq", "Supabase", "Python"],
       link: "https://cyzenai.netlify.app",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
+      image: "/projects/project-cyzen.jpg",
     },
     {
       id: "02",
@@ -120,7 +120,7 @@ export default function Portfolio() {
         "Launched an autonomous multi-agent urban mobility engine that delivers self-validating route strategies and voice interaction.",
       techStack: ["React", "TypeScript", "LLM Orchestration", "Python", "Node.js"],
       link: "https://pulseblr.netlify.app",
-      image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=1200",
+      image: "/projects/project-pulseblr.jpg",
     },
     {
       id: "03",
@@ -136,7 +136,7 @@ export default function Portfolio() {
       outcome:
         "Empowers security teams to rapidly identify web posture weaknesses and enforce enterprise browser security controls.",
       techStack: ["Python", "Web Security", "OWASP", "REST API", "React"],
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1200",
+      image: "/projects/project-security-header.jpg",
     },
     {
       id: "04",
@@ -154,7 +154,7 @@ export default function Portfolio() {
       techStack: ["React", "Python", "Machine Learning", "Data Analytics"],
       link: "https://moviebuddy.lovable.app/",
       github: "https://github.com/MDIbrahim08/MovieBuddy",
-      image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1200",
+      image: "/projects/project-moviebuddy.jpg",
     },
   ];
 
