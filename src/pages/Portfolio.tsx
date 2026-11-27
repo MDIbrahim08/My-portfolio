@@ -294,6 +294,24 @@ export default function Portfolio() {
       tag: "ACADEMIC EXCELLENCE",
       url: "/achievements/award-ojas-trophy.png",
     },
+    {
+      title: "2nd Place — Poster Presentation (LAKE 2026)",
+      subtitle: "Big Data Satellite Analytics · 15th Biennial Lake Symposium (IISc)",
+      tag: "IISC COLLABORATION",
+      url: "/achievements/award-lake2026-poster.jpg",
+    },
+    {
+      title: "Sahyadri Young Ecologist Award — LAKE 2026",
+      subtitle: "Best Presentation (UG Poster II Prize) · EWRG, CES, IISc Bangalore",
+      tag: "BEST PRESENTATION",
+      url: "/achievements/award-lake2026-certificate.jpg",
+    },
+    {
+      title: "3rd Place — Capture The Flag (OJAS 2K26)",
+      subtitle: "Chanakya University Intra-University Fest · School of Engineering",
+      tag: "CYBERSECURITY CTF",
+      url: "/achievements/award-ojas-ctf.jpg",
+    },
   ];
 
   const contactLinks: ContactLink[] = [

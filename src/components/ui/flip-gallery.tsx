@@ -40,6 +40,24 @@ const defaultImages: FlipImageItem[] = [
     tag: "ACADEMIC EXCELLENCE",
     subtitle: "Chanakya University Engineering Recognition & Celebration",
   },
+  {
+    title: "2nd Place — Poster Presentation (LAKE 2026)",
+    url: "/achievements/award-lake2026-poster.jpg",
+    tag: "IISC COLLABORATION",
+    subtitle: "Big Data Satellite Analytics · 15th Biennial Lake Symposium (IISc)",
+  },
+  {
+    title: "Sahyadri Young Ecologist Award — LAKE 2026",
+    url: "/achievements/award-lake2026-certificate.jpg",
+    tag: "BEST PRESENTATION",
+    subtitle: "Best Presentation (UG Poster II Prize) · EWRG, CES, IISc Bangalore",
+  },
+  {
+    title: "3rd Place — Capture The Flag (OJAS 2K26)",
+    url: "/achievements/award-ojas-ctf.jpg",
+    tag: "CYBERSECURITY CTF",
+    subtitle: "Chanakya University Intra-University Fest · School of Engineering",
+  },
 ];
 
 const FLIP_SPEED = 750;
