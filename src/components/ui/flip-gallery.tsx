@@ -266,7 +266,7 @@ export default function FlipGallery({ images = defaultImages, className = "" }: 
                   if (inc !== 0) updateIndex(inc);
                 }}
                 className={cn(
-                  "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
+                  "h-1.5 rounded-full transition-[width,background-color] duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40",
                   currentIndex === idx ? "w-6 bg-white" : "w-1.5 bg-white/25 hover:bg-white/50"
                 )}
               />

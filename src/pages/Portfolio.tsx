@@ -331,13 +331,13 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="relative min-h-screen text-white font-body bg-[#07080a] selection:bg-amber-400 selection:text-black">
+    <div className="relative min-h-screen text-white font-body bg-[#07080a] selection:bg-white selection:text-black">
       <div className="noise-overlay" />
 
       {/* ═══ SLEEK GLASS NAVBAR ════════════════════════════════ */}
       <nav className="fixed top-0 w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center backdrop-blur-md bg-[#07080a]/40 border-b border-white/5">
         <div className="clay-glass-pill px-4 py-2 flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-white animate-ping" />
+          <div className="w-1.5 h-1.5 rounded-full bg-white/90" />
           <span className="font-display font-black text-xs md:text-sm tracking-tight text-white">
             MOHAMMED IBRAHIM
           </span>
@@ -390,7 +390,7 @@ export default function Portfolio() {
               >
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                  <span className="text-[10px] tracking-[0.3em] font-mono font-black text-white/60 uppercase">
+                  <span className="text-[10px] tracking-[0.18em] font-mono font-black text-white/60 uppercase">
                     AI & SECURITY
                   </span>
                 </div>
@@ -430,7 +430,7 @@ export default function Portfolio() {
           <button
             onClick={togglePlay}
             title={isPlaying ? "Pause Stage Reel" : "Play Stage Reel"}
-            className="clay-glass-pill w-20 h-20 sm:w-22 sm:h-22 rounded-full flex items-center justify-center text-white hover:text-white transition-all cursor-pointer shadow-xl bg-[#090b0e] border border-white/30 hover:border-white/60 hover:scale-105 backdrop-blur-2xl group"
+            className="clay-glass-pill w-20 h-20 sm:w-22 sm:h-22 rounded-full flex items-center justify-center text-white hover:text-white transition-[transform,border-color,background-color] duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shadow-xl bg-[#090b0e] border border-white/30 hover:border-white/60 hover:scale-105 backdrop-blur-2xl group"
           >
             {isPlaying ? (
               <Pause size={24} className="text-white fill-white group-hover:scale-110 transition-transform" />
@@ -447,7 +447,7 @@ export default function Portfolio() {
           className="absolute bottom-8 left-6 md:left-12 z-20"
         >
           <a href="#about" className="flex items-center gap-2.5 text-white/50 hover:text-white transition-colors">
-            <span className="text-[9px] font-mono tracking-[0.3em] uppercase font-bold">SCROLL DOWN TO EXPLORE</span>
+            <span className="text-[9px] font-mono tracking-[0.18em] uppercase font-bold">SCROLL DOWN TO EXPLORE</span>
             <ArrowDown size={14} />
           </a>
         </motion.div>
@@ -463,7 +463,7 @@ export default function Portfolio() {
             
             {/* Header Tag */}
             <motion.div {...fadeUp} className="mb-4">
-              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase">
+              <span className="text-[10px] tracking-[0.18em] font-mono font-bold text-white/60 uppercase">
                 About Ibrahim
               </span>
             </motion.div>
@@ -499,7 +499,7 @@ export default function Portfolio() {
                   <img
                     src="/profile.png"
                     alt="Mohammed Ibrahim"
-                    className="w-full h-full object-cover brightness-95 hover:brightness-105 transition-all"
+                    className="w-full h-full object-cover brightness-95 hover:brightness-105 transition-[filter] duration-200"
                   />
                 </div>
               </div>
@@ -547,7 +547,7 @@ export default function Portfolio() {
             {/* Header */}
             <div className="max-w-[1200px] w-full mx-auto flex justify-between items-end">
               <div>
-                <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
+                <span className="text-[10px] tracking-[0.18em] font-mono font-bold text-white/60 uppercase mb-2 block">
                   3D Interactive Showcase
                 </span>
                 <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
@@ -576,7 +576,7 @@ export default function Portfolio() {
             {/* Footer indicator */}
             <div className="max-w-[1200px] w-full mx-auto border-t border-white/10 pt-4 flex justify-between items-center text-[10px] text-white/45">
               <span>Mohammed Ibrahim · AI & Security</span>
-              <span className="font-mono uppercase tracking-[0.2em] animate-pulse">scroll down to continue ↓</span>
+              <span className="font-mono uppercase tracking-[0.18em] text-white/45">scroll down to continue ↓</span>
             </div>
 
           </div>
@@ -588,7 +588,7 @@ export default function Portfolio() {
           <div className="max-w-[1200px] mx-auto">
             
             <motion.div {...fadeUp} className="mb-10">
-              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
+              <span className="text-[10px] tracking-[0.18em] font-mono font-bold text-white/60 uppercase mb-2 block">
                 Interactive Stack & Domains
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
@@ -608,7 +608,7 @@ export default function Portfolio() {
           <div className="max-w-[1200px] mx-auto">
             
             <motion.div {...fadeUp} className="mb-10 text-center">
-              <span className="text-[10px] tracking-[0.35em] font-mono font-bold text-white/60 uppercase mb-2 block">
+              <span className="text-[10px] tracking-[0.18em] font-mono font-bold text-white/60 uppercase mb-2 block">
                 Verified Recognitions & Certificates
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-black text-white">
@@ -628,7 +628,7 @@ export default function Portfolio() {
           <div className="max-w-[1200px] mx-auto space-y-6">
             
             <motion.div {...fadeUp} className="space-y-3">
-              <span className="text-[10px] tracking-[0.4em] font-mono font-bold text-white/60 uppercase">
+              <span className="text-[10px] tracking-[0.2em] font-mono font-bold text-white/60 uppercase">
                 GET IN TOUCH
               </span>
               <h2 className="font-display text-4xl sm:text-6xl font-black text-white">
@@ -648,7 +648,7 @@ export default function Portfolio() {
                   rel="noopener noreferrer"
                   download={link.download ? "Mohammed_Ibrahim_Resume.pdf" : undefined}
                   onClick={() => (link.download ? playChime() : playTick())}
-                  className="clay-glass-pill px-6 py-3 inline-flex items-center gap-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white hover:border-white/30 transition-all duration-300"
+                  className="clay-glass-pill px-6 py-3 inline-flex items-center gap-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white/80 hover:text-white hover:border-white/30 transition-[transform,border-color,background-color,color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                 >
                   {link.icon}
                   {link.name}

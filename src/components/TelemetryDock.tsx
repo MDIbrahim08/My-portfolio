@@ -92,7 +92,7 @@ export const TelemetryDock: React.FC = () => {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
         </span>
-        <span className="font-mono text-[10px] tracking-[0.18em] text-white/80 uppercase whitespace-nowrap">
+        <span className="font-mono tabular-nums text-[10px] tracking-[0.16em] text-white/80 uppercase whitespace-nowrap">
           {activeLabel}
         </span>
       </div>
@@ -103,7 +103,7 @@ export const TelemetryDock: React.FC = () => {
         onClick={handleRewind}
         title="Rewind to Hero Reel"
         aria-label="Rewind to top"
-        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-white/80 hover:text-white transition-all active:scale-95 cursor-pointer"
+        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-white/80 hover:text-white transition-[transform,background-color,border-color,color] duration-150 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
       >
         <RotateCcw size={11} />
         <span className="hidden sm:inline">Rewind</span>
@@ -116,7 +116,7 @@ export const TelemetryDock: React.FC = () => {
         title={soundOn ? "Mute UI Sound Effects" : "Enable UI Sound Effects"}
         aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
         aria-pressed={soundOn}
-        className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 hover:bg-white/20 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-white transition-all active:scale-95 cursor-pointer"
+        className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 hover:bg-white/20 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-white transition-[transform,background-color,border-color,color] duration-150 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
       >
         {soundOn ? <Volume2 size={11} /> : <VolumeX size={11} className="text-white/50" />}
         <canvas ref={canvasRef} width={24} height={14} className="block" aria-hidden="true" />
